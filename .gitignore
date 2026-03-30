@@ -1,0 +1,11 @@
+# Ignorar archivos de datos pesados y sensibles
+*.csv
+*.xlsx
+*.xls
+/Data/
+/Outputs/
+# Ignorar carpetas del sistema y temporales
+__pycache__/
+.env
+.DS_Store
+.ipynb_checkpoints/
