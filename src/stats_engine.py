@@ -32,10 +32,16 @@ def calcular_distribucion_niveles(df):
     
     return dist_pct.round(1)
 
+# src/stats_engine.py (Modifica esta función)
+
 def obtener_quintiles(df):
     """Divide a los estudiantes en 5 grupos iguales (Quintiles)."""
-    # El quintil ayuda a ver el 20% superior, inferior, etc.
+    # Solo intentamos calcular si hay notas validas
     df_valid = df.dropna(subset=['theta.global (escala 0-100)'])
+    
+    if df_valid.empty:
+        # Si no hay notas, devolvemos una tabla vacia con los nombres de columnas
+        return pd.DataFrame(columns=['Q1 (20%)', 'Q2 (40%)', 'Q3 (60%)', 'Q4 (80%)'])
     
     quintiles = df_valid.groupby('Area_Tematica')['theta.global (escala 0-100)'].quantile(
         [0.2, 0.4, 0.6, 0.8]

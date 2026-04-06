@@ -1,3 +1,4 @@
+# src/report_profesores.py
 import os
 import re
 import pandas as pd
@@ -9,26 +10,10 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import config
 
-# Usamos las rutas dinámicas para que funcione en cualquier PC y mes
-GEISER_CSV_DIR = config.PATH_INTERIM  # Aquí ya están los CSV limpios de la Tarea 3
-REPORTS_DIR = os.path.join(config.CURRENT_MONTH_PATH, "Reportes_Por_Secciones")
-MAPEO_DIR = config.PATH_METADATA      # La carpeta 00_Metadata de tu Drive
-
-os.makedirs(REPORTS_DIR, exist_ok=True)
-
-# --- 2. PLANTILLA HTML Y CSS ---
-import os
-import re
-import pandas as pd
-import numpy as np
-import pathlib
-
-# --- 1. CONFIGURACIÓN DE DIRECTORIOS ---
-BASE_DIR = r"G:\Mi unidad\Modernización_Educativa\Gerencia de Evaluación_Proyectos_Análisis\3. PROGRESO_MES_2 (Abril) - PilotoReportes"
-MAPEO_DIR = r"G:\Mi unidad\Modernización_Educativa\Gerencia de Evaluación_Proyectos_Análisis\0. Curricular_Documents"
-
-GEISER_CSV_DIR = os.path.join(BASE_DIR, r"DataSets\GEISER_MES_ACTUAL")
-REPORTS_DIR = os.path.join(BASE_DIR, "Reportes por secciones")
+# Usamos las rutas dinámicas del sistema
+GEISER_CSV_DIR = config.PATH_INTERIM
+REPORTS_DIR = os.path.join(config.PATH_REPORTS, "Reportes_Por_Secciones")
+MAPEO_DIR = config.PATH_METADATA
 
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
@@ -306,7 +291,7 @@ def process_section_reports():
         "Buena": "#1abc9c", "Excelente": "#196f3d"
     }
 
-    print("Cargando y unificando datos de Geiser...")
+    print("Cargando y unificando datos de Analisis Psicometrico...")
     master_df = build_master_geiser_dataframe()
     if master_df.empty: return
     
@@ -355,7 +340,9 @@ def process_section_reports():
                 mes_prueba = match.group(1)
                 break
                 
-        fechas_validas = pd.to_datetime(group_data['Fecha-Hora de Inicio'].replace('Sin Especificar', pd.NA), errors='coerce', dayfirst=True)
+        # AQUÍ ESTÁ EL CAMBIO PARA QUITAR LA ADVERTENCIA: format='mixed'
+        fechas_validas = pd.to_datetime(group_data['Fecha-Hora de Inicio'].replace('Sin Especificar', pd.NA), errors='coerce', dayfirst=True, format='mixed')
+        
         if not fechas_validas.dropna().empty:
             mes_num = fechas_validas.dropna().dt.month.mode().iloc[0]
             mes_aplicacion = meses_es.get(int(mes_num), "No especificado")
@@ -441,7 +428,6 @@ def process_section_reports():
             # --- CONSTRUCCIÓN DE LA TABLA ---
             tbody_id = f"tbody_{nro_centro}_{subject}" 
             
-            # ¡CORRECCIÓN APLICADA AQUÍ: CREACIÓN CON '=' Y BOTÓN ALINEADO A LA IZQUIERDA!
             matrix_html = f"""
             <div style="display: flex; justify-content: flex-start; margin-bottom: 10px;" class="no-print">
                 <button onclick="toggleSort(this, '{tbody_id}')" class="btn btn-default" data-sort-state="rendimiento" style="font-size: 13px;">
@@ -508,7 +494,6 @@ def process_section_reports():
                         
                 matrix_html += "</tr>"
                 
-            # Fin de la tabla. ¡Fila de totales eliminada!
             matrix_html += "</tbody></table></div>"
             
             # --- LEYENDAS ---
