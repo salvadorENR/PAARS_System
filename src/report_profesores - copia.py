@@ -7,6 +7,7 @@ import pathlib
 import sys
 import glob
 import unicodedata
+import difflib 
 
 # --- 1. CONEXIÓN CON EL MAPA PAARS ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -45,6 +46,9 @@ HTML_TEMPLATE = """
         .btn-primary {{ background: #2980b9; color: white; border-color: #2471a3; }}
         .btn-primary:hover {{ background: #1f618d; }}
         
+        .pdf-link-container {{ text-align: center; margin-bottom: 25px; }}
+        .pdf-link-container a {{ color: #2980b9; font-weight: bold; text-decoration: underline; font-size: 14px; }}
+
         .header-card {{ background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 5px solid #2980b9; }}
         .header-card h2 {{ margin: 0 0 15px 0; color: #2c3e50; font-size: 24px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }}
         .info-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 14px; color: #444; }}
@@ -97,7 +101,6 @@ HTML_TEMPLATE = """
         .indicator-item strong {{ color: #2c3e50; display: inline-block; width: 55px; }}
         
         .badge-class {{ display: inline-block; background-color: #34495e; color: white; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; vertical-align: baseline; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }}
-        .nivelacion-badge {{ color: #c0392b; font-weight: bold; margin-left: 5px; font-size: 12px; }}
         
         .footnote {{ font-size: 13px; color: #333; margin-bottom: 10px; padding: 10px 15px; border-radius: 4px; }}
         .footnote-warning {{ background-color: #fdf2f2; border-left: 4px solid #e74c3c; color: #c0392b; }}
@@ -135,6 +138,10 @@ HTML_TEMPLATE = """
                 <div class="info-item"><strong>Mes de Aplicación</strong><span>{mes_aplicacion}</span></div>
             </div>
         </div>
+    </div>
+    
+    <div class="pdf-link-container no-print">
+        <a href="{file_uri}" target="_blank">Link para visualizar el html (Guardar para el PDF)</a>
     </div>
 
     {tablas_html}
@@ -219,150 +226,181 @@ def clasificar_puntaje(val):
     elif val <= 65: return "Bueno"
     else: return "Excelente"
 
-def load_item_indicators():
-    """Lee exclusivamente el Súper Archivo Procesado y extrae toda la información."""
-    item_base_dict = {}
+def limpiar_texto(texto):
+    """Elimina TODO el formato (espacios, tildes, signos) para hacer un match perfecto."""
+    if not isinstance(texto, str) or pd.isna(texto): return ""
+    texto = str(texto).strip()
+    texto = re.sub(r'^\d+([.-]\d+)*[.)\-]?\s*', '', texto)
+    texto = ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn')
+    texto = re.sub(r'[^a-z0-9]', '', texto.lower())
+    return texto
+
+def get_grado_key(texto):
+    """Traductor unificado robusto para grados."""
+    texto = str(texto).lower()
+    num = None
     
-    archivos_procesados = glob.glob(os.path.join(MAPEO_DIR, "Items_Progreso_Mes*_procesado.xlsx"))
-    if not archivos_procesados:
-        archivos_procesados = glob.glob("Items_Progreso_Mes*_procesado.xlsx")
+    if '1er' in texto and ('año' in texto or 'bach' in texto): num = 10
+    elif '2do' in texto and ('año' in texto or 'bach' in texto): num = 11
+    elif '10' in texto or 'decim' in texto or 'décim' in texto: num = 10
+    elif '11' in texto or 'undec' in texto or 'undéc' in texto or 'once' in texto: num = 11
+    elif '9' in texto or 'noven' in texto or 'nueve' in texto: num = 9
+    elif '8' in texto or 'octav' in texto or 'ocho' in texto: num = 8
+    elif '7' in texto or 'septim' in texto or 'séptim' in texto or 'siete' in texto: num = 7
+    elif '6' in texto or 'sext' in texto or 'seis' in texto: num = 6
+    elif '5' in texto or 'quint' in texto or 'cinco' in texto: num = 5
+    elif '4' in texto or 'cuart' in texto or 'cuatro' in texto: num = 4
+    elif '3' in texto or 'tercer' in texto or 'tres' in texto: num = 3
+    elif '2' in texto or 'segund' in texto or 'dos' in texto: num = 2
+    elif '1' in texto or 'primer' in texto or 'uno' in texto: num = 1
+    
+    if num is None:
+        match = re.search(r'(\d+)', texto)
+        if match: num = int(match.group(1))
+        else: return ""
         
-    if not archivos_procesados:
-        print("  [!] No se encontró el archivo 'Items_Progreso_Mes..._procesado.xlsx'")
-        return item_base_dict
+    return f"{num} grado"
 
-    ITEMS_FILE = archivos_procesados[0]
-    print(f"  -> Usando maestro de ítems integrado: {os.path.basename(ITEMS_FILE)}")
+def parse_day_for_sorting(d):
+    match = re.search(r'(\d+(\.\d+)?)', str(d))
+    return float(match.group(1)) if match else 9999.0
 
+def format_multiple_days(days_set):
+    if not days_set: 
+        return "", 9999.0
+    
+    sorted_days = sorted(list(days_set), key=parse_day_for_sorting)
+    first_day_val = parse_day_for_sorting(sorted_days[0])
+    
+    formatted_days = []
+    for d in sorted_days:
+        try:
+            num = float(d)
+            formatted_days.append(str(int(num)) if num.is_integer() else str(num))
+        except:
+            formatted_days.append(str(d).strip())
+            
+    if len(formatted_days) == 1:
+        return f"Clase {formatted_days[0]}", first_day_val
+    elif len(formatted_days) == 2:
+        return f"Clases {formatted_days[0]} y {formatted_days[1]}", first_day_val
+    else:
+        comas = ", ".join(formatted_days[:-1])
+        return f"Clases {comas} y {formatted_days[-1]}", first_day_val
+
+def buscar_dia_borroso(materia, grado, txt_objetivo, dias_ref_dict, threshold=0.70):
+    candidatos = [k[2] for k in dias_ref_dict.keys() if k[0] == materia and k[1] == grado]
+    if not candidatos: return None
+    
+    if txt_objetivo in candidatos: 
+        return dias_ref_dict[(materia, grado, txt_objetivo)]
+        
+    matches = difflib.get_close_matches(txt_objetivo, candidatos, n=1, cutoff=threshold)
+    if matches: 
+        return dias_ref_dict[(materia, grado, matches[0])]
+        
+    return None
+
+def load_item_indicators():
+    ITEMS_FILE = os.path.join(MAPEO_DIR, "Mapeo_Items_Grados_Completo_Pregreso_Mes_1_2026.xlsx")
+    item_base_dict = {}
+    dias_referencia = {}
+    if not os.path.exists(ITEMS_FILE): return item_base_dict, dias_referencia
+
+    print("  -> Leyendo Currículos y Mapeando clases...")
+    
+    # MATEMÁTICA
+    math_file = os.path.join(MAPEO_DIR, "Curriculum_Math_Didactic_Sequence.xlsx")
+    if os.path.exists(math_file):
+        try:
+            xls_math = pd.read_excel(math_file, sheet_name=None, dtype=str)
+            for sheet_name, df_cur in xls_math.items():
+                grado_key = get_grado_key(sheet_name)
+                df_cur.columns = df_cur.columns.str.strip()
+                
+                # Buscador inteligente de columnas
+                ind_col = next((c for c in df_cur.columns if 'indicador' in c.lower()), None)
+                dia_col = next((c for c in df_cur.columns if 'dia' in c.lower() or 'día' in c.lower()), None)
+                
+                if ind_col and dia_col:
+                    for _, row in df_cur.iterrows():
+                        ind_bundle = str(row[ind_col])
+                        dia_val = str(row[dia_col]).strip()
+                        if ind_bundle.lower() != 'nan' and dia_val.lower() != 'nan':
+                            parts = [p.strip() for p in re.sub(r'[\n;]', '|', ind_bundle).split('|') if p.strip()]
+                            for p in parts:
+                                txt_limpio = limpiar_texto(p)
+                                if txt_limpio:
+                                    key = ("MAT", grado_key, txt_limpio)
+                                    if key not in dias_referencia: dias_referencia[key] = set()
+                                    dias_referencia[key].add(dia_val)
+        except Exception: pass
+
+    # LENGUAJE
+    lang_file = os.path.join(MAPEO_DIR, "Curriculum_Language_Didactic.xlsx")
+    if os.path.exists(lang_file):
+        try:
+            xls_lang = pd.read_excel(lang_file, sheet_name=None, dtype=str)
+            for sheet_name, df_cur in xls_lang.items():
+                grado_key = get_grado_key(sheet_name)
+                df_cur.columns = df_cur.columns.str.strip()
+                
+                ind_col = next((c for c in df_cur.columns if 'indicador' in c.lower()), None)
+                dia_col = next((c for c in df_cur.columns if 'dia' in c.lower() or 'día' in c.lower()), None)
+                
+                if ind_col and dia_col:
+                    for _, row in df_cur.iterrows():
+                        ind_bundle = str(row[ind_col])
+                        dia_val = str(row[dia_col]).strip()
+                        if ind_bundle.lower() != 'nan' and dia_val.lower() != 'nan':
+                            parts = [p.strip() for p in re.sub(r'[\n;]', '|', ind_bundle).split('|') if p.strip()]
+                            for p in parts:
+                                txt_limpio = limpiar_texto(p)
+                                if txt_limpio:
+                                    key = ("LEC", grado_key, txt_limpio)
+                                    if key not in dias_referencia: dias_referencia[key] = set()
+                                    dias_referencia[key].add(dia_val)
+        except Exception: pass
+
+    # Mapeo ítems
     try:
         df_items = pd.read_excel(ITEMS_FILE, dtype=str)
-        
-        columnas_requeridas = ['ItemCodigo', 'indicador_logro', 'Grado_Aplicado', 'Clases_Sugeridas', 'Orden_Clase', 'Nivelacion']
-        for col in columnas_requeridas:
-            if col not in df_items.columns:
-                df_items[col] = ''
-                
-        for _, row in df_items.dropna(subset=['ItemCodigo', 'indicador_logro']).iterrows():
-            codigo = str(row['ItemCodigo']).strip()
-            
-            orden_val = 9999.0
-            if pd.notna(row['Orden_Clase']) and str(row['Orden_Clase']).strip() != '':
-                try:
-                    orden_val = float(row['Orden_Clase'])
-                except:
-                    pass
-            
-            item_base_dict[codigo] = {
-                'objetivo': str(row['indicador_logro']).strip(),
-                'clases': str(row['Clases_Sugeridas']).strip() if pd.notna(row['Clases_Sugeridas']) and str(row['Clases_Sugeridas']).strip() != 'nan' else "",
-                'orden': orden_val,
-                'nivelacion': str(row['Nivelacion']).strip() if pd.notna(row['Nivelacion']) and str(row['Nivelacion']).strip() != 'nan' else ""
-            }
-    except Exception as e: 
-        print(f"  [!] Error procesando ítems maestros: {e}")
-        
-    return item_base_dict
+        for _, row in df_items.dropna(subset=['ItemCodigo', 'Objetivo', 'Grado']).iterrows():
+            item_base_dict[row['ItemCodigo'].strip()] = {'objetivo': row['Objetivo'].strip(), 'grado_orig': row['Grado'].strip()}
+    except Exception: pass
+    return item_base_dict, dias_referencia
 
 def build_master_geiser_dataframe():
     compl_dfs, res_dfs = [], []
     if not os.path.exists(GEISER_CSV_DIR): return pd.DataFrame()
-    
     for f in os.listdir(GEISER_CSV_DIR):
         if not f.lower().endswith('.csv') or 'legend' in f.lower(): continue
         path = os.path.join(GEISER_CSV_DIR, f)
         try:
             df = pd.read_csv(path, dtype=str, encoding='utf-8-sig')
-            
-            # --- LIMPIEZA EXTREMA Y ESCUDO ANTI-DUPLICADOS ---
-            # 1. Quitamos espacios en los nombres de las columnas
             df.columns = df.columns.str.strip()
-            # 2. Si el archivo viene con columnas duplicadas de origen, las removemos
-            df = df.loc[:, ~df.columns.duplicated()].copy()
-            
-            # --- BUSCADOR INTELIGENTE DE COLUMNAS ---
-            if 'anular_prueba' not in df.columns:
-                col_anular = next((c for c in df.columns if 'anular' in c.lower()), None)
-                if col_anular: 
-                    df = df.rename(columns={col_anular: 'anular_prueba'})
-            
-            if 'theta.global (escala 0-100)' not in df.columns:
-                col_theta = next((c for c in df.columns if 'theta' in c.lower() and 'global' in c.lower()), None)
-                if col_theta: 
-                    df = df.rename(columns={col_theta: 'theta.global (escala 0-100)'})
-
-            # 3. Nos aseguramos de que el renombramiento no haya generado un nuevo duplicado
-            df = df.loc[:, ~df.columns.duplicated()].copy()
-
             if 'MAT-' in f.upper(): df['Area temática'] = 'Matemática'
             elif 'LEC-' in f.upper(): df['Area temática'] = 'Lengua'
             elif 'Area temática' not in df.columns: df['Area temática'] = 'Desconocida'
-            
             if '_compl' in f.lower(): compl_dfs.append(df)
             elif 'resultados' in f.lower(): res_dfs.append(df)
-        except Exception as e: 
-            print(f"  [!] Error leyendo el archivo {f}: {e}")
-        
+        except: pass
     if not compl_dfs: return pd.DataFrame()
-    
-    try:
-        # Unimos y aplicamos el escudo anti-duplicados por última vez
-        compl_df = pd.concat(compl_dfs, ignore_index=True)
-        compl_df = compl_df.loc[:, ~compl_df.columns.duplicated()].copy()
-        
-        # Limpieza CRÍTICA de Documento para asegurar el Merge perfecto
-        if 'Documento' in compl_df.columns:
-            compl_df['Documento'] = compl_df['Documento'].astype(str).str.strip().str.replace(r'\.0$', '', regex=True)
-            
-        if 'Area temática' in compl_df.columns:
-            compl_df['Area temática'] = compl_df['Area temática'].astype(str).str.strip()
-            
-        # Dropeamos las columnas que vamos a traer de res_df para que no haya conflictos de duplicados
-        columnas_a_borrar = ['theta.global (escala 0-100)', 'anular_prueba']
-        compl_df = compl_df.drop(columns=[c for c in columnas_a_borrar if c in compl_df.columns], errors='ignore')
-        
-        compl_df = compl_df.drop_duplicates(subset=['Documento', 'Area temática'])
-    except Exception as e:
-        print(f"Error uniendo datos de completitud: {e}")
-        return pd.DataFrame()
-    
+    compl_df = pd.concat(compl_dfs, ignore_index=True).drop_duplicates(subset=['Documento', 'Area temática'])
     if res_dfs:
-        try:
-            res_df = pd.concat(res_dfs, ignore_index=True)
-            res_df = res_df.loc[:, ~res_df.columns.duplicated()].copy()
-            
-            if 'Documento' in res_df.columns:
-                res_df['Documento'] = res_df['Documento'].astype(str).str.strip().str.replace(r'\.0$', '', regex=True)
-                
-            if 'Area temática' in res_df.columns:
-                res_df['Area temática'] = res_df['Area temática'].astype(str).str.strip()
-                
-            res_df = res_df.drop_duplicates(subset=['Documento', 'Area temática'])
-        except Exception as e:
-            print(f"Error uniendo datos de resultados: {e}")
-            res_df = pd.DataFrame()
-            
-        if not res_df.empty:
-            if 'anular_prueba' not in res_df.columns: res_df['anular_prueba'] = pd.NA
-            if 'theta.global (escala 0-100)' not in res_df.columns: res_df['theta.global (escala 0-100)'] = pd.NA
-            
-            master_df = pd.merge(compl_df, res_df[['Documento', 'Area temática', 'theta.global (escala 0-100)', 'anular_prueba']], on=['Documento', 'Area temática'], how='left')
-        else:
-            master_df = compl_df
-            master_df['theta.global (escala 0-100)'] = pd.NA
-            master_df['anular_prueba'] = pd.NA
+        res_df = pd.concat(res_dfs, ignore_index=True).drop_duplicates(subset=['Documento', 'Area temática'])
+        master_df = pd.merge(compl_df, res_df[['Documento', 'Area temática', 'theta.global (escala 0-100)', 'anular_prueba']], on=['Documento', 'Area temática'], how='left')
     else:
         master_df = compl_df
         master_df['theta.global (escala 0-100)'] = pd.NA
         master_df['anular_prueba'] = pd.NA
-        
     return master_df
 
 def process_section_reports():
-    item_base_dict = load_item_indicators()
+    item_base_dict, dias_referencia = load_item_indicators()
     meses_es = {1:'Enero', 2:'Febrero', 3:'Marzo', 4:'Abril', 5:'Mayo', 6:'Junio', 7:'Julio', 8:'Agosto', 9:'Septiembre', 10:'Octubre', 11:'Noviembre', 12:'Diciembre'}
     solid_colors = {"Crítico": "#991b1b", "Bajo": "#ff8c2e", "Medio": "#facc15", "Bueno": "#84cc16", "Excelente": "#065f46"}
 
-    print("Cargando y unificando datos de Analisis Psicometrico...")
     master_df = build_master_geiser_dataframe()
     if master_df.empty: return
     
@@ -397,7 +435,6 @@ def process_section_reports():
     grouped = master_df.groupby(['Nro de centro', 'Centro', 'Grado', 'Grupo', 'Departamento'])
     reportes_generados = 0
 
-    print(f"Generando reportes de secciones en: {REPORTS_DIR} ...")
     for (nro_centro, centro, grado, grupo_original, departamento), group_data in grouped:
         centro_nombre_str = str(centro).strip()
         safe_centro = re.sub(r'[\\/*?:"<>|]', "", centro_nombre_str)
@@ -405,6 +442,7 @@ def process_section_reports():
         os.makedirs(school_folder, exist_ok=True)
         safe_grupo_file = str(grupo_original).replace(" ", "").replace("(", "_").replace(")", "")
         tablas_html_combinadas, chart_scripts = "", []
+        grado_eval_key = get_grado_key(grado)
 
         mes_prueba = "2" 
         pruebas_unicas = group_data['Prueba'].dropna().unique()
@@ -435,44 +473,26 @@ def process_section_reports():
             matrix = subject_data[['Documento', 'Apellidos y Nombres', 'theta.global (escala 0-100)', 'anular_prueba'] + item_cols].copy()
             matrix['Puntaje_Num'] = pd.to_numeric(matrix['theta.global (escala 0-100)'].astype(str).str.replace('"', '').str.replace(',', '.'), errors='coerce')
             
-            # --- FUNCIÓN EXACTA Y LIMPIA PARA EL ASTERISCO ---
-            def tiene_tiempo_inusual(val):
-                if pd.isna(val) or str(val).strip().lower() in ['nan', 'none', '', 'null', 'false']: 
-                    return False
-                
-                # Convertimos a string y forzamos minúsculas
-                val_str = str(val).strip().lower()
-                # Quitamos tildes para evitar desajustes de caracteres
-                val_str = ''.join(c for c in unicodedata.normalize('NFD', val_str) if unicodedata.category(c) != 'Mn')
-                
-                # Buscamos coincidencias de la frase
-                return ("duracion <5 min" in val_str) or ("tiempo extremo de demora" in val_str) or ("5 min" in val_str)
-                
-            matrix['tiempo_inusual'] = matrix['anular_prueba'].apply(tiene_tiempo_inusual)
+            # --- SOLUCIÓN EXACTA DEL ASTERISCO ---
+            matrix['tiempo_inusual'] = matrix['anular_prueba'].fillna('').astype(str).str.contains("duración <5 min o tiempo extremo de demora", case=False, na=False)
             
             matrix['Puntaje_Sort'] = matrix['Puntaje_Num'].fillna(9999) 
             matrix = matrix.sort_values(by='Puntaje_Sort', ascending=True)
 
             indicadores_info = []
+            materia_prefix = "MAT" if subject == 'Matemática' else "LEC"
             for i, item in enumerate(item_cols):
                 pct = (pd.to_numeric(matrix[item], errors='coerce').fillna(0).sum() / len(matrix)) * 100 if len(matrix) > 0 else 0
+                obj = item_base_dict.get(item, {}).get('objetivo', 'Indicador no disponible.')
+                g_orig = item_base_dict.get(item, {}).get('grado_orig', '')
                 
-                base_info = item_base_dict.get(item, {})
-                objetivo_base = base_info.get('objetivo', 'Indicador no disponible.')
-                dia_label = base_info.get('clases', '')
-                first_class_num = base_info.get('orden', 9999.0)
-                nivelacion_texto = base_info.get('nivelacion', '')
+                txt_obj_limpio = limpiar_texto(obj)
+                dias_set = buscar_dia_borroso(materia_prefix, grado_eval_key, txt_obj_limpio, dias_referencia) or set()
                 
+                dia_label, f_day = format_multiple_days(dias_set)
                 disp_name = f"{'MAT' if subject == 'Matemática' else 'LEN'}{i+1}"
-                
-                nivelacion_html = f" <strong style='white-space: nowrap;'>{nivelacion_texto}</strong>" if nivelacion_texto else ""
-                
-                if dia_label:
-                    ind_html = f"<span class='badge-class'>{dia_label}</span> {objetivo_base}{nivelacion_html}"
-                else:
-                    ind_html = f"{objetivo_base}{nivelacion_html}"
-                    
-                indicadores_info.append({'disp_name': disp_name, 'pct': pct, 'indicador_base': ind_html, 'f_day': first_class_num})
+                ind_html = f"<span class='badge-class'>{dia_label}</span> {obj}" + (f" ({g_orig})" if g_orig else "") if dia_label else f"{obj}" + (f" ({g_orig})" if g_orig else "")
+                indicadores_info.append({'disp_name': disp_name, 'pct': pct, 'indicador_base': ind_html, 'f_day': f_day})
 
             indicadores_info.sort(key=lambda x: x['pct'])
             tbody_id = f"tbody_{nro_centro}_{subject.replace(' ', '')}"
@@ -526,7 +546,6 @@ def process_section_reports():
             for _, row in matrix.iterrows():
                 p = row['Puntaje_Num']
                 
-                # --- ASIGNACIÓN SEGURA DEL ASTERISCO ---
                 tiene_asterisco = bool(row['tiempo_inusual'])
                 nombre_visible = f"{row['Apellidos y Nombres']} *" if tiene_asterisco else str(row['Apellidos y Nombres'])
                 
@@ -628,6 +647,7 @@ def process_section_reports():
                     centro=centro_nombre_str, 
                     grado=str(grado).replace(" ", "").replace("º", ""), 
                     grupo=grupo_original, 
+                    file_uri=pathlib.Path(filepath).as_uri(), 
                     tablas_html=tablas_html_combinadas, 
                     chart_scripts="\n".join(chart_scripts)
                 ))

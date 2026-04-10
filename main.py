@@ -16,16 +16,23 @@ from src.report_directores import process_comparative_reports
 # --- NUEVAS MÁQUINAS DE RESULTADOS (LaTeX) ---
 from src.resultados_engine import calcular_metricas_resultados
 from src.report_resultados_latex import generar_reporte_latex
-from src.report_corto_latex import generar_reporte_corto_latex # <-- AQUÍ ESTÁ IMPORTADO
+from src.report_corto_latex import generar_reporte_corto_latex
 
 def ejecutar_sistema_paars():
-    print("====================================================")
+    # Nota: El menú interactivo ya se ejecutó arriba durante el 'import config'
+    
+    print("\n====================================================")
     print(f"   SISTEMA PAARS - PROCESANDO: {config.MONTH_FOLDER}")
     print("====================================================\n")
 
     # 1. PASO: Convertir Excel a CSV
     print("[1/5] Preparando archivos originales de Analisis Psicometrico...")
-    ejecutar_conversion()
+    
+    # ⚠️ ¡ATENCIÓN! ⚠️
+    # Esta línea está apagada (con #) temporalmente para que la simulación de Abril/Mayo funcione 
+    # y no sobreescriba los datos del futuro con los de marzo.
+    # CUANDO VAYAS A PROCESAR DATOS REALES NUEVOS, QUÍTALE EL "#" A LA SIGUIENTE LÍNEA:
+    # ejecutar_conversion()
 
     # 2. PASO: Cargar e Integrar datos
     print("\n[2/5] Calculando el panorama general del pais/estado...")
@@ -53,20 +60,19 @@ def ejecutar_sistema_paars():
             print("\n[4/6] Generando Reportes Detallados por Seccion (Para Profesores)...")
             process_section_reports()
         else:
-            print("\n[4/6] Omitiendo Reportes por Seccion (Opcion no seleccionada).")
+            print("\n[4/6] Omitiendo Reportes por Seccion (Opcion no seleccionada en el menu).")
 
         # 5. PASO: Generar Reportes Comparativos (Directores)
         if config.REPORT_CHOICE in [2, 3]:
             if config.PATH_PREV_INTERIM:
                 print("\n[5/6] Generando Reportes Comparativos por Escuela (Para Directores)...")
-                process_comparative_reports()
+                process_comparative_reports(df_master)
             else:
-                print("\n[5/6] Omitiendo comparativa (No hay mes anterior).")
+                print("\n[5/6] Omitiendo comparativa (No seleccionaste un mes anterior en el menu).")
         else:
-            print("\n[5/6] Omitiendo Reportes Comparativos (Opcion no seleccionada).")
+            print("\n[5/6] Omitiendo Reportes Comparativos (Opcion no seleccionada en el menu).")
 
         # 6. PASO: Generar Reporte Corto (LaTeX)
-        # Lo agregamos al final para que siempre se genere un resumen global
         print("\n[6/6] Generando Reporte Corto Institucional (Beamer LaTeX)...")
         generar_reporte_corto_latex(df_master)
 
@@ -85,15 +91,15 @@ def ejecutar_sistema_paars():
             else:
                 print("  [!] No se genero el reporte porque no hay datos validos.")
         else:
-            print("\n[3/5] Omitiendo Reporte Formal (Opcion no seleccionada).")
-            print("[4/5] Omitiendo Reporte Formal (Opcion no seleccionada).")
+            print("\n[3/5] Omitiendo Reporte Formal (Opcion no seleccionada en el menu).")
+            print("[4/5] Omitiendo Reporte Formal (Opcion no seleccionada en el menu).")
             
         if config.REPORT_CHOICE in [2, 3]:
             # 5. PASO: Generar Reporte Corto (LaTeX)
             print("\n[5/5] Generando Reporte Corto en LaTeX (Beamer)...")
             generar_reporte_corto_latex(df_master)
         else:
-            print("\n[5/5] Omitiendo Reporte Corto (Opcion no seleccionada).")
+            print("\n[5/5] Omitiendo Reporte Corto (Opcion no seleccionada en el menu).")
 
     print("\n====================================================")
     print("      SISTEMA PAARS COMPLETADO CON EXITO!")

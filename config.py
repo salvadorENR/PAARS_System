@@ -35,13 +35,25 @@ while True:
     except ValueError:
         print("  [!] Por favor, ingresa solo el numero.")
 
-# 3.2 Determinar automaticamente el tipo de examen
-if "PROGRESO" in MONTH_FOLDER.upper():
-    EXAM_TYPE = "PROGRESO"
-else:
-    EXAM_TYPE = "RESULTADOS" 
+# 3.2 Elegir el tipo de examen explícitamente
+print(f"\n¿Que tipo de EXAMEN contiene la carpeta '{MONTH_FOLDER}'?")
+print("  [1] Prueba de PROGRESO")
+print("  [2] Prueba de RESULTADOS")
+while True:
+    try:
+        seleccion_examen = int(input("\n-> Elige el NUMERO del tipo de examen (1 o 2): "))
+        if seleccion_examen == 1:
+            EXAM_TYPE = "PROGRESO"
+            break
+        elif seleccion_examen == 2:
+            EXAM_TYPE = "RESULTADOS"
+            break
+        else:
+            print("  [!] Opcion invalida. Elige 1 o 2.")
+    except ValueError:
+        print("  [!] Por favor, ingresa solo el numero.")
 
-# 3.3 Menu dinamico dependiente del tipo de examen
+# 3.3 Menu dinamico dependiente del tipo de examen elegido
 PREV_MONTH_FOLDER = None
 
 if EXAM_TYPE == "PROGRESO":
@@ -80,7 +92,7 @@ if EXAM_TYPE == "PROGRESO":
                 print("  [!] Por favor, ingresa solo el numero.")
 
 else:
-    # --- EL NUEVO MENÚ PARA LA PRUEBA DE RESULTADOS ---
+    # --- EL MENÚ PARA LA PRUEBA DE RESULTADOS ---
     print("\nQue tipo de reportes deseas generar hoy para la Prueba de RESULTADOS?")
     print("  [1] SOLO Reporte Formal (LaTeX)")
     print("  [2] SOLO Reporte Corto (En construccion)")
