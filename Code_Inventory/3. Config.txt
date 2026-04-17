@@ -1,0 +1,48 @@
+import os
+
+content_config = """DESCRIPCIÓN TÉCNICA DETALLADA: config.py (Módulo de Configuración PAARS)
+========================================================================
+
+Este archivo funciona como el cerebro operativo y la interfaz de usuario para el sistema PAARS 2026. Su función principal es establecer el contexto de ejecución y las rutas de datos antes de iniciar cualquier cálculo.
+
+1. PROPÓSITO GENERAL
+Automatizar la configuración del entorno de trabajo, permitiendo al usuario seleccionar dinámicamente el mes, el tipo de examen y el tipo de reporte a generar sin necesidad de modificar el código fuente.
+
+2. ENFASIS EN FILTROS Y PROCESAMIENTO DE SELECCIÓN (PUNTOS CLAVE)
+
+El script implementa una serie de filtros lógicos y de validación para asegurar que los cálculos posteriores reciban datos correctos:
+
+A. Filtro de Integridad de Entorno:
+   - Antes de iniciar, el script valida la existencia de la ruta base en Google Drive (Unidad G:).
+   - Filtro Crítico: Si la ruta no es accesible, el script detiene la ejecución (sys.exit), actuando como un filtro preventivo contra errores de lectura/escritura en rutas inexistentes.
+
+B. Filtro de Escaneo de Directorios (Selección de Datos):
+   - El script no muestra todos los archivos del Drive. Utiliza un filtro de comprensión de listas: [d for d in os.listdir(YEAR_DIR) if os.path.isdir(...)].
+   - Este filtro asegura que el usuario solo pueda elegir "Carpetas de Meses" y excluye cualquier archivo suelto (.csv, .xlsx, .txt) que no cumpla con la estructura de directorios del proyecto.
+
+C. Filtros de Validación de Entrada (Sanitización):
+   - Implementa bucles 'while True' con bloques 'try-except' para filtrar errores humanos.
+   - Filtro Numérico: Solo acepta números enteros.
+   - Filtro de Rango: Valida que la opción elegida esté dentro de la lista de carpetas encontradas, evitando que el sistema intente acceder a un índice inexistente.
+
+D. Filtro de Bifurcación por Tipo de Examen:
+   - Al elegir entre "PROGRESO" o "RESULTADOS", el script filtra qué menús de reportes se mostrarán a continuación. Esto previene la generación de reportes incompatibles con la naturaleza de los datos del mes.
+
+E. Filtro de Comparación Histórica:
+   - Si el usuario requiere reportes comparativos, se activa un filtro para seleccionar un "mes anterior". 
+   - Si se selecciona "0", el script establece PATH_PREV_INTERIM como 'None', lo cual sirve de filtro para que los scripts de cálculo sepan que deben procesar el mes como un evento único y no comparativo.
+
+3. ESTRUCTURA DE SALIDA (RUTAS CONSTRUIDAS)
+Tras aplicar todos los filtros de selección, el script genera las rutas que alimentarán a los demás módulos:
+- PATH_RAW: Origen de datos brutos.
+- PATH_INTERIM: Datos procesados/limpios del mes actual.
+- PATH_PREV_INTERIM: Datos del mes anterior (si aplica).
+- PATH_REPORTS: Carpeta destino para los resultados finales.
+- PATH_METADATA: Archivos maestros y catálogos.
+
+------------------------------------------------------------------------
+Versión del Documento: Análisis Técnico PAARS - Abril 2026
+"""
+
+with open("Descripcion_Config_PAARS.txt", "w", encoding="utf-8") as f:
+    f.write(content_config)

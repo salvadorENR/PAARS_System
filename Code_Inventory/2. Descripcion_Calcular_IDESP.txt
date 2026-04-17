@@ -1,0 +1,54 @@
+DESCRIPCIÓN DETALLADA DEL SCRIPT: calcular_idesp.py
+====================================================
+
+Este documento describe el funcionamiento del script 'calcular_idesp.py', diseñado para procesar resultados educativos y generar un ranking basado en el Índice de Desempeño (IDESP).
+
+1. PROPÓSITO DEL CÓDIGO
+El objetivo principal es transformar puntajes brutos (escala 0-100) de evaluaciones de estudiantes en una métrica de calidad institucional. El IDESP penaliza la concentración de estudiantes en niveles de rezago, otorgando una visión más profunda que un simple promedio.
+
+2. CONFIGURACIÓN DE RUTAS Y ENTORNO
+El script utiliza rutas directas a Google Drive (Unidad G:), lo que indica una automatización para un flujo de trabajo específico de la "Gerencia de Evaluación". 
+- Metadata: Contiene los promedios históricos o semáforos.
+- Interim: Contiene los archivos CSV de resultados del mes de Marzo.
+- Salida: Carpeta donde se genera el reporte final en Excel.
+
+3. FILTROS DE PROCESAMIENTO Y SELECCIÓN DE DATOS (ÉNFASIS ESPECIAL)
+El script es riguroso en la selección de datos para evitar errores de cálculo:
+
+A. Filtro de Archivos (Glob & List): 
+   - En Metadata, busca exclusivamente archivos que contengan "Ranking_Centros_Semáforo" y "Marzo".
+   - En Interim, filtra para leer solo archivos .csv que incluyan la palabra "resultados".
+
+B. Filtro de Columnas Dinámico: 
+   - No depende de nombres de columna exactos. Busca coincidencias parciales como 'nro de centro' o 'código' y 'centro', lo que permite procesar archivos con ligeras variaciones de formato.
+
+C. Filtro de Limpieza de Datos:
+   - Limpieza de Strings: Elimina comillas y convierte comas en puntos para asegurar la conversión numérica.
+   - Filtro de Valores Nulos: Ejecuta 'dropna(subset=["Puntaje_Num"])', eliminando filas de estudiantes que no tengan una nota válida antes de procesar el IDESP.
+
+D. Filtro de Cruce (Merge):
+   - Realiza un 'inner join' (cruce interno) entre los datos calculados y la metadata. Esto filtra y excluye cualquier centro educativo que no esté debidamente registrado en el archivo maestro de metadata.
+
+4. LÓGICA DEL CÁLCULO IDESP
+El cálculo se basa en la asignación de pesos según niveles de rezago:
+- Crítico (<=35): Peso 4
+- Bajo (<=45): Peso 3
+- Medio (<=55): Peso 2
+- Bueno (<=65): Peso 1
+- Excelente (>65): Peso 0
+
+Fórmula del IDESP por Centro:
+IDESP = (1 - (Promedio_Pesos_Rezago / 4)) * 100
+
+Este enfoque asegura que un centro con muchos alumnos en nivel "Crítico" tenga un IDESP bajo, mientras que un centro con alumnos mayoritariamente "Excelentes" se acerque a 100.
+
+5. RESULTADO FINAL
+El script exporta un archivo Excel (.xlsx) ordenado de mayor a menor IDESP, incluyendo las columnas:
+- Nro de Centro
+- Centro
+- Promedio General (Original)
+- IDESP (Calidad)
+- Total de Alumnos Evaluados
+
+----------------------------------------------------
+Versión del Script: Directa Marzo 2026

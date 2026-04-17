@@ -1,0 +1,43 @@
+DESCRIPCIÓN TÉCNICA: report_resultados_latex.py (Generador de Reportes Técnicos en LaTeX)
+Este script es el motor de publicación académica y técnica del sistema PAARS. Su función principal es la generación automática de informes extensos y formales en formato PDF (vía LaTeX), integrando análisis estadísticos complejos, tablas descriptivas y visualizaciones gráficas de alta resolución.
+
+1. Arquitectura de Documento y Diseño
+El script utiliza una estructura de documento científico (article) con soporte para español y tipografía profesional. Define una identidad visual basada en una paleta de azules corporativos y gestiona automáticamente la creación de:
+
+* Portada oficial.
+
+* Índice de contenidos dinámico.
+
+* Lista de figuras y lista de tablas.
+
+* Secciones desglosadas por grado académico.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El módulo destaca por su capacidad para transformar datos crudos en lenguaje de marcado técnico, aplicando filtros de validación rigurosos:
+
+* Filtro de Conversión Numérica (Limpieza): Antes de generar las gráficas, el script aplica un filtro de extracción de números para los grados y convierte los puntajes Theta a formato numérico, eliminando registros nulos (dropna) para evitar distorsiones en los promedios nacionales.
+
+* Filtro de Segmentación por Materia: El ensamblador divide la información en diccionarios específicos para Matemática y Lengua. Si una materia no tiene datos suficientes para un grado, el script activa un filtro de sustitución que inserta guiones ("-") en las tablas para mantener la integridad estética del documento sin romper la compilación.
+
+* Filtro de Análisis de Ítems (Dificultad): Calcula el porcentaje de aciertos por cada ítem. Incluye un filtro lógico que identifica automáticamente el ítem con el mayor y menor porcentaje de aciertos para redactar un comentario interpretativo dinámico en el informe.
+
+* Filtro de Escala Escolar: No solo analiza estudiantes, sino que también filtra y agrupa los datos a nivel de centros educativos para generar histogramas de promedios por escuela, permitiendo comparar la variabilidad entre instituciones.
+
+3. Motor de Visualización Gráfica
+El script automatiza la creación de figuras que se inyectan directamente en el código LaTeX:
+
+(1) Boxplots Globales: Filtra toda la base de datos para mostrar la distribución de ambas materias a lo largo de todos los grados en una sola imagen de comparación macro.
+
+(2) Histogramas de Grado: Genera comparativas de distribución de frecuencias tanto para puntajes individuales como para promedios escolares.
+
+(3) Gráficos de Barras de Ítems: Visualiza la dificultad de cada pregunta del examen, ordenando los ítems y etiquetando cada barra con su porcentaje exacto de acierto.
+
+4. Automatización de Redacción (Natural Language Generation)
+Una característica única de este script es su filtro de redacción dinámica. Basándose en los datos calculados (máximos y mínimos de aciertos), el script construye oraciones automáticas que describen los hallazgos de cada grado, asegurando que el reporte no solo contenga tablas, sino también un análisis textual coherente.
+
+5. Salida y Estructura de Archivos
+* Estructura Interna: Crea automáticamente una carpeta Reporte_LaTeX y una subcarpeta Graphs donde organiza las imágenes en formato .png de alta densidad (300 DPI).
+
+* Código Fuente: Genera un archivo .tex listo para ser compilado en cualquier editor de LaTeX, garantizando un resultado tipográfico de calidad editorial.
+
+Resumen de Operación: Este módulo actúa como el "editor científico" del sistema; aplica filtros estadísticos avanzados y lógicas de redacción automática para convertir bases de datos masivas en informes técnicos formales listos para su distribución oficial.

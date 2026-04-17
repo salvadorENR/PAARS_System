@@ -1,0 +1,52 @@
+import os
+
+content_auditoria = """DESCRIPCIÓN TÉCNICA: auditoria_calidad.py (Módulo QA - PAARS 2026)
+========================================================================
+
+Este script es una herramienta avanzada de Auditoría de Calidad (QA) diseñada para cruzar y validar datos entre dos plataformas distintas (SOTE y GEISER) y compararlos con las claves maestras de Metadata.
+
+1. OBJETIVO PRINCIPAL
+Garantizar que los resultados de las pruebas sean íntegros, que los tiempos de aplicación sean lógicos y que la calificación automática de la plataforma coincida con las respuestas reales de los estudiantes.
+
+2. ÉNFASIS EN FILTROS DE PROCESAMIENTO Y SELECCIÓN (PUNTOS CRÍTICOS)
+
+El script destaca por su robustez en el filtrado de datos antes de realizar cálculos:
+
+A. Filtro de Selección de Directorios (Regex):
+   - El script no procesa cualquier carpeta. Utiliza expresiones regulares para identificar carpetas que sigan estrictamente el patrón "Reportes Prueba [Progreso/Resultados] X letras". Esto asegura que solo se auditen evaluaciones estandarizadas.
+
+B. "Filtro Invencible" de Opciones (clean_option):
+   - Este es un filtro de procesamiento crítico. Utiliza regex ([^A-Za-z0-9]) para destruir cualquier residuo de texto en las respuestas (paréntesis, códigos de base de datos, espacios).
+   - Realiza una conversión lógica: si la plataforma registró números (1, 2, 3), el filtro los traduce automáticamente a letras (A, B, C) para que sean comparables con la clave.
+
+C. Filtro Estadístico de Tiempos (SOTE - IQR):
+   - Para clasificar si una prueba es "Confiable", el script aplica un filtro basado en el Rango Intercuartílico (IQR).
+   - Cálculo: Limite_Máximo = Q3 + 3 * IQR. 
+   - Selección: Solo marca como 'Confiable' a los estudiantes que tardaron más de 5 minutos y menos del límite máximo calculado estadísticamente para su grado.
+
+D. Filtro de Cruce (Inner Join Audit):
+   - Para los reportes de coincidencia, el script aplica un filtro de unión interna ('inner'). Esto significa que solo se auditan los estudiantes que existen simultáneamente en los archivos TXT (SOTE) y en los archivos Excel (GEISER), permitiendo detectar fugas de información.
+
+E. Filtro de Normalización de Identidades (clean_documento/clean_grade):
+   - Antes de cualquier cálculo de agrupación (groupby), el script limpia NIEs y Documentos eliminando guiones y ".0" (errores comunes de Excel), asegurando que un mismo estudiante no sea contado dos veces por errores de formato.
+
+3. LÓGICA DE AUDITORÍA (REPORTES GENERADOS)
+
+El script genera 6 niveles de auditoría:
+1. Comparación Global: Cuántos registros hay en cada sistema por grado/materia.
+2. Auditoría de Tiempos: Listado por estudiante indicando si su tiempo es confiable.
+3. Resumen de Coincidencias: Porcentaje de acuerdo entre los dos sistemas.
+4. Matriz de Calificación (MAT): Re-calificación ítem por ítem comparando Respuesta Estudiante vs Clave vs Puntaje Plataforma.
+5. Matriz de Calificación (LEC): Igual al anterior para Lenguaje.
+6. Resumen de Scoring: Reporte final de precisión de calificación.
+
+4. ASPECTOS TÉCNICOS
+- Manejo de Encoding: Filtro dual (UTF-8 / Latin-1) para evitar errores de lectura.
+- Gestión de Memoria: Uso de 'melt' y 'pivot_table' para procesar miles de ítems de forma eficiente.
+
+------------------------------------------------------------------------
+Documentación generada para la Gerencia de Evaluación - PAARS 2026
+"""
+
+with open("Descripcion_Auditoria_PAARS.txt", "w", encoding="utf-8") as f:
+    f.write(content_auditoria)

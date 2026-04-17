@@ -1,0 +1,30 @@
+DESCRIPCIÓN TÉCNICA: procesar_items_curriculo.py (Generador Maestro de Ítems e Inteligencia Curricular)
+Este script representa el componente de Inteligencia Pedagógica del sistema PAARS. Su función principal es vincular cada ítem de evaluación con la planificación curricular oficial, asignando automáticamente el número de clase correspondiente y determinando si el contenido pertenece a un refuerzo académico o nivelación.
+
+1. Propósito y Lógica de "Match" Inteligente
+El script resuelve el problema de la falta de etiquetas curriculares en los archivos de resultados. Para lograrlo, realiza una comparación masiva entre los indicadores de logro de los exámenes y los documentos de Secuencia Didáctica de Matemática y Lenguaje, utilizando algoritmos de búsqueda borrosa para encontrar coincidencias incluso si hay errores de dedo o variaciones en el texto.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El módulo implementa filtros de limpieza y normalización extremadamente agresivos para garantizar que el cruce de datos (merge) sea exitoso:
+
+* Filtro de Limpieza de Texto Profunda (limpiar_texto): Este es el filtro más crítico. Elimina tildes (normalización NFD), espacios, signos de puntuación, mayúsculas y numeraciones de listas (ej. convierte "1.1. Las fracciones..." en "lasfracciones"). Esto permite que el motor de comparación se enfoque únicamente en el contenido semántico.
+
+* Filtro Traductor de Grados (get_grado_key): Implementa un filtro robusto que unifica las diferentes formas de escribir un grado (ej. "1er año", "Décimo", "10°", "onceavo") en un formato estándar ("10 grado", "11 grado"). Esto asegura que los ítems de bachillerato se crucen con el currículo correcto independientemente de cómo se nombró la carpeta.
+
+* Filtro de Búsqueda Borrosa (Fuzzy Matching): Utiliza la librería difflib con un filtro de umbral del 70% (threshold=0.70). Si un indicador no coincide exactamente, el sistema busca la opción más parecida en el currículo maestro, permitiendo procesar ítems con ligeras variaciones de redacción.
+
+* Filtro de Extracción de Días y Orden: Aplica expresiones regulares para filtrar y extraer números de las columnas de "Día" o "Clase". Si un ítem está vinculado a múltiples clases (ej. Día 5 y 6), el script aplica un filtro de ordenamiento para identificar cuál es el día más temprano (first_day_val) para fines de clasificación estadística.
+
+3. Aplicación de Reglas de Nivelación
+El script aplica un filtro de lógica condicional para la columna de Nivelación:
+
+	(1) Si el currículo indica que el ítem es de "Repaso" o "Nivelación", el script 	filtra el número de grado de esa celda y lo etiqueta como (X.° grado).
+
+	(2) Si no existe marca de nivelación, el filtro toma por defecto el grado de la 	prueba actual. Esto permite identificar instantáneamente si un alumno de 6.° grado 	está fallando en un contenido que realmente pertenece a 4.° grado.
+
+4. Automatización y Salida
+* Escaneo Automático: Busca todos los archivos que coincidan con el patrón Items_Progreso_Mes*.csv en el directorio, permitiendo el procesamiento por lotes de todo el año escolar.
+
+* Generación de Archivo Maestro: El resultado final es un archivo Excel (_procesado.xlsx) que incluye tres columnas nuevas fundamentales para el sistema PAARS: Clases_Sugeridas, Orden_Clase y Nivelacion.
+
+Resumen de Operación: Este módulo es el "cerebro pedagógico" del sistema; aplica filtros de limpieza de texto y lógica borrosa para conectar la evaluación con la realidad del aula y la secuencia didáctica oficial.

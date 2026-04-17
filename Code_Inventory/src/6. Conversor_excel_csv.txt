@@ -1,0 +1,24 @@
+DESCRIPCIÓN TÉCNICA: conversor_excel_csv.py (Motor de Preparación de Datos)
+Este script actúa como el primer paso en la cadena de procesamiento del sistema PAARS. Su función principal es normalizar el formato de los datos brutos, transformando libros de cálculo de Excel (.xlsx) de múltiples pestañas en archivos de texto plano separados por comas (CSV).
+
+1. Propósito y Automatización de Rutas
+El módulo está diseñado para navegar de forma autónoma por la estructura del repositorio en Google Drive. Utiliza la lógica de niveles para identificar las carpetas Raw_Data (donde reside la información original) y crear automáticamente carpetas Interim_CSVs para depositar los archivos convertidos.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El script implementa varios filtros de seguridad y eficiencia que garantizan la integridad del proceso:
+
+* Filtro de Archivos Temporales (Exclusión): El script incluye una validación crítica: if not os.path.basename(f).startswith('~'). Este filtro ignora los archivos temporales que Microsoft Excel crea automáticamente al estar abierto, evitando errores de lectura y corrupción de datos.
+
+* Filtro de Selección de Hojas (Multi-Sheet Processing): Mediante el uso de pd.ExcelFile, el script no solo lee el archivo, sino que inspecciona todas sus pestañas. Filtra y extrae cada hoja de forma individual, permitiendo que archivos que contienen múltiples grados (ej. una pestaña para 3ero, otra para 4to) se conviertan en archivos CSV independientes.
+
+* Filtro de "Conversión Inteligente" (Eficiencia): Antes de procesar, el código verifica si el archivo de destino ya existe: if not os.path.exists(csv_path). Este filtro de control ahorra tiempo significativo al evitar la reconversión de archivos que no han sido modificados, procesando únicamente la información nueva.
+
+* Filtro de Codificación y Normalización: Al guardar los datos, aplica el estándar utf-8-sig. Este filtro asegura que caracteres especiales (tildes, eñes, símbolos de grado) se conserven perfectamente, eliminando los problemas de "símbolos extraños" comunes al abrir archivos en Excel o editores de texto.
+
+3. Estructura de Salida
+El script genera una nomenclatura de archivos estandarizada: NombreExcel - NombrePestaña.csv. Esta estructura es vital para que los scripts de cálculo posteriores (como el cargador de datos o los generadores de rankings) puedan identificar rápidamente el origen y la materia de la información.
+
+4. Gestión de Errores y Registro
+Incluye un bloque de control try-except por cada archivo. Si un libro de Excel está dañado o protegido con contraseña, el filtro de errores informa la falla en consola pero permite que el motor continúe procesando el resto de la base de datos sin detenerse.
+
+Resumen de Operación: Este módulo es el "limpiador" inicial del sistema; toma archivos complejos y pesados de Excel y los filtra hacia un formato ligero, universal y libre de errores de codificación para el resto del motor PAARS.

@@ -1,0 +1,38 @@
+"""DESCRIPCIÓN TÉCNICA: auditoria_general_vacios.py (Auditoría Global de Integridad)
+========================================================================
+
+Este script es una herramienta de supervisión masiva diseñada para escanear toda la estructura de directorios del PAARS 2026 y detectar inconsistencias en las respuestas de los estudiantes y pruebas anuladas.
+
+1. OBJETIVO PRINCIPAL
+Realizar un diagnóstico de salud de los datos en todos los exámenes disponibles. El script identifica cuántos estudiantes dejaron ítems en blanco sin justificación y cuántas pruebas fueron invalidadas oficialmente.
+
+2. ÉNFASIS EN FILTROS DE PROCESAMIENTO Y SELECCIÓN (PUNTOS CRÍTICOS)
+
+El script utiliza una lógica de "rastreo profundo" con múltiples capas de filtrado:
+
+A. Filtro de Rastreo Automático (Glob Discovery):
+   - El script utiliza el patrón 'ROOT_DIR/* /Interim_CSVs' para localizar automáticamente cualquier examen procesado en el disco. Esto le permite auditar meses pasados y presentes sin intervención del usuario.
+
+B. Filtro de Selección de Archivos de Resultados:
+   - Aplica un filtro de exclusión doble: 'if "resultados" not in nombre_archivo or "compl" in nombre_archivo: continue'. 
+   - Esto asegura que la auditoría se realice sobre los datos de los estudiantes y no sobre archivos complementarios o intermedios.
+
+C. Filtro de Clasificación por Materia y Grado:
+   - Utiliza expresiones regulares (Regex) para identificar la materia (MAT/LEC) y extraer el número de grado de los encabezados, permitiendo agrupar los resultados de forma lógica (del 2.° al 11.°).
+
+D. Filtro de Integridad de Ítems (Detección de Vacíos):
+   - El script transforma cualquier espacio en blanco o cadena de texto nula (nan, null, none) en un valor NaN real de Python.
+   - Aplica el filtro '.isna().any(axis=1)' para detectar estudiantes que dejaron al menos un ítem sin responder, pero solo si la prueba NO está marcada como anulada.
+
+E. Filtro de Pruebas Anuladas (Justificación):
+   - Clasifica como "Anulados" a aquellos registros donde la columna 'anular_prueba' contiene texto. Este filtro permite separar el descuido del estudiante (vacíos) de la invalidación administrativa (anulados).
+
+3. REPORTES GENERADOS (LOGICA DE CONSOLIDACIÓN)
+
+El script genera dos tipos de salida para el usuario:
+1. Reporte en Consola: Una tabla detallada por Examen, Materia y Grado que muestra la cantidad de incidencias y el porcentaje (%) que representan respecto al total de la población evaluada.
+2. Archivos CSV de Auditoría: Genera dos listados completos (Auditoria_Total_Items_Vacios.csv y Auditoria_Total_Pruebas_Anuladas.csv) con los documentos de identidad de los estudiantes afectados para su revisión manual.
+
+------------------------------------------------------------------------
+SISTEMA PAARS 2026 - Gerencia de Evaluación e Investigación
+"""

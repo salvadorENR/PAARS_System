@@ -1,0 +1,41 @@
+DESCRIPCIÓN TÉCNICA: main.py (Orquestador Central del Sistema PAARS)
+El archivo main.py actúa como el centro de mando o motor principal del proyecto. Su función no es realizar cálculos directamente, sino importar los módulos especializados y ejecutar las tareas en el orden correcto basándose en las preferencias que el usuario seleccionó previamente en el módulo de configuración.
+
+1. Flujo de Preparación e Integración (Etapas Iniciales)
+Antes de generar cualquier reporte, el script asegura la integridad de los datos mediante dos filtros de preparación:
+
+Conversión Automatizada: Ejecuta convertir_todos_excel_a_csv(). Este paso es un filtro de formato que transforma los archivos brutos de análisis psicométrico en un estándar procesable (CSV), eliminando la dependencia de archivos Excel pesados.
+
+Filtro de Carga Crítica: Utiliza cargar_datos_limpios(). Si este proceso devuelve un conjunto de datos vacío o nulo, el script activa un filtro de interrupción de seguridad que detiene la ejecución, evitando que el sistema falle al intentar calcular estadísticas sobre la nada.
+
+2. Énfasis en Filtros de Selección de Flujo (Bifurcación)
+La característica más importante de este archivo es su capacidad de filtrar la ejecución según dos variables principales definidas en el archivo de configuración:
+
+A. Filtro por Tipo de Examen (EXAM_TYPE):
+
+Modo PROGRESO: Activa las "máquinas" de visualización HTML y reportes pedagógicos. Se enfoca en gráficos de niveles y quintiles para profesores y directores.
+
+Modo RESULTADOS: Activa las "máquinas" de exportación científica. Utiliza el motor de LaTeX para generar documentos PDF de alta calidad (Reportes Formales y presentaciones Beamer).
+
+B. Filtros de Selección de Reportes (REPORT_CHOICE):
+El script no ejecuta todas las funciones por defecto; utiliza filtros lógicos para procesar únicamente lo que el usuario solicitó:
+
+Filtro de Reportes Detallados: Solo activa process_section_reports() si se eligió la opción 1 o 4 (Completo).
+
+Filtro de Comparativa: Solo activa process_comparative_reports() si se eligió la opción 2 o 4 Y si existe un mes previo cargado. Este es un doble filtro de validación.
+
+Filtro de Consolidación: Solo genera el historial de estudiantes en Excel si se seleccionó la opción 3 o 4.
+
+3. Motores de Procesamiento Especializado
+El script coordina tres grandes familias de herramientas:
+
+Stats Engine & Visualizer: Calcula distribuciones de niveles y genera gráficos ejecutivos.
+
+LaTeX Engine: Transforma las métricas de resultados y ítems en documentos profesionales listos para impresión.
+
+Ranking Engine: Ejecuta un análisis masivo al final de la prueba de progreso para posicionar las escuelas según su rendimiento histórico.
+
+4. Finalización y Gestión de Errores
+El archivo incluye bloques de control (try-except) específicamente en la generación de rankings macro, asegurando que si un proceso secundario falla, el sistema informe del error pero complete el ciclo de vida del proceso principal. Al finalizar, centraliza todos los resultados en la ruta de salida definida (config.PATH_REPORTS), garantizando que el usuario encuentre todo en un solo lugar.
+
+Resumen de Operación: main.py es el filtro lógico final que decide qué partes del código deben cobrar vida, garantizando eficiencia al no procesar reportes innecesarios y seguridad al validar los datos en cada etapa del proceso.

@@ -1,0 +1,40 @@
+DESCRIPCIÓN TÉCNICA: conteo_escuelas_multiples.py (Reporte de Matrícula Evaluada)
+Este script tiene como función principal la extracción y el conteo de estudiantes evaluados para una lista específica de centros escolares. Es una herramienta de consulta rápida diseñada para generar reportes de participación segmentados por escuela, asignatura y grado.
+
+1. Configuración de Entrada (Selección de Centros)
+El script utiliza una lista predefinida de códigos de infraestructura (SCHOOL_IDS) para filtrar la base de datos. Está configurado para buscar automáticamente dentro de la estructura de carpetas de la Prueba de Progreso 2 (Abril 2026) en el repositorio de Google Drive.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El código destaca por su capacidad de navegación dinámica y su rigor en la limpieza de datos antes del conteo:
+
+Filtro de Rastreo de Directorios (Glob): Utiliza patrones de búsqueda elásticos (*02_PROGRESO*) para localizar la carpeta del mes correcto, incluso si el nombre del directorio varía ligeramente.
+
+Identificación Dinámica de Asignaturas: Filtra y clasifica los datos en "Lectura" o "Matemática" basándose en el nombre del archivo procesado (MAT, LEC o LENG).
+
+Filtro Dinámico de Columnas (Mapeo Inteligente): El script no depende de nombres de columna estáticos. Rastrea palabras clave como 'nro de centro', 'infra', 'grado', 'nie' o 'documento'. Esto permite que el código funcione aunque los encabezados de los archivos CSV cambien entre diferentes grados o aplicaciones.
+
+Filtro de Selección de Escuelas (Target Matching): Una vez cargados los datos, el script descarta toda la población estudiantil y se queda estrictamente con los registros que coinciden con los códigos de la lista SCHOOL_IDS.
+
+Filtro de Integridad y Unicidad:
+
+Normalización de IDs: Elimina residuos de formato como .0 en los códigos de centro y documentos de identidad (un error común al exportar de Excel a CSV).
+
+Eliminación de Duplicados: Ejecuta drop_duplicates(subset=['Documento', 'Materia']). Este filtro es crítico para asegurar que cada alumno sea contado exactamente una vez por asignatura, evitando inflar los números por registros repetidos.
+
+3. Lógica de Agrupación y Ordenamiento
+El procesamiento incluye una transformación de datos para facilitar la lectura:
+
+Estandarización de Grados: Extrae el valor numérico de las etiquetas de grado (ej. convierte "3º Grado" en el número 3) para que el reporte final aparezca ordenado de forma ascendente.
+
+Consolidación de Resultados: Agrupa los datos para mostrar el total de estudiantes por cada combinación de Escuela + Asignatura + Grado.
+
+4. Presentación de Resultados
+El script genera una salida visual organizada en la consola que incluye:
+
+Nombre oficial del centro escolar recuperado de los archivos.
+
+Tabla detallada de estudiantes por materia y grado.
+
+Resumen de totales generales por asignatura para cada institución.
+
+Resumen de Operación: Este módulo actúa como un filtro de precisión sobre la base de datos masiva de la Prueba de Progreso, garantizando que el usuario obtenga cifras exactas y limpias de las escuelas seleccionadas.

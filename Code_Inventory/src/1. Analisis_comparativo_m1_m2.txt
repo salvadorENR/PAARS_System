@@ -1,0 +1,81 @@
+========================================================================
+Este documento consolida la descripción de los módulos principales del sistema, con énfasis en filtros y lógica de procesamiento de datos.
+
+------------------------------------------------------------------------
+1. MÓDULO: calcular_idesp.py (Índice de Desempeño)
+------------------------------------------------------------------------
+Propósito: Transformar puntajes brutos (0-100) en una métrica de calidad institucional que penaliza el rezago escolar.
+
+Filtros y Procesamiento Clave:
+- Filtro de Selección (Glob): Busca exclusivamente archivos de "Marzo" y con la palabra "resultados" en el nombre.
+- Filtro de Limpieza: Elimina comillas, normaliza decimales (comas a puntos) y ejecuta 'dropna' para eliminar registros sin calificación válida.
+- Filtro de Cruce (Inner Join): Asegura que solo se reporten centros que existan tanto en los resultados de evaluación como en el archivo maestro de metadata.
+- Lógica IDESP: Aplica pesos de rezago (0 a 4) según el puntaje obtenido y calcula un índice final en escala 100 mediante una fórmula de promedio ponderado.
+
+------------------------------------------------------------------------
+2. MÓDULO: config.py (Cerebro Operativo)
+------------------------------------------------------------------------
+Propósito: Establecer el contexto de ejecución, rutas de carpetas y parámetros mediante una interfaz interactiva.
+
+Filtros y Procesamiento Clave:
+- Filtro de Conectividad: Valida la presencia de la unidad G: (Google Drive) antes de iniciar. Si no es accesible, detiene el sistema.
+- Filtro de Escaneo (isdir): Ignora archivos sueltos y selecciona únicamente carpetas de meses válidas para el año 2026.
+- Filtro de Entrada (Sanitización): Utiliza bucles 'while True' y 'try-except' para filtrar errores humanos en el ingreso de datos por consola.
+- Filtro de Comparativa: Permite definir si se procesará un análisis temporal o un evento único, activando o desactivando rutas de meses anteriores.
+
+------------------------------------------------------------------------
+3. MÓDULO: auditoria_calidad.py (Control de Calidad QA)
+------------------------------------------------------------------------
+Propósito: Validar la integridad de los datos cruzando plataformas (SOTE vs GEISER) y comparando resultados con las claves de respuesta oficiales.
+
+Filtros y Procesamiento Clave:
+- Filtro de Selección (Regex): Identifica carpetas de reportes específicas basadas en patrones de texto y número de letras.
+- Filtro de Opción (Clean Option): Utiliza expresiones regulares para extraer estrictamente la letra de la opción elegida, eliminando caracteres basura o códigos de plataforma.
+- Filtro Estadístico (IQR): Clasifica la confiabilidad de la prueba basándose en el Rango Intercuartílico de los tiempos de aplicación (Filtro SOTE).
+- Filtro de Auditoría de Ítem: Recalifica ítem por ítem comparando la respuesta del estudiante contra la clave de metadata y el puntaje asignado por la plataforma.
+
+------------------------------------------------------------------------
+4. MÓDULO: cruzar_mis_escuelas.py (Mapeo de Nombres)
+------------------------------------------------------------------------
+Propósito: Asignar nombres oficiales a una lista manual de códigos de centros educativos.
+
+Filtros y Procesamiento Clave:
+- Filtro de Selección de Fuente: Escanea archivos en la carpeta Interim pero excluye archivos de leyendas ('legend') o formatos no CSV.
+- Filtro Dinámico de Columnas: Rastrea automáticamente encabezados como 'nro de centro' o 'código' para identificar los IDs de las escuelas.
+- Filtro de Unicidad: Aplica 'drop_duplicates' para crear un diccionario de búsqueda eficiente y libre de ambigüedades.
+- Filtro de Alerta: Utiliza 'fillna' para marcar con un emoji de advertencia aquellos códigos que no coinciden con la base de datos de Geiser.
+
+------------------------------------------------------------------------
+5. MÓDULO: main.py (Orquestador Central)
+------------------------------------------------------------------------
+Propósito: Coordinar la ejecución de todos los módulos del sistema según las selecciones del usuario.
+
+Filtros y Procesamiento Clave:
+- Filtro de Formato: Convierte automáticamente archivos Excel a CSV para estandarizar el procesamiento.
+- Filtro de Seguridad: Detiene el flujo si la carga de datos limpios devuelve un conjunto vacío.
+- Filtro de Ejecución Condicional: Utiliza bifurcaciones lógicas para activar solo los motores necesarios (Modo PROGRESO o Modo RESULTADOS).
+
+------------------------------------------------------------------------
+6. MÓDULO: simulador.py (Máquina del Tiempo)
+------------------------------------------------------------------------
+Propósito: Generar proyecciones de crecimiento académico para probar reportes comparativos antes de las evaluaciones reales.
+
+Filtros y Procesamiento Clave:
+- Filtro por Materia: Identifica si el archivo es de Matemáticas (MAT) o Lectura (LEC) para aplicar diferentes tasas de crecimiento.
+- Filtro de Techo (Clipping): Asegura mediante un límite matemático que ningún puntaje supere los 100 puntos tras la simulación.
+- Filtro de Integridad de Archivo: Ignora archivos de leyendas o registros ya procesados para evitar daños en la base de datos original.
+
+------------------------------------------------------------------------
+7. MÓDULO: analisis_comparativo_m1_m2.py (Análisis Temporal)
+------------------------------------------------------------------------
+Propósito: Comparar estadísticamente los resultados de dos meses diferentes (Marzo vs Abril).
+
+Filtros y Procesamiento Clave:
+- Filtro de Exclusión Crítica: Elimina del análisis cualquier prueba marcada como "anulada" en los archivos de origen.
+- Filtro de Normalización de Grados: Traduce nombres de grados (ej. "Sexto") a números enteros para permitir el ordenamiento estadístico.
+- Filtro de Visualización: En las gráficas de niveles, solo muestra etiquetas de porcentaje para valores iguales o mayores al 1% para evitar saturación visual.
+- Lógica Estadística: Filtra y exporta únicamente la Media, Mediana y Desviación Estándar hacia tablas Excel.
+
+========================================================================
+SISTEMA PAARS 2026 - Gerencia de Evaluación
+"""

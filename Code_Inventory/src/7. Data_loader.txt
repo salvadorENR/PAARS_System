@@ -1,0 +1,30 @@
+DESCRIPCIÓN TÉCNICA: data_loader.py (Motor de Integración de Datos)
+Este script es el encargado de la consolidación y unión de bases de datos. Su función principal es tomar los fragmentos dispersos de información (datos personales y resultados académicos) y unirlos en una sola tabla maestra coherente que el resto del sistema PAARS pueda procesar.
+
+1. Propósito y Conexión con el Sistema
+El módulo actúa como un puente entre la carpeta de datos intermedios (Interim_CSVs) y los motores de cálculo. Se basa en el archivo de configuración global para localizar los archivos y garantizar que el procesamiento se realice sobre el mes de evaluación seleccionado por el usuario.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El script implementa filtros estratégicos para manejar la complejidad de unir miles de registros sin errores de duplicidad:
+
+* Filtro de Clasificación por Materia: Al leer cada archivo CSV, el script aplica un filtro de reconocimiento de texto en el nombre del archivo. Si detecta la etiqueta 'MAT-', asigna la categoría Matemática; de lo contrario, asigna Lengua. Este filtro es vital para el cruce de datos posterior.
+
+* Filtro de Segmentación (Complementarios vs. Resultados): El código separa los archivos en dos listas distintas basándose en el sufijo _compl. Este filtro asegura que los datos biográficos de los alumnos (_compl) no se mezclen con las hojas de puntajes antes del momento de la unión.
+
+* Filtro de Limpieza de Identidad (Normalización de NIE): Ejecuta una limpieza profunda mediante expresiones regulares: df['Documento'].str.replace(r'\.0$', '', regex=True). Este filtro es crítico para asegurar que los documentos de identidad sean cadenas de texto puro, eliminando los decimales incorrectos generados por Excel que impedirían el cruce de datos.
+
+* Filtro de Cruce Condicional (Merge Inteligente): Realiza un pd.merge utilizando una llave doble (Documento y Area_Tematica). Este filtro de seguridad evita "cruces fantasma", asegurando que la nota de Matemática de un alumno se asigne a su registro de Matemática y no se mezcle con su nota de Lectura.
+
+* Filtro de Detección Automática de Ítems: Utiliza expresiones regulares (re.match) para filtrar y detectar cuáles columnas representan preguntas del examen (ej. MAT01, LEC05). Esto permite que el sistema sea flexible y reconozca automáticamente cuántos ítems tiene la prueba sin necesidad de configuración manual.
+
+3. Lógica de Transformación
+El script transforma la columna de puntajes (theta.global) de texto a formato numérico mediante pd.to_numeric con el parámetro errors='coerce'. Este filtro de transformación asegura que cualquier dato basura o texto inesperado en la columna de notas se convierta en un valor nulo procesable, evitando que el sistema se detenga durante la generación de promedios.
+
+4. Salida del Sistema
+El módulo devuelve dos elementos clave:
+
+1. Master DataFrame: La tabla unificada con toda la información del alumno y sus notas.
+
+2. Item List: Una lista con los nombres de las columnas que contienen las respuestas a las preguntas, lista para ser usada en análisis de confiabilidad o psicometría.
+
+Resumen de Operación: Este módulo es el "ensamblador" del sistema; aplica filtros de normalización de identidad y llaves de cruce dobles para garantizar que la información académica de cada estudiante esté perfectamente integrada y libre de errores de formato.

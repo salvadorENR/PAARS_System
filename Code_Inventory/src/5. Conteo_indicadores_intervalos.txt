@@ -1,0 +1,40 @@
+DESCRIPCIÓN TÉCNICA: conteo_indicadores_intervalos.py (Análisis de Cobertura Curricular)
+Este script tiene como objetivo auditar y clasificar la distribución de los ítems de evaluación según su ubicación en el programa de estudios (clases sugeridas). Permite visualizar qué tan adelantados o atrasados están los indicadores de logro evaluados en la Prueba de Progreso 2.
+
+1. Propósito y Funcionalidad
+El script procesa el archivo maestro de ítems (Items_Progreso_Mes2_2026_procesado.xlsx) para agrupar los indicadores de logro en intervalos de clase específicos (1-20, 21-40, etc.). Esto ayuda a la Gerencia de Evaluación a entender la carga de contenidos por periodo.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El código aplica una lógica de limpieza y categorización multicapa para asegurar que los conteos sean precisos:
+
+* Filtro de Integridad Inicial: Ejecuta dropna(subset=['ItemCodigo', 'indicador_logro']). Este filtro elimina cualquier registro que no tenga un código de ítem válido o que carezca de la descripción del indicador, evitando procesar filas vacías o incompletas del Excel.
+
+* Filtro de Clasificación por Materia: Utiliza una lógica de prefijos (MAT para Matemática y LEC/LENG para Lectura). Si un ítem no cumple con estos estándares, se categoriza como "Otra" para no contaminar las estadísticas principales.
+
+* Filtro de Extracción de Clase (Regex): Implementa un filtro de búsqueda doble. Primero intenta leer una columna de orden directa (Orden_Clase) y, si falla, utiliza expresiones regulares para extraer el primer número encontrado en la columna Clases_Sugeridas. Si no hay dato numérico, el filtro asigna el valor -1 (Sin Clase).
+
+* Filtro de Selección de Intervalos: Clasifica los indicadores mediante una lógica de intervalos:
+
+	* 1 - 20: Contenidos iniciales.
+
+	* 21 - 40: Contenidos intermedios.
+
+	* >= 41: Contenidos avanzados.
+
+	* Sin Clase: Contenidos no vinculados a una clase específica del programa.
+
+3. Lógica de Agrupación y Estadísticas
+El script realiza un cálculo de "Unicidad vs. Cantidad":
+
+	(1) Indicadores Únicos: Utiliza nunique para contar cuántos indicadores distintos 	de la currícula están siendo cubiertos.
+
+	(2) Total de Ítems: Cuenta el número total de preguntas asignadas a cada intervalo.
+
+	(3) Normalización de Grados: Estandariza las etiquetas de grado (ej. "3º grado" a 	3) para asegurar que el reporte fluya en orden pedagógico.
+
+4. Presentación y Exportación de Resultados
+* Reporte en Consola: Genera una tabla visualmente organizada donde los nombres de los grados no se repiten en cada fila para facilitar la lectura de los intervalos.
+
+* Exportación Dual: Genera automáticamente archivos en formato CSV y Excel (Distribucion_Indicadores_Progreso2) con codificación utf-8-sig, listos para ser utilizados en presentaciones o informes ejecutivos.
+
+Resumen de Operación: Este módulo actúa como un filtro de auditoría curricular que permite verificar si los ítems de la prueba están correctamente balanceados de acuerdo con el avance esperado en las clases del año escolar.

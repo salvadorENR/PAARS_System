@@ -1,0 +1,30 @@
+DESCRIPCIÓN TÉCNICA: generador_rankings.py (Motor de Rankings y Evolución Institucional)
+Este script es el encargado de consolidar el rendimiento macro de los centros escolares. Su función principal es generar jerarquías de desempeño (Rankings) y reportes de evolución histórica, permitiendo visualizar el progreso de las instituciones a través de los meses de evaluación.
+
+1. Propósito y Alcance del Módulo
+El script actúa como una herramienta de inteligencia institucional. Lee los datos procesados en las carpetas Interim_CSVs, calcula los promedios globales por escuela y los clasifica en 5 niveles de desempeño (Crítica a Excelente), generando reportes en Excel con un alto nivel de formato profesional.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El código destaca por su eficiencia en el manejo de archivos y sus filtros de normalización para asegurar comparaciones justas:
+
+* Filtro de Detección de Exámenes (Regex): El script escanea el directorio raíz buscando carpetas que sigan el patrón numérico del sistema (ej: 01_PROGRESO, 02_PROGRESO). Este filtro garantiza que el motor solo procese pruebas de progreso y las organice en orden cronológico real.
+
+* Filtro de Extracción Directa (Eficiencia): A diferencia de otros módulos, este extrae las medias directamente de los CSV finales de cada mes. Esto actúa como un filtro de velocidad, evitando reprocesar datos brutos y garantizando que el ranking se base en la "verdad institucional" ya limpia.
+
+* Filtro Dinámico de Columnas (Mapeo de Escuelas): Implementa una búsqueda inteligente para identificar las columnas de código de infraestructura y nombre del centro, filtrando automáticamente por palabras clave como 'infra', 'centro' o 'escuela'.
+
+* Filtro de Calidad Numérica: Ejecuta una normalización de la columna 'Media' reemplazando comas por puntos y eliminando cualquier registro que no contenga un valor numérico válido (dropna), asegurando que el cálculo del promedio institucional no se corrompa.
+
+* Filtro de Normalización de Identidad: Limpia el código de centro eliminando el sufijo .0 y estandariza el nombre de la escuela en mayúsculas (str.upper()) para evitar duplicados por diferencias de escritura.
+
+3. Lógica de Clasificación y Estilos
+* Semáforo Institucional: Aplica un filtro de clasificación cualitativa basado en rangos de puntaje predefinidos (35, 45, 55, 65).
+
+* Formato Excel Avanzado (Estilos): El script aplica una capa de "Estilos Inteligentes" usando openpyxl. Pinta las celdas con colores pastel según su clasificación (rojo para crítico, verde para excelente), ajusta anchos de columna y fija encabezados, entregando un reporte listo para presentación ejecutiva.
+
+4. Reportes Generados
+1. Ranking General del Mes: Una lista ordenada de escuelas de menor a mayor promedio, acompañada de una pestaña de "Resumen General" que muestra el conteo y porcentaje de escuelas en cada nivel de desempeño.
+
+2. Evolución Histórica: Un archivo maestro que cruza todos los meses procesados (Outer Join). Este reporte coloca lado a lado las medias y niveles de cada mes para cada escuela, permitiendo ver el "viaje" de rendimiento de cada institución.
+
+Resumen de Operación: Este módulo es el "analista ejecutivo" del sistema; filtra la información histórica de las escuelas y la transforma en documentos visuales de alta calidad para la toma de decisiones gerenciales.

@@ -3,7 +3,6 @@ import os
 import re
 import pandas as pd
 import numpy as np
-import pathlib
 import sys
 import glob
 import unicodedata
@@ -11,13 +10,6 @@ import unicodedata
 # --- 1. CONEXIÓN CON EL MAPA PAARS ---
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import config
-
-# Usamos las rutas dinámicas del sistema
-GEISER_CSV_DIR = config.PATH_INTERIM
-REPORTS_DIR = os.path.join(config.PATH_REPORTS, "Reportes_Por_Secciones")
-MAPEO_DIR = config.PATH_METADATA
-
-os.makedirs(REPORTS_DIR, exist_ok=True)
 
 # --- 2. PLANTILLA HTML Y CSS ---
 HTML_TEMPLATE = """
@@ -80,21 +72,22 @@ HTML_TEMPLATE = """
         details.info-accordion p {{ padding: 15px; border-left: 3px solid #2980b9; background-color: #fafafa; margin-top: 8px; font-size: 13.5px; color: #444; border-radius: 0 4px 4px 0; box-shadow: inset 0 1px 3px rgba(0,0,0,0.03); line-height: 1.5; margin-bottom: 0; }}
         
         .color-red {{ background-color: #fef2f2; border-left: 8px solid #991b1b; }}       
-        .color-orange {{ background-color: #fff7ed; border-left: 8px solid #ff8c2E; }}     
-        .color-yellow {{ background-color: #fefce8; border-left: 8px solid #facc15; }}     
+        .color-orange {{ background-color: #fff7ed; border-left: 8px solid #ff8c2E; }}    
+        .color-yellow {{ background-color: #fefce8; border-left: 8px solid #facc15; }}    
         .color-lightgreen {{ background-color: #f7fee7; border-left: 8px solid #84cc16; }} 
         .color-darkgreen {{ background-color: #ecfdf5; border-left: 8px solid #065f46; }}  
         
         .bg-red {{ background-color: #fef2f2 !important; border-left: 4px solid #991b1b !important; }}       
-        .bg-orange {{ background-color: #fff7ed !important; border-left: 4px solid #ff8c2E !important; }}     
-        .bg-yellow {{ background-color: #fefce8 !important; border-left: 4px solid #facc15 !important; }}     
+        .bg-orange {{ background-color: #fff7ed !important; border-left: 4px solid #ff8c2E !important; }}    
+        .bg-yellow {{ background-color: #fefce8 !important; border-left: 4px solid #facc15 !important; }}    
         .bg-lightgreen {{ background-color: #f7fee7 !important; border-left: 4px solid #84cc16 !important; }} 
         .bg-darkgreen {{ background-color: #ecfdf5 !important; border-left: 4px solid #065f46 !important; }}  
 
         .indicator-pct {{ font-weight: bold; width: 65px; text-align: center; margin-right: 15px; padding-right: 15px; border-right: 1px solid #ccc; flex-shrink: 0; }}
         .pct-number {{ font-size: 16px; color: #2c3e50; }}
         .pct-label {{ font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }}
-        .indicator-item strong {{ color: #2c3e50; display: inline-block; width: 55px; }}
+        
+        .item-label {{ color: #2c3e50; display: inline-block; width: 55px; font-weight: bold; }}
         
         .badge-class {{ display: inline-block; background-color: #34495e; color: white; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin-right: 10px; vertical-align: baseline; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }}
         .nivelacion-badge {{ color: #c0392b; font-weight: bold; margin-left: 5px; font-size: 12px; }}
@@ -219,16 +212,38 @@ def clasificar_puntaje(val):
     elif val <= 65: return "Bueno"
     else: return "Excelente"
 
+def normalize_item_code(code_str):
+    """Limpia el código quitando espacios, guiones, etc., y forzando mayúsculas. Ej: 'Lec 20' -> 'LEC20'"""
+    if pd.isna(code_str): return ""
+    return re.sub(r'[^A-Z0-9]', '', str(code_str).upper())
+
 def load_item_indicators():
-    """Lee exclusivamente el Súper Archivo Procesado y extrae toda la información."""
+    """Lee dinámicamente el archivo de ítems asegurando que el Mes coincida exactamente."""
     item_base_dict = {}
     
-    archivos_procesados = glob.glob(os.path.join(MAPEO_DIR, "Items_Progreso_Mes*_procesado.xlsx"))
+    match = re.match(r'^(\d+)_([A-Z]+)', os.path.basename(config.MONTH_FOLDER))
+    if match:
+        exam_num = str(int(match.group(1))) 
+        exam_type = match.group(2).capitalize()
+    else:
+        exam_num = re.sub(r'\D', '', config.MONTH_FOLDER)
+        if not exam_num: exam_num = '1'
+        exam_type = 'Progreso' if 'PROGRESO' in config.MONTH_FOLDER.upper() else 'Resultados'
+
+    if exam_type == 'Resultado': exam_type = 'Resultados'
+    
+    todos_archivos = glob.glob(os.path.join(config.PATH_METADATA, "*.xlsx"))
+    archivos_procesados = []
+    
+    for f in todos_archivos:
+        nombre_archivo = os.path.basename(f)
+        if 'procesado' in nombre_archivo.lower() and exam_type.lower() in nombre_archivo.lower():
+            if re.search(rf'Mes\s*0?{exam_num}(?:\D|$)', nombre_archivo, re.IGNORECASE) or \
+               re.search(rf'_{exam_num}_', nombre_archivo):
+                archivos_procesados.append(f)
+
     if not archivos_procesados:
-        archivos_procesados = glob.glob("Items_Progreso_Mes*_procesado.xlsx")
-        
-    if not archivos_procesados:
-        print("  [!] No se encontró el archivo 'Items_Progreso_Mes..._procesado.xlsx'")
+        print(f"  [!] No se encontró el Excel maestro de ítems procesado para {exam_type} {exam_num}.")
         return item_base_dict
 
     ITEMS_FILE = archivos_procesados[0]
@@ -243,7 +258,8 @@ def load_item_indicators():
                 df_items[col] = ''
                 
         for _, row in df_items.dropna(subset=['ItemCodigo', 'indicador_logro']).iterrows():
-            codigo = str(row['ItemCodigo']).strip()
+            codigo_puro = normalize_item_code(row['ItemCodigo'])
+            if not codigo_puro: continue
             
             orden_val = 9999.0
             if pd.notna(row['Orden_Clase']) and str(row['Orden_Clase']).strip() != '':
@@ -252,7 +268,7 @@ def load_item_indicators():
                 except:
                     pass
             
-            item_base_dict[codigo] = {
+            item_base_dict[codigo_puro] = {
                 'objetivo': str(row['indicador_logro']).strip(),
                 'clases': str(row['Clases_Sugeridas']).strip() if pd.notna(row['Clases_Sugeridas']) and str(row['Clases_Sugeridas']).strip() != 'nan' else "",
                 'orden': orden_val,
@@ -265,6 +281,8 @@ def load_item_indicators():
 
 def build_master_geiser_dataframe():
     compl_dfs, res_dfs = [], []
+    GEISER_CSV_DIR = config.PATH_INTERIM
+    
     if not os.path.exists(GEISER_CSV_DIR): return pd.DataFrame()
     
     for f in os.listdir(GEISER_CSV_DIR):
@@ -273,13 +291,9 @@ def build_master_geiser_dataframe():
         try:
             df = pd.read_csv(path, dtype=str, encoding='utf-8-sig')
             
-            # --- LIMPIEZA EXTREMA Y ESCUDO ANTI-DUPLICADOS ---
-            # 1. Quitamos espacios en los nombres de las columnas
             df.columns = df.columns.str.strip()
-            # 2. Si el archivo viene con columnas duplicadas de origen, las removemos
             df = df.loc[:, ~df.columns.duplicated()].copy()
             
-            # --- BUSCADOR INTELIGENTE DE COLUMNAS ---
             if 'anular_prueba' not in df.columns:
                 col_anular = next((c for c in df.columns if 'anular' in c.lower()), None)
                 if col_anular: 
@@ -290,7 +304,6 @@ def build_master_geiser_dataframe():
                 if col_theta: 
                     df = df.rename(columns={col_theta: 'theta.global (escala 0-100)'})
 
-            # 3. Nos aseguramos de que el renombramiento no haya generado un nuevo duplicado
             df = df.loc[:, ~df.columns.duplicated()].copy()
 
             if 'MAT-' in f.upper(): df['Area temática'] = 'Matemática'
@@ -305,18 +318,15 @@ def build_master_geiser_dataframe():
     if not compl_dfs: return pd.DataFrame()
     
     try:
-        # Unimos y aplicamos el escudo anti-duplicados por última vez
         compl_df = pd.concat(compl_dfs, ignore_index=True)
         compl_df = compl_df.loc[:, ~compl_df.columns.duplicated()].copy()
         
-        # Limpieza CRÍTICA de Documento para asegurar el Merge perfecto
         if 'Documento' in compl_df.columns:
             compl_df['Documento'] = compl_df['Documento'].astype(str).str.strip().str.replace(r'\.0$', '', regex=True)
             
         if 'Area temática' in compl_df.columns:
             compl_df['Area temática'] = compl_df['Area temática'].astype(str).str.strip()
             
-        # Dropeamos las columnas que vamos a traer de res_df para que no haya conflictos de duplicados
         columnas_a_borrar = ['theta.global (escala 0-100)', 'anular_prueba']
         compl_df = compl_df.drop(columns=[c for c in columnas_a_borrar if c in compl_df.columns], errors='ignore')
         
@@ -358,6 +368,10 @@ def build_master_geiser_dataframe():
     return master_df
 
 def process_section_reports():
+    # Variables de entorno llamadas en el momento justo
+    REPORTS_DIR = os.path.join(config.PATH_REPORTS, "Reportes_Por_Secciones")
+    os.makedirs(REPORTS_DIR, exist_ok=True)
+    
     item_base_dict = load_item_indicators()
     meses_es = {1:'Enero', 2:'Febrero', 3:'Marzo', 4:'Abril', 5:'Mayo', 6:'Junio', 7:'Julio', 8:'Agosto', 9:'Septiembre', 10:'Octubre', 11:'Noviembre', 12:'Diciembre'}
     solid_colors = {"Crítico": "#991b1b", "Bajo": "#ff8c2e", "Medio": "#facc15", "Bueno": "#84cc16", "Excelente": "#065f46"}
@@ -371,12 +385,10 @@ def process_section_reports():
     else:
         master_df['Grupo_Letra'] = ''
 
-    if 'Nombre' not in master_df.columns:
-        master_df['Nombre'] = ''
+    if 'Nombre' not in master_df.columns: master_df['Nombre'] = ''
     master_df['Nombre'] = master_df['Nombre'].fillna('').astype(str).str.strip().str.title()
     
-    if 'Apellido' not in master_df.columns:
-        master_df['Apellido'] = ''
+    if 'Apellido' not in master_df.columns: master_df['Apellido'] = ''
     master_df['Apellido'] = master_df['Apellido'].fillna('').astype(str).str.strip().str.title()
     
     def format_name(row):
@@ -435,44 +447,103 @@ def process_section_reports():
             matrix = subject_data[['Documento', 'Apellidos y Nombres', 'theta.global (escala 0-100)', 'anular_prueba'] + item_cols].copy()
             matrix['Puntaje_Num'] = pd.to_numeric(matrix['theta.global (escala 0-100)'].astype(str).str.replace('"', '').str.replace(',', '.'), errors='coerce')
             
-            # --- FUNCIÓN EXACTA Y LIMPIA PARA EL ASTERISCO ---
             def tiene_tiempo_inusual(val):
                 if pd.isna(val) or str(val).strip().lower() in ['nan', 'none', '', 'null', 'false']: 
                     return False
-                
-                # Convertimos a string y forzamos minúsculas
                 val_str = str(val).strip().lower()
-                # Quitamos tildes para evitar desajustes de caracteres
                 val_str = ''.join(c for c in unicodedata.normalize('NFD', val_str) if unicodedata.category(c) != 'Mn')
-                
-                # Buscamos coincidencias de la frase
                 return ("duracion <5 min" in val_str) or ("tiempo extremo de demora" in val_str) or ("5 min" in val_str)
                 
             matrix['tiempo_inusual'] = matrix['anular_prueba'].apply(tiene_tiempo_inusual)
-            
             matrix['Puntaje_Sort'] = matrix['Puntaje_Num'].fillna(9999) 
             matrix = matrix.sort_values(by='Puntaje_Sort', ascending=True)
 
             indicadores_info = []
-            for i, item in enumerate(item_cols):
-                pct = (pd.to_numeric(matrix[item], errors='coerce').fillna(0).sum() / len(matrix)) * 100 if len(matrix) > 0 else 0
-                
-                base_info = item_base_dict.get(item, {})
-                objetivo_base = base_info.get('objetivo', 'Indicador no disponible.')
-                dia_label = base_info.get('clases', '')
-                first_class_num = base_info.get('orden', 9999.0)
-                nivelacion_texto = base_info.get('nivelacion', '')
-                
-                disp_name = f"{'MAT' if subject == 'Matemática' else 'LEN'}{i+1}"
-                
-                nivelacion_html = f" <strong style='white-space: nowrap;'>{nivelacion_texto}</strong>" if nivelacion_texto else ""
-                
-                if dia_label:
-                    ind_html = f"<span class='badge-class'>{dia_label}</span> {objetivo_base}{nivelacion_html}"
-                else:
-                    ind_html = f"{objetivo_base}{nivelacion_html}"
+
+            # =================================================================
+            # LÓGICA BIFURCADA POR ASIGNATURA CON EXTRACCIÓN DE HUELLA DACTILAR
+            # =================================================================
+            if subject == 'Lengua':
+                indicator_groups = {}
+                for i, item in enumerate(item_cols):
+                    norm_item = normalize_item_code(item)
+                    base_info = item_base_dict.get(norm_item, {})
                     
-                indicadores_info.append({'disp_name': disp_name, 'pct': pct, 'indicador_base': ind_html, 'f_day': first_class_num})
+                    objetivo = base_info.get('objetivo', 'Indicador no disponible.')
+                    
+                    if objetivo == 'Indicador no disponible.':
+                        fingerprint = 'missing'
+                    else:
+                        fingerprint = re.sub(r'[\W_]+', '', objetivo.lower())
+                    
+                    if fingerprint not in indicator_groups:
+                        indicator_groups[fingerprint] = {
+                            'display_text': objetivo,
+                            'items': [],
+                            'clases': set(),
+                            'f_day': 9999.0,
+                            'nivelacion': set(),
+                            'item_indices': []
+                        }
+                    
+                    indicator_groups[fingerprint]['items'].append(item)
+                    indicator_groups[fingerprint]['item_indices'].append(i+1)
+                    
+                    clase = base_info.get('clases', '')
+                    if clase: indicator_groups[fingerprint]['clases'].add(clase)
+                    
+                    orden = base_info.get('orden', 9999.0)
+                    if orden < indicator_groups[fingerprint]['f_day']:
+                        indicator_groups[fingerprint]['f_day'] = orden
+                        
+                    nivelacion = base_info.get('nivelacion', '')
+                    if nivelacion: indicator_groups[fingerprint]['nivelacion'].add(nivelacion)
+
+                for fingerprint, data in indicator_groups.items():
+                    total_correct = sum(pd.to_numeric(matrix[it], errors='coerce').fillna(0).sum() for it in data['items'])
+                    total_possible = len(matrix) * len(data['items'])
+                    pct = (total_correct / total_possible) * 100 if total_possible > 0 else 0
+                    
+                    clases_str = " | ".join(sorted(list(data['clases'])))
+                    nivel_str = " | ".join(sorted(list(data['nivelacion'])))
+                    nivelacion_html = f" <strong style='white-space: nowrap;'>{nivel_str}</strong>" if nivel_str else ""
+                    
+                    if clases_str:
+                        ind_html = f"<span class='badge-class'>{clases_str}</span> {data['display_text']}{nivelacion_html}"
+                    else:
+                        ind_html = f"{data['display_text']}{nivelacion_html}"
+                        
+                    disp_name = ""
+                    
+                    indicadores_info.append({
+                        'disp_name': disp_name, 
+                        'pct': pct, 
+                        'indicador_base': ind_html, 
+                        'f_day': data['f_day']
+                    })
+
+            else:
+                for i, item in enumerate(item_cols):
+                    pct = (pd.to_numeric(matrix[item], errors='coerce').fillna(0).sum() / len(matrix)) * 100 if len(matrix) > 0 else 0
+                    
+                    norm_item = normalize_item_code(item)
+                    base_info = item_base_dict.get(norm_item, {})
+                    
+                    objetivo_base = base_info.get('objetivo', 'Indicador no disponible.')
+                    dia_label = base_info.get('clases', '')
+                    first_class_num = base_info.get('orden', 9999.0)
+                    nivelacion_texto = base_info.get('nivelacion', '')
+                    
+                    disp_name = f"MAT {i+1}"
+                    nivelacion_html = f" <strong style='white-space: nowrap;'>{nivelacion_texto}</strong>" if nivelacion_texto else ""
+                    
+                    if dia_label:
+                        ind_html = f"<span class='badge-class'>{dia_label}</span> {objetivo_base}{nivelacion_html}"
+                    else:
+                        ind_html = f"{objetivo_base}{nivelacion_html}"
+                        
+                    indicadores_info.append({'disp_name': disp_name, 'pct': pct, 'indicador_base': ind_html, 'f_day': first_class_num})
+            # =================================================================
 
             indicadores_info.sort(key=lambda x: x['pct'])
             tbody_id = f"tbody_{nro_centro}_{subject.replace(' ', '')}"
@@ -494,13 +565,16 @@ def process_section_reports():
                 elif ind['pct'] <= 60: c, txt = "color-yellow", "Medio"
                 elif ind['pct'] <= 80: c, txt = "color-lightgreen", "Bueno"
                 else: c, txt = "color-darkgreen", "Excelente"
+                
+                disp_html = f"<span class='item-label'>{ind['disp_name']}:</span> " if ind['disp_name'] else ""
+                
                 indicators_html += f"""
                 <div class="indicator-item {c}" data-pct="{ind['pct']}" data-class="{ind['f_day']}">
                     <div class="indicator-pct">
                         <div class="pct-number">{ind['pct']:.1f}%</div>
                         <div class="pct-label">{txt}</div>
                     </div>
-                    <div><strong>{ind['disp_name']}:</strong> {ind['indicador_base']}</div>
+                    <div>{disp_html}{ind['indicador_base']}</div>
                 </div>
                 """
             indicators_html += '</div></div>'
@@ -526,12 +600,10 @@ def process_section_reports():
             for _, row in matrix.iterrows():
                 p = row['Puntaje_Num']
                 
-                # --- ASIGNACIÓN SEGURA DEL ASTERISCO ---
                 tiene_asterisco = bool(row['tiempo_inusual'])
                 nombre_visible = f"{row['Apellidos y Nombres']} *" if tiene_asterisco else str(row['Apellidos y Nombres'])
                 
                 bg, lvl = "", ""
-                
                 if pd.notna(p):
                     if p <= 35: bg, lvl = "bg-red", "Crítico"
                     elif p <= 45: bg, lvl = "bg-orange", "Bajo"

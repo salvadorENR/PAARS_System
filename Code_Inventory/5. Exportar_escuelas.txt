@@ -1,0 +1,23 @@
+DESCRIPCIÓN TÉCNICA: cruzar_mis_escuelas.py (Buscador y Cruce de Nombres)
+Este script tiene como función principal actuar como un diccionario dinámico e inteligente. Su objetivo es tomar una lista manual de códigos de infraestructura (Nro de Centro) y buscar sus nombres oficiales dentro de los archivos de resultados de la plataforma Geiser, generando un reporte consolidado y limpio en Excel.
+
+1. Estructura de Entrada de Datos
+A diferencia de otros módulos, este script utiliza una constante interna llamada DATOS_USUARIO. Esto permite procesar de forma inmediata una lista de códigos que el usuario haya "pegado" directamente en el código, facilitando el cruce de datos personalizados (como metas o valores específicos) con la base de datos oficial.
+
+2. Énfasis en Filtros de Procesamiento y Selección
+El script integra varias capas de filtrado para garantizar que el cruce de información sea preciso y no contenga errores de formato:
+
+Filtro de Selección de Archivos (Directorio Interim): El script escanea la carpeta de archivos procesados, pero aplica un filtro de exclusión estricto: if not f.endswith('.csv') or 'legend' in f.lower(): continue. Esto garantiza que solo se analicen archivos de datos reales y se ignoren manuales o leyendas que no contienen la relación código-nombre.
+
+Filtro Dinámico de Columnas (Búsqueda por Palabras Clave): El script no depende de que las columnas se llamen siempre igual. Utiliza un filtro de búsqueda inteligente que rastrea términos como 'nro de centro', 'código' o 'centro'. Esto permite que el código sea compatible con diferentes versiones de archivos de Geiser.
+
+Filtro de Limpieza y Unicidad (Data Cleaning): Al extraer los nombres, el script aplica el comando .dropna().drop_duplicates(). Este filtro es fundamental para construir un "diccionario de búsqueda" eficiente, eliminando filas vacías y evitando que nombres duplicados generen ruido en el proceso.
+
+Filtro de Validación de Contenido ('nan' strings): Antes de asignar un nombre a un código, el script verifica que los valores no sean la cadena de texto 'nan', un error común que ocurre cuando los archivos de Excel tienen celdas vacías mal formateadas.
+
+Filtro de Mapeo y Alerta de Error (Handling Missing Data): Al realizar el cruce final, se aplica el filtro .fillna("⚠️ No encontrado en Geiser"). Este mecanismo actúa como una auditoría visual en el archivo de salida, permitiendo al usuario identificar de inmediato qué códigos de su lista original no tienen un registro oficial en el sistema.
+
+3. Lógica de Salida y Exportación
+El script organiza la información final en un archivo Excel (Mis_Escuelas_Buscadas.xlsx), reordenando las columnas para que el Nombre del Centro aparezca justo después del código. La ruta de salida está automatizada para guardarse directamente en la carpeta del proyecto correspondiente a Marzo 2026.
+
+Resumen de Robustez: Este módulo asegura que no tengas que buscar nombres manualmente, utilizando filtros de limpieza para que el resultado sea 100% confiable y esté libre de duplicados.

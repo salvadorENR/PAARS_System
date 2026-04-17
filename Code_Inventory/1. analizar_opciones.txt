@@ -1,0 +1,61 @@
+================================================================================
+DESCRIPCIÓN TÉCNICA DEL ANALIZADOR DE FRECUENCIAS PAARS
+================================================================================
+
+Este código es un Analizador de Frecuencias robusto. Su propósito principal es tomar miles de respuestas crudas de los estudiantes (los archivos .txt extraídos de la plataforma), cruzarlas con una plantilla de respuestas correctas (el archivo maestro .csv), y calcular qué porcentaje de alumnos eligió las opciones A, B, C, D o dejó la pregunta en blanco (N/R).
+
+A continuación, se desglosa el código en detalle, haciendo un énfasis especial en los FILTROS y REGLAS DE SELECCIÓN de datos que se utilizan para garantizar que los cálculos sean matemáticamente precisos y estén libres de "basura".
+
+--------------------------------------------------------------------------------
+1. FUNCIONES DE LIMPIEZA Y NORMALIZACIÓN (Primer Nivel de Filtrado)
+--------------------------------------------------------------------------------
+Antes de hacer cualquier cruce o cálculo matemático, el código prepara el terreno para que los datos sean uniformes:
+
+* clean_grade(g): 
+  Extrae únicamente el número del grado y le añade el símbolo "°" (ej. "Grado 2" pasa a ser "2°"). Esto filtra textos innecesarios y estandariza la columna para que los cruces posteriores funcionen correctamente.
+
+* clean_option(x): [FILTRO CRÍTICO] 
+  Esta función actúa como un embudo estricto para las respuestas de los alumnos. Elimina comillas, espacios y puntos. Si el estudiante respondió algo que no sea exactamente "A", "B", "C" o "D", el código lo clasifica y reemplaza automáticamente por "N/R" (No Responde).
+
+* get_item_number(item_code): 
+  Extrae el número del ítem (ej. saca el "12" de "MAT12") para que, al momento de exportar a Excel, las preguntas se ordenen numéricamente (1, 2, 10, 11) y no de forma alfabética (1, 10, 11, 2).
+
+--------------------------------------------------------------------------------
+2. EL MOTOR DE PROCESAMIENTO Y SUS FILTROS DE SELECCIÓN
+--------------------------------------------------------------------------------
+La función principal (analizar_por_examen) está diseñada con múltiples filtros estratégicos para no procesar datos inválidos ni mezclar asignaturas.
+
+A. Filtro de Búsqueda y Emparejamiento (Match Inicial)
+   - Búsqueda de archivos TXT: Utiliza la librería 'glob' para buscar estrictamente archivos que estén dentro de la ruta "Raw_Data" bajo las carpetas "Reportes Prueba Progreso * letras" o "Reportes Prueba Resultados * letras". Ignora cualquier otro archivo suelto en el disco.
+   - Emparejamiento del Maestro (Metadata): Al detectar un examen (ej. "Progreso 2"), el código va a la carpeta de metadatos y aplica un filtro de texto iterativo. Busca un archivo CSV que contenga la palabra del tipo de examen y el número correspondiente (tolerando variaciones como "mes2", "mes 2" o "_2_"). Si no encuentra el archivo maestro exacto para ese mes, el sistema OMITE el examen por completo para evitar cálculos erróneos.
+
+B. Filtro de la Clave de Respuestas (El Maestro)
+   Una vez que carga el CSV con las respuestas correctas, aplica las siguientes reglas:
+   - Aplica 'clean_grade' para que el formato de grados coincida exactamente con los del archivo TXT de los alumnos.
+   - Filtro estricto de eliminación (dropna): Elimina cualquier fila del maestro que no tenga un código de ítem (ItemCodigo) o una respuesta correcta (Opcion Correcta).
+   - Creación del Set 'items_permitidos': [FILTRO CRÍTICO] Crea una lista única en memoria con los códigos de las preguntas que SÍ existen en el archivo maestro. Cualquier pregunta que venga en el TXT de los alumnos, pero que no esté registrada en esta lista de control, será ignorada y no se calculará.
+
+C. Filtros de Optimización de Memoria (Separación de Materias)
+   Al cargar los miles de registros de los TXT, el código los consolida en 'master_df'. Luego, aplica máscaras booleanas (filtros de verdadero/falso) para separar los datos antes de transformarlos:
+   - Filtro de Matemática (mask_mat): Extrae solo las filas donde la columna 'Area temática' contiene la palabra "mat".
+   - Filtro de Lenguaje (mask_lec): Extrae solo las filas donde la columna 'Area temática' contiene "lec" o "leng".
+
+D. Filtro de Columnas (El más importante para el cálculo)
+   Antes de derretir y transformar la tabla (melt), el código decide qué columnas de la base de datos evaluar:
+   - item_cols_mat = [col for col in df_mat.columns if col.strip().upper() in items_permitidos and col.strip().upper().startswith('MAT')]
+   - ¿Qué hace este filtro? Revisa todas las columnas del archivo de los estudiantes (que suele traer datos demográficos, NIE, nombres, fechas, etc.). SOLO selecciona las columnas que empiecen con "MAT" (o "LEC") "Y" que además existan dentro del set 'items_permitidos' creado en el paso B. Esto evita que el código intente calcular el porcentaje de respuestas de columnas que no son ítems evaluativos.
+
+E. Filtro de Cálculo Iterativo por Grado
+   Al momento de generar el Excel (Frecuencias_Opciones_...), el código no mezcla a toda la población escolar:
+   - Realiza un bucle del grado 2 al 11.
+   - Filtro de Fila (datos_materia['Grado_Limpio'] == grado_str): Extrae exclusivamente a los estudiantes de ese grado en particular. Si no hay alumnos en ese grado (dataframe vacío), ejecuta un 'continue' y pasa al siguiente grado sin intentar hacer cálculos matemáticos que generarían errores de división por cero.
+
+F. Cálculo de Frecuencias y Filtro de Cruce Final (Inner Join)
+   - El sistema agrupa los datos por Ítem y Respuesta, contando cuántas veces aparece cada opción. Si nadie eligió una opción en particular (por ejemplo, la "C"), el código fuerza a que la columna se cree rellenándola con un 0.
+   - Calcula el porcentaje dividiendo la frecuencia de cada letra entre el total de respuestas recibidas para esa pregunta.
+   - El Filtro Final (how='inner'): Se realiza un cruce relacional (pd.merge) entre los porcentajes calculados y las claves del grado actual del archivo maestro. Al usar el método 'inner', el código DESCARTA automáticamente cualquier cálculo sobrante (ítems huérfanos) que no haga un "match" perfecto con la clave de respuestas oficial de ese grado específico.
+
+--------------------------------------------------------------------------------
+RESUMEN DE LA ARQUITECTURA
+--------------------------------------------------------------------------------
+El script funciona como un embudo de validación continua. Solo procesa un archivo de estudiantes si encuentra su contraparte maestra. Solo evalúa una columna si tiene el formato correcto de pregunta y existe en la clave. Limpia las respuestas inválidas convirtiéndolas en "N/R", calcula porcentajes dividiendo a la población estrictamente por grados, y finalmente ensambla todo en un Excel ordenado por el número del ítem, garantizando datos limpios y listos para el análisis psicométrico.

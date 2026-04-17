@@ -1,0 +1,30 @@
+DESCRIPCIÓN TÉCNICA: generador_consolidado_estudiantes.py (Motor de Seguimiento Histórico)
+Este script es el encargado de generar el expediente académico longitudinal de los estudiantes. Su función principal es rastrear y unificar las notas de cada alumno a lo largo de los diferentes meses de evaluación (desde el Mes 1 hasta el mes actual) para observar su evolución en el tiempo.
+
+1. Propósito y Conexión Dinámica
+El módulo utiliza una lógica de "autodescubrimiento" para navegar por las carpetas del año 2026. Identifica automáticamente cuántos meses de evaluación (01_PROGRESO, 02_PROGRESO, etc.) existen en el Drive y recolecta los resultados de cada uno para construir una tabla comparativa de seguimiento.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El script destaca por su robustez en la limpieza de datos y la aplicación de filtros de exclusión administrativa:
+
+* Filtro de Pruebas Anuladas (Integridad): El script busca la columna de anulación en cada archivo. Si un estudiante tiene una justificación registrada, el filtro lo elimina del análisis para asegurar que solo se consoliden resultados pedagógicos válidos.
+
+* Filtro de Exclusión de "Centro Virtual" (99999): Se aplica una regla de negocio estricta: df[df['Código de Infraestructura'] != '99999']. Este filtro elimina registros de prueba o simulaciones, garantizando que el reporte final contenga únicamente estudiantes reales de centros educativos oficiales.
+
+* Filtro Dinámico de Columnas (Mapeo de Grupos): El script utiliza expresiones regulares para localizar la columna de "Sección" o "Grupo". Incluye un filtro inteligente que busca patrones de texto (ej. "Grupo (1)") para identificar la columna correcta entre varias similares.
+
+* Filtro de Normalización de NIE y Centros: Limpia los Documentos de Identidad y los códigos de infraestructura eliminando residuos de formato (como el .0 de Excel) y espacios en blanco, asegurando que el "vínculo" entre meses sea exacto.
+
+* Filtro de Cruce Histórico (Outer Join): Al unificar los meses, utiliza un "Cruce Externo" (how='outer'). Este filtro es fundamental para no perder alumnos: si un estudiante hizo la prueba en marzo pero faltó en abril, su registro se mantiene en el consolidado marcando el mes faltante como "No Evaluado".
+
+3. Lógica de Clasificación y Ordenamiento
+* Escala de Desempeño: Transforma las notas numéricas en categorías cualitativas (Crítico, Bajo, Medio, Bueno, Excelente) mediante una función de clasificación dedicada.
+
+* Ordenamiento Pedagógico: Implementa un filtro de ordenamiento jerárquico. Primero extrae el número del grado (ej. de "3º Grado" extrae el 3) para que el Excel final aparezca ordenado del 2.° al 11.° grado, y dentro de cada grado, por centro escolar, grupo y documento.
+
+4. Salida y Exportación
+Genera un archivo Excel multilingüe con dos pestañas principales: Est_Matemática y Est_Lengua.
+
+* Limpieza Visual: Redondea todas las notas a dos decimales y rellena los huecos de ausencia con la etiqueta "No Evaluado", entregando un reporte listo para el análisis de las autoridades educativas.
+
+Resumen de Operación: Este módulo actúa como un archivador histórico; filtra registros inválidos y centros virtuales, y une cronológicamente la vida académica de los estudiantes para facilitar el análisis de progreso anual.

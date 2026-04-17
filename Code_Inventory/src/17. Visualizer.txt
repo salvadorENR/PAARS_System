@@ -1,0 +1,30 @@
+DESCRIPCIÓN TÉCNICA: visualizer.py (Motor de Graficación Ejecutiva)
+Este script es el responsable de la capa de visualización de datos del sistema PAARS. Su función principal es transformar las tablas estadísticas generadas por el motor de análisis en representaciones gráficas de alta calidad (formato PNG), facilitando la interpretación de los resultados para audiencias ejecutivas.
+
+1. Identidad Visual y Estilo
+El módulo utiliza las librerías Matplotlib y Seaborn bajo una configuración institucional unificada. Define una paleta de colores estandarizada para los niveles de logro, asegurando que la comunicación visual sea coherente en todos los reportes del sistema (ej. Rojo para Crítico, Verde Oscuro para Excelente).
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El script implementa filtros visuales y lógicos para garantizar que las gráficas sean legibles y precisas:
+
+* Filtro de Ordenamiento por Categoría: Antes de dibujar las barras, el script aplica un filtro de reordenamiento de columnas: [c for c in COLOR_CATEGORIAS.keys() if c in dist_pct.columns]. Esto garantiza que los niveles siempre aparezcan en el orden pedagógico correcto (de Crítico a Excelente) y no en orden alfabético.
+
+* Filtro de Legibilidad de Etiquetas (Umbral del 2%): Al generar el gráfico de barras apiladas, el script aplica un filtro lógico de visualización: [f"{val:.1f}%" if val > 2 else "" ...]. Este filtro asegura que solo se impriman las etiquetas de porcentaje si el segmento es lo suficientemente grande, evitando que el texto se amontone y se vuelva ilegible en los niveles con poca población.
+
+* Filtro de Escala Estática (0-100): Se implementa un filtro de límites de eje (plt.ylim(0, 100) y plt.xlim(0, 105)). Esto obliga a todas las gráficas a mantener la misma escala, permitiendo comparaciones visuales justas entre diferentes asignaturas o quintiles sin que el software ajuste la escala automáticamente.
+
+* Filtro de Anotación de Quintiles: El script filtra los valores de los puntos de corte y genera anotaciones automáticas sobre cada marcador. Utiliza un filtro de posicionamiento (xytext=(0,10)) para evitar que los números se superpongan con las líneas de tendencia.
+
+3. Tipos de Visualizaciones Generadas
+El motor de visualización produce dos archivos de imagen clave:
+
+(1) Distribución de Niveles (distribucion_niveles.png): Un gráfico de barras horizontales apiladas que muestra qué porcentaje de la población nacional se encuentra en cada uno de los 5 niveles de desempeño por materia.
+
+(2) Análisis de Quintiles (analisis_quintiles.png): Un gráfico de líneas de tendencia que visualiza los puntos de corte (cuartiles 20%, 40%, 60%, 80%) de la escala de puntajes, identificando brechas de rendimiento entre las diferentes áreas temáticas.
+
+4. Automatización y Calidad de Salida
+* Gestión de Rutas: Conecta directamente con config.py para guardar automáticamente las imágenes en la carpeta Final_Reports del mes correspondiente.
+
+* Alta Resolución: Todas las gráficas se exportan con una densidad de 300 DPI, garantizando nitidez para su inclusión en informes impresos o presentaciones digitales de alta definición.
+
+Resumen de Operación: Este módulo actúa como el "traductor visual" del sistema; aplica filtros de umbral y ordenamiento estético para convertir promedios numéricos en herramientas diagnósticas claras y profesionales.

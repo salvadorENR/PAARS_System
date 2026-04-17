@@ -1,0 +1,24 @@
+DESCRIPCIÓN TÉCNICA: pre_processor.py (Módulo de Transformación de Formatos)
+Este script es el componente encargado de la estandarización técnica de los datos. Su función principal es actuar como un "puente de compatibilidad", transformando archivos de hojas de cálculo de Microsoft Excel (.xlsx, .xls) en archivos de texto plano (.csv), facilitando así un procesamiento más rápido y ligero por parte de los motores de cálculo del sistema PAARS.
+
+1. Propósito y Flujo de Trabajo
+El módulo se sitúa en la etapa inicial del flujo de datos. Utiliza las rutas definidas en el archivo central de configuración (config.py) para leer los datos brutos depositados en la carpeta Raw_Data y depositar los resultados procesados en la carpeta Interim_CSVs.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El script implementa filtros de control específicos para asegurar que solo se procesen los archivos pertinentes y se mantenga la integridad de la información:
+
+* Filtro de Extensión de Archivo: El script utiliza una validación de sufijos: if f.endswith(('.xlsx', '.xls')). Este filtro asegura que el motor ignore cualquier otro tipo de archivo presente en la carpeta (como PDFs, imágenes o archivos temporales), procesando únicamente libros de Excel válidos.
+
+* Filtro de Detección de Contenido (Múltiples Hojas): A través del parámetro sheet_name=None, el script aplica un filtro de exploración profunda que le permite "ver" todas las pestañas de un solo archivo. Esto es vital para no perder información si una evaluación contiene diferentes grados o materias en hojas separadas.
+
+* Filtro de Codificación (Preservación de Caracteres): Al exportar los datos, se aplica forzosamente el estándar utf-8-sig. Este filtro técnico garantiza que caracteres específicos del idioma español (tildes, eñes, símbolos de grado) no se corrompan, permitiendo que el texto sea perfectamente legible en cualquier plataforma posterior.
+
+* Filtro de Seguridad de Directorios: Antes de iniciar cualquier acción, el script ejecuta os.makedirs(..., exist_ok=True). Este filtro de infraestructura garantiza que el programa no falle si la carpeta de destino no ha sido creada previamente, asegurando la continuidad del flujo de trabajo.
+
+3. Lógica de Nomenclatura y Trazabilidad
+Para mantener la trazabilidad de los datos originales, el script utiliza una lógica de renombramiento combinada: NombreArchivo - NombrePestaña.csv. Este filtro de identidad permite que, aunque la información se fragmente en múltiples archivos CSV, siempre se pueda identificar fácilmente a qué libro de Excel y a qué pestaña pertenecía el dato original.
+
+4. Gestión de Errores
+El módulo incluye un bloque de control de excepciones try-except. Este actúa como un filtro de estabilidad que permite que, si un archivo de Excel está dañado o bloqueado, el sistema informe el error específico y continúe con el siguiente archivo sin interrumpir la ejecución global del sistema PAARS.
+
+Resumen de Operación: Este módulo es el "traductor" del sistema; toma archivos complejos de Excel y los filtra hacia un formato simplificado y normalizado (CSV), eliminando errores de codificación y preparando el terreno para la integración masiva de datos.

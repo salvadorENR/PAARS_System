@@ -1,0 +1,34 @@
+DESCRIPCIÓN TÉCNICA: resultados_engine.py (Motor de Métricas Analíticas)
+Este script constituye el núcleo de cálculo estadístico del sistema PAARS para la generación de reportes de resultados. Su función es procesar la tabla maestra unificada y transformarla en un diccionario estructurado de métricas de alto valor diagnóstico (estadística descriptiva, quintiles y niveles de dificultad).
+
+1. Propósito y Lógica de Procesamiento
+El script actúa como una capa de inteligencia de datos que prepara la información antes de ser enviada al motor de renderizado LaTeX. Realiza un análisis profundo por cada grado académico (filtrando desde 3.°) y por asignatura, garantizando que cada cifra reportada cumpla con los estándares de validez técnica.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El "Motor de Resultados" destaca por su rigor en el filtrado y la seguridad estadística:
+
+* Filtro de Pruebas Válidas (Integridad Administrativa): El script aplica un filtro excluyente sobre la columna anular_prueba. Solo permite el paso de registros donde esta columna esté vacía o contenga valores nulos. Esto garantiza que el reporte nacional no sea contaminado por pruebas invalidadas por los aplicadores.
+
+* Filtro de Conversión Numérica (IRT): Aplica un filtro de transformación a la escala Theta (0-100), utilizando pd.to_numeric con el parámetro errors='coerce'. Seguido de un dropna, este filtro asegura que solo los estudiantes que completaron exitosamente el modelo psicométrico sean tomados en cuenta para el cálculo de medias.
+
+* Filtro de Relevancia Académica (Grado): Incluye un filtro de selección que solo procesa datos para grados superiores o iguales al 3.er grado, alineándose con los requerimientos de la Gerencia de Evaluación para informes de resultados de fin de ciclo.
+
+* Candado de Seguridad para Quintiles (N >= 5): Implementa un filtro de umbral poblacional. Solo ejecuta el cálculo de quintiles (pd.qcut) si el subconjunto de datos tiene al menos 5 estudiantes. Este filtro de seguridad evita errores matemáticos por falta de variabilidad en grupos extremadamente pequeños.
+
+3. Componentes Estadísticos Generados
+El motor produce cinco familias de datos filtrados por cada unidad de análisis:
+
+	(1) Estadísticas Descriptivas: Calcula N válido, Media, Mediana, Desviación 	Estándar (con corrección de Bessel), Mínimo y Máximo.
+
+	(2) Análisis de Quintiles: Segmenta la población en cinco grupos iguales (20% cada 	uno) y calcula los rangos de puntaje para cada segmento.
+
+	(3) Índice de Dificultad de Ítems: Filtra las columnas de respuestas (MAT/LEC) y 	calcula el porcentaje de acierto. Incluye un filtro de limpieza que trata valores 	no numéricos como "Incorrecto" (0) para no inflar los resultados.
+
+	(4) Extracción de Valores Extremos: Identifica automáticamente los nombres y 	valores de los ítems con mayor y menor desempeño para alimentar la redacción 	automatizada del informe.
+
+	(5) Agregación Institucional: Genera un filtro de agrupación por centro educativo 	para obtener la variabilidad de promedios entre escuelas.
+
+4. Salida de Datos
+El resultado es un objeto de datos complejo que organiza toda la estadística por grado y materia, permitiendo que otros módulos accedan a la información sin necesidad de volver a procesar los archivos brutos.
+
+Resumen de Operación: Este módulo es el "matemático" del sistema; aplica filtros de anulación de pruebas, normalización psicométrica y umbrales de seguridad para entregar estadísticas confiables y listas para la publicación oficial.

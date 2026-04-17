@@ -1,0 +1,36 @@
+DESCRIPCIÓN TÉCNICA: report_directores.py (Generador de Micro-sitios de Resultados Escolares)
+Este script es uno de los componentes más avanzados del sistema PAARS. Su función es generar reportes individuales en formato HTML interactivo para cada centro escolar, permitiendo a los directores visualizar no solo el estado actual de su institución, sino también la evolución histórica de sus estudiantes.
+
+1. Arquitectura del Reporte (HTML5 + Chart.js)
+El script utiliza una plantilla base de HTML y CSS profesional que incluye capacidades de impresión optimizada (Print-friendly). Integra la librería Chart.js para renderizar gráficos dinámicos y un diseño responsivo basado en "tarjetas" de información. Cada reporte es un archivo independiente que funciona sin necesidad de internet (autónomo).
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El módulo implementa múltiples capas de filtros inteligentes para garantizar que la información sea precisa y visualmente clara:
+
+* Filtro de Rastreador Histórico: Mediante la función construir_historial, el script escanea automáticamente las carpetas de meses anteriores. Aplica un filtro de selección para extraer únicamente los datos de los estudiantes que pertenecen a la escuela que se está procesando en ese momento, permitiendo comparar el progreso mes a mes.
+
+* Filtro de Cruce con Matrícula (Especialidades): El script realiza un cruce de datos complejo con los archivos de matrícula de la Metadata. Utiliza un filtro de búsqueda flexible que tolera variaciones en los nombres de las columnas (acentos, mayúsculas, guiones) para identificar la "Opción de Bachillerato Técnico" de cada sección.
+
+* Filtro de Clasificación Dinámica: Aplica la configuración NIVELES_CONFIG para asignar colores y etiquetas (Crítico, Bajo, Medio, Bueno, Excelente) de forma automática. Si una sección no tiene nota, el filtro la marca como "N/A" para evitar errores en las gráficas.
+
+* Filtro de Limpieza de Grupos y Secciones: Utiliza expresiones regulares para limpiar los nombres de las secciones, separando el código técnico del nombre pedagógico (ej. de "A (105)" extrae "A").
+
+* Filtro de Representación Visual (Fajas de Nivel): Genera barras de distribución porcentual en HTML. Incluye un filtro de legibilidad: solo muestra el texto del porcentaje si el segmento es mayor al 5%, evitando que las etiquetas se amontonen en segmentos muy pequeños.
+
+3. Componentes Visuales Automatizados
+El reporte para directores incluye tres secciones clave generadas por filtros:
+
+	(1) Encabezado Institucional: Filtra y extrae el departamento y código de 	infraestructura del centro.
+
+	(2) Comparativa Mensual de Niveles: Un gráfico de barras apiladas que compara la 	distribución de niveles del mes actual frente al anterior.
+
+	(3) Desglose por Secciones: Una tabla que combina datos cualitativos (el nivel del 	grupo) con datos cuantitativos (la faja de distribución de los alumnos).
+
+	(4) Línea de Tiempo Histórica: Un gráfico de líneas que muestra la trayectoria de 	las medias de Matemática y Lengua desde el inicio del año.
+
+4. Salida y Distribución
+Nomenclatura Segura: El script limpia los nombres de los centros escolares eliminando caracteres especiales para crear nombres de archivo válidos para Windows/Google Drive.
+
+Ruta Dinámica: Organiza todos los archivos .html dentro de la carpeta Final_Reports/Reportes_Por_Escuela del mes correspondiente.
+
+Resumen de Operación: Este módulo actúa como un "diseñador web" automático; filtra la historia y el presente de cada escuela, cruza datos de especialidades técnicas y entrega una herramienta de análisis interactiva lista para ser convertida a PDF o consultada en navegador.

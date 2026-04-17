@@ -3,6 +3,7 @@ import os
 import re
 import pandas as pd
 import numpy as np
+import pathlib
 import sys
 import glob
 import unicodedata
@@ -218,44 +219,16 @@ def clasificar_puntaje(val):
     elif val <= 65: return "Bueno"
     else: return "Excelente"
 
-def normalize_item_code(code_str):
-    """Limpia el código quitando espacios, guiones, etc., y forzando mayúsculas. Ej: 'Lec 20' -> 'LEC20'"""
-    if pd.isna(code_str): return ""
-    return re.sub(r'[^A-Z0-9]', '', str(code_str).upper())
-
 def load_item_indicators():
-    """Lee dinámicamente el archivo de ítems asegurando que el Mes coincida exactamente."""
+    """Lee exclusivamente el Súper Archivo Procesado y extrae toda la información."""
     item_base_dict = {}
     
-    # Extraer el número del examen y el tipo de config.MONTH_FOLDER (ej. 02_PROGRESO_Abril)
-    match = re.match(r'^(\d+)_([A-Z]+)', os.path.basename(config.MONTH_FOLDER))
-    if match:
-        exam_num = str(int(match.group(1))) # Convierte '02' a '2'
-        exam_type = match.group(2).capitalize()
-    else:
-        # Fallback de búsqueda
-        exam_num = re.sub(r'\D', '', config.MONTH_FOLDER)
-        if not exam_num: exam_num = '1'
-        exam_type = 'Progreso' if 'PROGRESO' in config.MONTH_FOLDER.upper() else 'Resultados'
-
-    if exam_type == 'Resultado': exam_type = 'Resultados'
-    
-    # Extraer todos los excels de la carpeta de Metadatos
-    todos_archivos = glob.glob(os.path.join(MAPEO_DIR, "*.xlsx"))
-    archivos_procesados = []
-    
-    for f in todos_archivos:
-        nombre_archivo = os.path.basename(f)
-        # Queremos solo los procesados que correspondan al tipo de examen (Progreso o Resultado)
-        if 'procesado' in nombre_archivo.lower() and exam_type.lower() in nombre_archivo.lower():
-            # EL ESCUDO: Regex riguroso que no confunda el "Mes 1" del "2026" con "Mes 2"
-            # Asegura que después del número del mes no siga otro dígito.
-            if re.search(rf'Mes\s*0?{exam_num}(?:\D|$)', nombre_archivo, re.IGNORECASE) or \
-               re.search(rf'_{exam_num}_', nombre_archivo):
-                archivos_procesados.append(f)
-
+    archivos_procesados = glob.glob(os.path.join(MAPEO_DIR, "Items_Progreso_Mes*_procesado.xlsx"))
     if not archivos_procesados:
-        print(f"  [!] No se encontró el Excel maestro de ítems procesado para {exam_type} {exam_num}.")
+        archivos_procesados = glob.glob("Items_Progreso_Mes*_procesado.xlsx")
+        
+    if not archivos_procesados:
+        print("  [!] No se encontró el archivo 'Items_Progreso_Mes..._procesado.xlsx'")
         return item_base_dict
 
     ITEMS_FILE = archivos_procesados[0]
@@ -270,9 +243,7 @@ def load_item_indicators():
                 df_items[col] = ''
                 
         for _, row in df_items.dropna(subset=['ItemCodigo', 'indicador_logro']).iterrows():
-            # ¡NORMALIZACIÓN DE EXCEL Y DE RESULTADOS PARA UN MATCH PERFECTO!
-            codigo_puro = normalize_item_code(row['ItemCodigo'])
-            if not codigo_puro: continue
+            codigo = str(row['ItemCodigo']).strip()
             
             orden_val = 9999.0
             if pd.notna(row['Orden_Clase']) and str(row['Orden_Clase']).strip() != '':
@@ -281,7 +252,7 @@ def load_item_indicators():
                 except:
                     pass
             
-            item_base_dict[codigo_puro] = {
+            item_base_dict[codigo] = {
                 'objetivo': str(row['indicador_logro']).strip(),
                 'clases': str(row['Clases_Sugeridas']).strip() if pd.notna(row['Clases_Sugeridas']) and str(row['Clases_Sugeridas']).strip() != 'nan' else "",
                 'orden': orden_val,
@@ -302,9 +273,13 @@ def build_master_geiser_dataframe():
         try:
             df = pd.read_csv(path, dtype=str, encoding='utf-8-sig')
             
+            # --- LIMPIEZA EXTREMA Y ESCUDO ANTI-DUPLICADOS ---
+            # 1. Quitamos espacios en los nombres de las columnas
             df.columns = df.columns.str.strip()
+            # 2. Si el archivo viene con columnas duplicadas de origen, las removemos
             df = df.loc[:, ~df.columns.duplicated()].copy()
             
+            # --- BUSCADOR INTELIGENTE DE COLUMNAS ---
             if 'anular_prueba' not in df.columns:
                 col_anular = next((c for c in df.columns if 'anular' in c.lower()), None)
                 if col_anular: 
@@ -315,6 +290,7 @@ def build_master_geiser_dataframe():
                 if col_theta: 
                     df = df.rename(columns={col_theta: 'theta.global (escala 0-100)'})
 
+            # 3. Nos aseguramos de que el renombramiento no haya generado un nuevo duplicado
             df = df.loc[:, ~df.columns.duplicated()].copy()
 
             if 'MAT-' in f.upper(): df['Area temática'] = 'Matemática'
@@ -329,15 +305,18 @@ def build_master_geiser_dataframe():
     if not compl_dfs: return pd.DataFrame()
     
     try:
+        # Unimos y aplicamos el escudo anti-duplicados por última vez
         compl_df = pd.concat(compl_dfs, ignore_index=True)
         compl_df = compl_df.loc[:, ~compl_df.columns.duplicated()].copy()
         
+        # Limpieza CRÍTICA de Documento para asegurar el Merge perfecto
         if 'Documento' in compl_df.columns:
             compl_df['Documento'] = compl_df['Documento'].astype(str).str.strip().str.replace(r'\.0$', '', regex=True)
             
         if 'Area temática' in compl_df.columns:
             compl_df['Area temática'] = compl_df['Area temática'].astype(str).str.strip()
             
+        # Dropeamos las columnas que vamos a traer de res_df para que no haya conflictos de duplicados
         columnas_a_borrar = ['theta.global (escala 0-100)', 'anular_prueba']
         compl_df = compl_df.drop(columns=[c for c in columnas_a_borrar if c in compl_df.columns], errors='ignore')
         
@@ -392,10 +371,12 @@ def process_section_reports():
     else:
         master_df['Grupo_Letra'] = ''
 
-    if 'Nombre' not in master_df.columns: master_df['Nombre'] = ''
+    if 'Nombre' not in master_df.columns:
+        master_df['Nombre'] = ''
     master_df['Nombre'] = master_df['Nombre'].fillna('').astype(str).str.strip().str.title()
     
-    if 'Apellido' not in master_df.columns: master_df['Apellido'] = ''
+    if 'Apellido' not in master_df.columns:
+        master_df['Apellido'] = ''
     master_df['Apellido'] = master_df['Apellido'].fillna('').astype(str).str.strip().str.title()
     
     def format_name(row):
@@ -454,14 +435,21 @@ def process_section_reports():
             matrix = subject_data[['Documento', 'Apellidos y Nombres', 'theta.global (escala 0-100)', 'anular_prueba'] + item_cols].copy()
             matrix['Puntaje_Num'] = pd.to_numeric(matrix['theta.global (escala 0-100)'].astype(str).str.replace('"', '').str.replace(',', '.'), errors='coerce')
             
+            # --- FUNCIÓN EXACTA Y LIMPIA PARA EL ASTERISCO ---
             def tiene_tiempo_inusual(val):
                 if pd.isna(val) or str(val).strip().lower() in ['nan', 'none', '', 'null', 'false']: 
                     return False
+                
+                # Convertimos a string y forzamos minúsculas
                 val_str = str(val).strip().lower()
+                # Quitamos tildes para evitar desajustes de caracteres
                 val_str = ''.join(c for c in unicodedata.normalize('NFD', val_str) if unicodedata.category(c) != 'Mn')
+                
+                # Buscamos coincidencias de la frase
                 return ("duracion <5 min" in val_str) or ("tiempo extremo de demora" in val_str) or ("5 min" in val_str)
                 
             matrix['tiempo_inusual'] = matrix['anular_prueba'].apply(tiene_tiempo_inusual)
+            
             matrix['Puntaje_Sort'] = matrix['Puntaje_Num'].fillna(9999) 
             matrix = matrix.sort_values(by='Puntaje_Sort', ascending=True)
 
@@ -469,16 +457,14 @@ def process_section_reports():
             for i, item in enumerate(item_cols):
                 pct = (pd.to_numeric(matrix[item], errors='coerce').fillna(0).sum() / len(matrix)) * 100 if len(matrix) > 0 else 0
                 
-                # ¡NORMALIZACIÓN CRÍTICA AL BUSCAR!
-                norm_item = normalize_item_code(item)
-                base_info = item_base_dict.get(norm_item, {})
-                
+                base_info = item_base_dict.get(item, {})
                 objetivo_base = base_info.get('objetivo', 'Indicador no disponible.')
                 dia_label = base_info.get('clases', '')
                 first_class_num = base_info.get('orden', 9999.0)
                 nivelacion_texto = base_info.get('nivelacion', '')
                 
                 disp_name = f"{'MAT' if subject == 'Matemática' else 'LEN'}{i+1}"
+                
                 nivelacion_html = f" <strong style='white-space: nowrap;'>{nivelacion_texto}</strong>" if nivelacion_texto else ""
                 
                 if dia_label:
@@ -540,10 +526,12 @@ def process_section_reports():
             for _, row in matrix.iterrows():
                 p = row['Puntaje_Num']
                 
+                # --- ASIGNACIÓN SEGURA DEL ASTERISCO ---
                 tiene_asterisco = bool(row['tiempo_inusual'])
                 nombre_visible = f"{row['Apellidos y Nombres']} *" if tiene_asterisco else str(row['Apellidos y Nombres'])
                 
                 bg, lvl = "", ""
+                
                 if pd.notna(p):
                     if p <= 35: bg, lvl = "bg-red", "Crítico"
                     elif p <= 45: bg, lvl = "bg-orange", "Bajo"

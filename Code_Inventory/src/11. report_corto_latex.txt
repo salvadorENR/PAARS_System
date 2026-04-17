@@ -1,0 +1,30 @@
+DESCRIPCIÓN TÉCNICA: report_corto_latex.py (Generador de Presentaciones Ejecutivas en LaTeX)
+Este script es el responsable de la comunicación visual de alto nivel. Su función principal es transformar las bases de datos masivas en una presentación profesional (formato PDF) utilizando el motor tipográfico LaTeX Beamer. Está diseñado para generar reportes ejecutivos cortos con tablas de cobertura y estadísticas descriptivas de fácil lectura para autoridades.
+
+1. Arquitectura de Plantilla y Estética
+El script utiliza una plantilla interna (LATEX_BEAMER_TEMPLATE) con una configuración de aspecto 16:9. Incluye un sistema de colores corporativos en tonos azul marino y gris acero, asegurando que todos los reportes tengan una identidad visual uniforme. Utiliza etiquetas dinámicas (marcadores como @@FILAS_TABLA@@) que el motor de Python reemplaza con datos calculados en tiempo real.
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+El módulo destaca por su capacidad para filtrar y cruzar datos de diferentes fuentes antes de la renderización:
+
+* Filtro de Cruce con Metadata (Matrícula B1): El script busca un archivo maestro llamado Matricula_B1.xlsx. Aplica un filtro de búsqueda por grado para extraer la matrícula oficial del país. Si no encuentra el dato, aplica un filtro de seguridad que inserta un guion ("-") en lugar de fallar, protegiendo la ejecución del reporte.
+
+* Filtro de Extracción Numérica de Grado: Utiliza expresiones regulares (r'(\d+)') para filtrar y extraer únicamente el número de grado de las etiquetas de texto. Esto garantiza que el reporte se ordene cronológicamente (2.°, 3.°, etc.) y no alfabéticamente.
+
+* Filtro de Segmentación por Asignatura: Dentro de cada grado, el script aplica filtros lógicos para separar los registros de Matemática y Lengua. Calcula por separado el total de registros encontrados (SOTE) y los registros que efectivamente tienen una nota válida.
+
+* Filtro de Conversión y Validación de Notas: Aplica pd.to_numeric con errors='coerce' seguido de un conteo de valores no nulos (notna().sum()). Este filtro es crítico para reportar con precisión cuántos alumnos tienen "Puntajes Válidos", excluyendo aquellos registros que, aunque existen en el sistema, no completaron la evaluación.
+
+3. Lógica de Cálculo de Indicadores
+El script calcula dinámicamente indicadores de gestión educativa:
+
+* Cobertura: Calcula el porcentaje de aplicación basándose en la matrícula oficial. Incluye un filtro de escape para grados donde la matrícula sea cero.
+
+* Estadísticas Descriptivas: Filtra los datos para calcular la Media, Mediana y Desviación Estándar por asignatura y grado, formateando los resultados a dos decimales directamente en el código LaTeX.
+
+4. Automatización y Salida
+* Reemplazo de Marcadores: El script detecta automáticamente el tipo de prueba (PROGRESO/RESULTADOS) y el mes de aplicación desde el sistema de archivos, inyectando estos nombres directamente en la portada de la presentación.
+
+* Estructura de Directorios: Crea automáticamente una carpeta de salida y una subcarpeta de gráficos (Graficos_PPT), preparando el entorno para que el usuario solo tenga que compilar el archivo .tex resultante.
+
+Resumen de Operación: Este módulo actúa como el "diseñador gráfico" del sistema; aplica filtros de integridad de datos y segmentación por materia para transformar cifras complejas en una presentación ejecutiva estructurada y profesional.

@@ -1,7 +1,5 @@
 # src/report_directores.py
 import os
-import re
-import glob
 import pandas as pd
 import json
 import config
@@ -38,6 +36,7 @@ HTML_BASE = """<!DOCTYPE html>
         
         .chart-container {{ position: relative; height: 250px; width: 100%; margin-bottom: 30px; margin-top: 15px; }}
         
+        /* --- LAYOUT GRÁFICA + TABLA HISTÓRICA MODIFICADA PARA NO TENER SCROLL --- */
         .history-wrapper {{ display: flex; gap: 20px; align-items: flex-start; width: 100%; max-width: 1000px; margin: auto; margin-top: 15px; }}
         .history-chart-container {{ flex: 1.6; position: relative; min-height: 350px; }}
         .history-table-container {{ flex: 1; background: #fff; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border: 1px solid #ecf0f1; }}
@@ -45,12 +44,12 @@ HTML_BASE = """<!DOCTYPE html>
         .history-table th, .history-table td {{ border: 1px solid #ecf0f1; padding: 10px 6px; text-align: center; }}
         .history-table th {{ background-color: #34495e; color: white; text-transform: uppercase; font-size: 11px; }}
         .history-table .mat-col {{ background-color: rgba(41, 128, 185, 0.05); }}
-        .history-table .lec-col {{ background-color: rgba(142, 68, 173, 0.05); }}
+        .history-table .lec-col {{ background-color: rgba(192, 57, 43, 0.05); }}
         .history-table td strong {{ color: #2c3e50; }}
         
         .group-row {{ display: flex; align-items: stretch; margin-bottom: 8px; page-break-inside: avoid; }}
-        .group-data {{ display: flex; width: 45%; justify-content: space-between; align-items: center; padding: 12px 15px; border-radius: 4px; }}
-        .group-faja {{ width: 52%; display: flex; align-items: center; padding: 12px 15px; border-radius: 4px; background-color: #ffffff; border: 1px solid #ecf0f1; box-sizing: border-box; }}
+        .group-data {{ display: flex; width: 35%; justify-content: space-between; align-items: center; padding: 12px 15px; border-radius: 4px; }}
+        .group-faja {{ width: 62%; display: flex; align-items: center; padding: 12px 15px; border-radius: 4px; background-color: #ffffff; border: 1px solid #ecf0f1; box-sizing: border-box; }}
         .spacer {{ width: 3%; }}
         
         .data-col {{ flex: 1; font-size: 14px; }}
@@ -120,6 +119,7 @@ HTML_BASE = """<!DOCTYPE html>
 </html>
 """
 
+# Configuración de Niveles (Colores actualizados por Pruebas de Accesibilidad)
 NIVELES_CONFIG = [
     {'limite': 35, 'nombre': 'Crítico',   'color': '#991b1b', 'bg_color': '#fef2f2', 'texto': 'white'},
     {'limite': 45, 'nombre': 'Bajo',      'color': '#ff8c2e', 'bg_color': '#fff7ed', 'texto': 'white'},
@@ -128,6 +128,7 @@ NIVELES_CONFIG = [
     {'limite': 100,'nombre': 'Excelente', 'color': '#065f46', 'bg_color': '#ecfdf5', 'texto': 'white'}
 ]
 
+# Mapa para Meses de Progreso
 MESES_PROGRESO = {
     'MARZO': 1, 'ABRIL': 2, 'MAYO': 3, 'JUNIO': 4, 
     'JULIO': 5, 'AGOSTO': 6, 'SEPTIEMBRE': 7, 'OCTUBRE': 8, 'NOVIEMBRE': 9
@@ -213,108 +214,20 @@ def construir_historial(df_actual):
         
     return historial
 
-def encontrar_columna_flexible(df, palabras_clave):
-    """Busca una columna tolerando tildes, guiones bajos o mayúsculas"""
-    for col in df.columns:
-        col_limpia = str(col).lower().replace('_', ' ').replace('ó', 'o').replace('é', 'e').replace('í', 'i').replace('á', 'a').replace('ú', 'u')
-        if any(kw in col_limpia for kw in palabras_clave):
-            return col
-    return None
-
 def process_comparative_reports(df_master):
-    # Aseguramos que la ruta a METADATA sea dinámica desde config
-    METADATA_DIR = config.PATH_METADATA
-
     print("  [Directores] Preparando base de datos...")
     df_actual = df_master.copy()
     
-    # ---------------------------------------------------------
-    # EXTRACCIÓN DINÁMICA ULTRA-SEGURA DE OPCIÓN_BACH_TÉCNICO 
-    # ---------------------------------------------------------
-    dict_matricula_codigo = {}
-    dict_matricula_nie = {}
-    try:
-        carpetas_config = config.MONTH_FOLDER.split('_')
-        if len(carpetas_config) >= 2:
-            numero_examen = str(int(carpetas_config[0]))
-            tipo_examen = carpetas_config[1].capitalize()
-            if tipo_examen == 'Resultado': tipo_examen = 'Resultados'
-            
-            archivos_csv = glob.glob(os.path.join(METADATA_DIR, "*.csv"))
-            archivos_matricula = [f for f in archivos_csv if 'matricula' in os.path.basename(f).lower()]
-
-            archivo_mat = None
-            for arch in archivos_matricula:
-                nombre = os.path.basename(arch).lower()
-                if tipo_examen.lower() in nombre and str(numero_examen) in nombre:
-                    archivo_mat = arch
-                    break
-            
-            if not archivo_mat and archivos_matricula:
-                archivo_mat = archivos_matricula[0]
-
-            if archivo_mat:
-                print(f"  [Directores] Cruzando con datos de especialidad: {os.path.basename(archivo_mat)}")
-                
-                df_mat = pd.DataFrame()
-                for enc in ['utf-8-sig', 'latin-1', 'utf-8']:
-                    for sep in [';', ',']:
-                        try:
-                            temp_df = pd.read_csv(archivo_mat, sep=sep, encoding=enc, dtype=str)
-                            if len(temp_df.columns) > 2:
-                                df_mat = temp_df
-                                break
-                        except: pass
-                    if not df_mat.empty: break
-                
-                if not df_mat.empty:
-                    col_nie = encontrar_columna_flexible(df_mat, ['nie', 'documento'])
-                    col_cod = encontrar_columna_flexible(df_mat, ['codigo seccion', 'seccion'])
-                    col_opc = encontrar_columna_flexible(df_mat, ['opcion bach', 'bach tecnico', 'opcion_bach', 'tecnico'])
-                    
-                    if col_opc:
-                        for _, row in df_mat.dropna(subset=[col_opc]).iterrows():
-                            opcion = str(row[col_opc]).strip()
-                            if opcion.upper() in ['NAN', 'NONE', 'NAT', 'NULL', '']: continue
-                            
-                            if col_nie and pd.notna(row[col_nie]):
-                                nie = str(row[col_nie]).strip().replace('-', '').replace('.0', '')
-                                if nie: dict_matricula_nie[nie] = opcion
-                                
-                            if col_cod and pd.notna(row[col_cod]):
-                                codigo = str(row[col_cod]).strip()
-                                codigo = re.sub(r'\D', '', codigo)
-                                if codigo: dict_matricula_codigo[codigo] = opcion
-                                
-                        print(f"  [Directores] Éxito: {len(dict_matricula_nie)} alumnos mapeados con su bachillerato.")
-                    else:
-                        print("  [!] La columna de Opciones de Bachillerato no se encontró en el CSV.")
-    except Exception as e:
-        print(f"  [!] Advertencia procesando archivo de matrícula: {e}")
-
-    # LIMPIEZA DE DOCUMENTOS Y MAPEO DE BACHILLERATO AL DF PRINCIPAL
     col_doc_act = next((c for c in df_actual.columns if 'documento' in str(c).lower() or 'nie' in str(c).lower()), None)
     if col_doc_act: df_actual.rename(columns={col_doc_act: 'Documento'}, inplace=True)
     df_actual['Documento'] = df_actual['Documento'].astype(str).str.strip().str.replace('"', '', regex=False)
     
-    df_actual['Opcion_Bach'] = df_actual['Documento'].map(dict_matricula_nie).fillna('')
-    
     if 'Area temática' in df_actual.columns: df_actual.rename(columns={'Area temática': 'Materia'}, inplace=True)
     if 'Materia' in df_actual.columns: df_actual['Materia'] = df_actual['Materia'].apply(lambda x: 'Matemática' if 'MAT' in str(x).upper() else 'Lengua')
         
-    col_grupos = [c for c in df_actual.columns if 'rup' in str(c).lower() or 'ecc' in str(c).lower()]
-    grupo_col_final = None
-    if col_grupos:
-        grupo_col_final = col_grupos[0]
-        for c in col_grupos:
-            if df_actual[c].astype(str).str.contains(r'\(\d+\)', regex=True).any():
-                grupo_col_final = c
-                break
-
-    if grupo_col_final: 
-        df_actual.rename(columns={grupo_col_final: 'Grupo'}, inplace=True)
-    else: 
-        df_actual['Grupo'] = "A"
+    col_grupo = [c for c in df_actual.columns if 'rup' in str(c).lower() or 'ecc' in str(c).lower()]
+    if col_grupo: df_actual.rename(columns={col_grupo[0]: 'Grupo'}, inplace=True)
+    else: df_actual['Grupo'] = "A"
         
     col_theta_actual = df_actual.get('theta.global (escala 0-100)', pd.Series(dtype=str))
     if isinstance(col_theta_actual, pd.Series):
@@ -332,7 +245,6 @@ def process_comparative_reports(df_master):
     historial = construir_historial(df_actual)
     tiene_anterior = len(historial) >= 2
 
-    # Directorio de salida usando rutas dinámicas de config
     output_dir = os.path.join(config.PATH_REPORTS, "Reportes_Por_Escuela")
     os.makedirs(output_dir, exist_ok=True)
     
@@ -348,7 +260,9 @@ def process_comparative_reports(df_master):
         dep_val = str(df_esc_act[col_dep].dropna().iloc[0]) if col_dep and not df_esc_act[col_dep].dropna().empty else "N/D"
         cod_val = str(df_esc_act[col_cod].dropna().iloc[0]) if col_cod and not df_esc_act[col_cod].dropna().empty else "N/D"
 
+        # CÁLCULOS HISTÓRICOS PARA LA LÍNEA Y LA TABLA
         labels_hist, data_mat_hist, data_lec_hist = [], [], []
+        levels_mat_hist, levels_lec_hist = [], []
         history_rows = ""
         
         for item in historial:
@@ -365,6 +279,9 @@ def process_comparative_reports(df_master):
             c_mat = obtener_clasificacion(m_mat_h)['nombre'] if pd.notna(m_mat_h) else '-'
             c_lec = obtener_clasificacion(m_lec_h)['nombre'] if pd.notna(m_lec_h) else '-'
             
+            levels_mat_hist.append(f"'{c_mat}'")
+            levels_lec_hist.append(f"'{c_lec}'")
+            
             val_mat_str = f"{m_mat_h:.1f}" if pd.notna(m_mat_h) else "-"
             val_lec_str = f"{m_lec_h:.1f}" if pd.notna(m_lec_h) else "-"
             
@@ -377,7 +294,7 @@ def process_comparative_reports(df_master):
                     <tr>
                         <th rowspan="2" style="background-color: #2c3e50;">Mes</th>
                         <th colspan="2" style="background-color: #2980b9;">Matemática</th>
-                        <th colspan="2" style="background-color: #8e44ad;">Lengua</th>
+                        <th colspan="2" style="background-color: #c0392b;">Lengua</th>
                     </tr>
                     <tr>
                         <th style="background-color: #34495e;">Media</th><th style="background-color: #34495e;">Nivel</th>
@@ -418,9 +335,9 @@ def process_comparative_reports(df_master):
                         {{ 
                             label: 'Media de Lengua', 
                             data: {js_data_lec}, 
-                            borderColor: '#8e44ad', 
-                            backgroundColor: '#8e44ad', 
-                            pointBackgroundColor: '#8e44ad',
+                            borderColor: '#c0392b', 
+                            backgroundColor: '#c0392b', 
+                            pointBackgroundColor: '#c0392b',
                             pointBorderColor: '#fff',
                             pointBorderWidth: 2,
                             tension: 0.3, pointRadius: 6, pointHoverRadius: 8 
@@ -431,12 +348,15 @@ def process_comparative_reports(df_master):
                     responsive: true, maintainAspectRatio: false,
                     layout: {{ padding: {{ top: 10 }} }},
                     scales: {{ y: {{ min: 0, max: 100, title: {{ display: true, text: 'Nivel Promedio' }} }} }},
-                    plugins: {{ datalabels: {{ display: false }} }}
+                    plugins: {{
+                        datalabels: {{ display: false }}
+                    }}
                 }}
             }});
         }})();
         """
         
+        # BUCLE DE MATERIAS
         for materia in ['Matemática', 'Lengua']:
             df_mat_act = df_esc_act[df_esc_act['Materia'] == materia]
             if df_mat_act.empty: continue
@@ -522,29 +442,11 @@ def process_comparative_reports(df_master):
                     faja_html = generar_barra_html(dist)
                     bg_color = clas_sec['bg_color']
                     border_color = clas_sec['color']
-                    
                     letra_grupo = str(grupo).split('(')[0].strip() if '(' in str(grupo) else str(grupo).strip()
-                    label_mostrar = f"{grado_n}.° - {letra_grupo}"
-                    
-                    bach_encontrado = False
-                    
-                    match_codigo = re.search(r'\(\s*(\d+)\s*\)', str(grupo))
-                    if match_codigo:
-                        codigo_seccion = str(match_codigo.group(1)).strip()
-                        if codigo_seccion in dict_matricula_codigo:
-                            opcion_bach = dict_matricula_codigo[codigo_seccion]
-                            label_mostrar += f" - {opcion_bach}"
-                            bach_encontrado = True
-                    
-                    if not bach_encontrado:
-                        opciones_validas = df_sec[df_sec['Opcion_Bach'] != '']['Opcion_Bach']
-                        if not opciones_validas.empty:
-                            opcion_bach = opciones_validas.mode().iloc[0] 
-                            label_mostrar += f" - {opcion_bach}"
                     
                     contenido_html += f"""
                     <div class="group-row">
-                        <div class="group-data" style="background-color: {bg_color}; border-left: 6px solid {border_color};"><div class="data-col text-left"><strong>{label_mostrar}</strong></div><div class="data-col text-right" style="color: black; font-weight: bold; text-transform: uppercase;">{clas_sec['nombre']}</div></div>
+                        <div class="group-data" style="background-color: {bg_color}; border-left: 6px solid {border_color};"><div class="data-col text-left"><strong>{grado_n}.° - {letra_grupo}</strong></div><div class="data-col text-right" style="color: black; font-weight: bold; text-transform: uppercase;">{clas_sec['nombre']}</div></div>
                         <div class="spacer"></div>
                         <div class="group-faja">{faja_html}</div>
                     </div>

@@ -1,0 +1,32 @@
+DESCRIPCIÓN TÉCNICA: stats_engine.py (Motor de Procesamiento Estadístico)
+Este script constituye el núcleo analítico del sistema PAARS. Su función principal es transformar los datos individuales de los estudiantes en indicadores estadísticos agregados, promedios nacionales y distribuciones de desempeño académico. Es el motor que alimenta todas las gráficas y tablas de resumen del sistema.
+
+1. Propósito y Arquitectura Analítica
+El módulo está diseñado para procesar grandes volúmenes de datos de forma eficiente utilizando la librería Pandas. Actúa como una capa de cálculo puro que recibe la tabla maestra unificada y devuelve métricas clave como la tendencia central, la dispersión y la posición relativa (quintiles).
+
+2. Énfasis en Filtros de Procesamiento y Selección de Datos
+La fiabilidad de los reportes del PAARS depende de los filtros de integridad que este script aplica antes de cada cálculo:
+
+* Filtro de Exclusión de Pruebas Anuladas: A través de la función preprocesar_datos_validos, el motor inspecciona la columna anular_prueba. Filtra y elimina cualquier registro que contenga texto, asegurando que la estadística macro solo represente a la población válida.
+
+* Filtro de Normalización de Asignatura: El script incluye un filtro de tolerancia que busca dinámicamente nombres de columna como 'Area temática' o 'Area_Tematica'. Si no se encuentra ninguna, el filtro detiene el proceso para evitar cálculos en contextos erróneos.
+
+* Filtro de Limpieza Numérica: Antes de procesar medias, el script aplica una transformación forzada a los puntajes: reemplaza comas por puntos y convierte los valores a tipo flotante. Registros que no superen este filtro de conversión son descartados mediante dropna.
+
+* Filtro de Clasificación Pedagógica: Transforma puntajes continuos (0-100) en categorías discretas mediante un filtro de rangos (Crítico, Bajo, Medio, Bueno, Excelente). Este filtro permite que el sistema hable en términos pedagógicos y no solo numéricos.
+
+* Candado de Seguridad Poblacional: En el cálculo de quintiles, el script implementa un filtro de umbral: if len(df_valid) < 5. Este filtro de seguridad evita errores matemáticos de segmentación cuando el conjunto de datos es demasiado pequeño para ser estadísticamente representativo.
+
+3. Capacidades de Cálculo Generadas
+El motor entrega tres grandes bloques de información filtrada:
+
+(1) Estadística Básica: Calcula la Media aritmética, la Desviación Estándar y el conteo de alumnos que efectivamente fueron evaluados.
+
+(2) Distribución de Niveles: Realiza una agrupación cruzada (materia vs. nivel) y normaliza los datos para obtener porcentajes relativos de participación por categoría de desempeño.
+
+(3) Análisis de Quintiles: Utiliza el filtro de cuantiles para determinar los puntos de corte (20%, 40%, 60%, 80%) que dividen a la población nacional, permitiendo identificar brechas de aprendizaje.
+
+4. Resumen de Flujo
+Cada función del script llama primero al filtro de preprocesamiento, garantizando que ningún dato inválido o anulado llegue a las etapas de agregación. Esto asegura que la "Media" reportada sea una representación fiel de la realidad educativa.
+
+Resumen de Operación: Este módulo es el "matemático" del sistema; aplica filtros de validación administrativa y normalización numérica para convertir datos brutos en inteligencia educativa confiable para la toma de decisiones.

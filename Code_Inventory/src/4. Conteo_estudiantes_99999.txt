@@ -1,0 +1,18 @@
+DESCRIPCIÓN TÉCNICA: conteo_estudiantes_99999.py (Análisis de Representatividad)
+
+Este script está diseñado para realizar un análisis comparativo de matrícula, midiendo el peso específico de una institución (Escuela 99999) en relación con el total nacional de estudiantes evaluados durante la Prueba de Progreso 2.
+
+1. Propósito y AlcanceEl objetivo es calcular qué porcentaje del total de alumnos evaluados pertenece a una escuela específica, desglosando la información por materia (Lectura y Matemática) y por cada grado académico. El resultado final se exporta automáticamente a un archivo CSV consolidado.
+
+2. Énfasis en Filtros de Procesamiento y Selección de DatosEl script implementa una lógica de filtrado jerárquico para garantizar la precisión de los cálculos estadísticos:Filtro de Localización Automática: Utiliza patrones de búsqueda (glob) para encontrar la carpeta "Interim_CSVs" dentro del repositorio, asegurando que el análisis se realice siempre sobre la base de datos de la Prueba de Progreso 2 (Abril 2026).Filtro Dinámico de Columnas: Al igual que los módulos de auditoría, este script rastrea de forma inteligente las columnas de 'código', 'grado' y 'documento', permitiendo procesar archivos con diferentes estructuras de encabezados.Filtro de Limpieza de Identidad:Normalización: Elimina el sufijo .0 de los documentos de identidad y códigos de centro, corrigiendo errores comunes de formato originados en Excel.Eliminación de Duplicados (Crítico): Ejecuta drop_duplicates(subset=['Documento', 'Materia']). Este filtro asegura que cada estudiante sea contabilizado exactamente una vez por asignatura a nivel nacional, evitando que registros repetidos inflen los porcentajes de representatividad.Filtro de Selección Institucional: Una vez calculada la base nacional, el script aplica un filtro de coincidencia para aislar únicamente a los estudiantes cuyo Nro_Centro es '99999'.
+
+3. Lógica de Cálculo y ConsolidaciónEl script realiza un procesamiento estadístico de doble nivel:
+
+1. Conteo por Grado: Agrupa a los estudiantes por asignatura y grado tanto a nivel nacional como a nivel de la escuela seleccionada.
+2 Cálculo de Gran Total: Genera filas adicionales de "Gran Total" que suman todos los grados por materia, permitiendo una visión macro del impacto de la escuela en el sistema.
+3. Cálculo de Porcentaje: Aplica la fórmula: $(Estudiantes\ Escuela / Total\ Nacional) \times 100$, redondeando el resultado a dos decimales.
+
+4. Ordenamiento y Salida
+
+* Orden Lógico: Incluye una función de ordenamiento personalizada que organiza los grados numéricamente (2.°, 3.°, etc.) y coloca los "Gran Totales" al final del reporte para facilitar la lectura.
+* Exportación: Genera un archivo CSV titulado Conteo_Estudiantes_99999_Progreso2.csv con codificación utf-8-sig, lo que garantiza que sea compatible con Excel y respete los caracteres especiales (tildes y eñes).Resumen de Operación: Este módulo actúa como una herramienta de auditoría estadística que utiliza filtros de unicidad de documentos para entregar una comparativa exacta entre la población escolar local y la nacional.

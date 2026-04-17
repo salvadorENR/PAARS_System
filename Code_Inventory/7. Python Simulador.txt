@@ -1,0 +1,31 @@
+DESCRIPCIÓN TÉCNICA: simulador.py (Motor de Simulación Predictiva)
+Este script, conocido internamente como la "Máquina del Tiempo", tiene como objetivo proyectar el crecimiento académico de los estudiantes a lo largo del año 2026. Su función es modificar de forma masiva los resultados de los archivos de meses futuros aplicando un modelo de crecimiento "ultra conservador".
+
+1. Configuración de la Simulación (Cuentagotas)
+El script define un diccionario de crecimiento progresivo para los meses de abril a octubre. Utiliza un modelo diferenciado por materia:
+
+Matemáticas (MAT): Incrementos graduales de 0.8 puntos mensuales.
+
+Lectura (LEC): Incrementos graduales de 1.2 puntos mensuales.
+Este enfoque permite generar bases de datos ficticias pero realistas para probar los reportes comparativos antes de que ocurran las evaluaciones reales.
+
+2. Énfasis en Filtros de Procesamiento y Selección
+El simulador aplica filtros rigurosos para asegurar que solo se modifiquen los datos de rendimiento y no la estructura del sistema:
+
+Filtro de Selección de Archivos (Interim): El script recorre cada carpeta mensual pero filtra los archivos para evitar daños. Utiliza la lógica: if f.endswith('.csv') and 'compl' not in f.lower() and not f.startswith('legend'). Esto excluye archivos de leyendas y archivos ya completados, enfocándose solo en los resultados brutos.
+
+Filtro de Columna Específica: El script busca estrictamente la columna "theta.global (escala 0-100)". Si un archivo no contiene esta columna exacta, el filtro lo ignora ([X] No se encontró la columna), protegiendo archivos que no sean de resultados estudiantiles.
+
+Filtro de Limpieza Numérica: Antes de sumar puntos, el script limpia los datos de la columna mediante el reemplazo de comillas y el cambio de comas por puntos, asegurando que el motor de Python pueda realizar operaciones matemáticas sin errores de formato.
+
+Filtro por Materia (Key-Matching): Mediante una búsqueda de palabras clave en el nombre del archivo ('MAT' o 'LEC'), el script filtra y decide cuántos puntos sumar. Si el archivo no pertenece a ninguna de estas áreas, el filtro de seguridad asigna 0 puntos.
+
+3. Filtros Matemáticos y de Integridad
+Para mantener la coherencia de los datos simulados, se aplican dos reglas críticas:
+
+Filtro de Techo Académico (Clipping): Se utiliza la función clip(upper=100). Este filtro asegura que, sin importar cuántos puntos se sumen, ningún estudiante supere la nota máxima de 100.
+
+Filtro de Precisión: Se aplica un redondeo a dos decimales (round(2)) para mantener la estética y el estándar de los reportes oficiales del PAARS.
+
+4. Ejecución y Reporte de Estado
+El script procesa mes a mes, informando en tiempo real cuántos puntos se añadieron a cada archivo. Al final, realiza una validación de éxito: si una carpeta mensual no sufrió modificaciones, emite una alerta de seguridad para que el usuario verifique la existencia de los datos.
