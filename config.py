@@ -3,161 +3,80 @@ import os
 import sys
 
 # =============================================================================
-# 0. CONFIGURACIÓN DEL ENTORNO Y VALIDACIÓN DE RUTAS
+# 0. CONFIGURACIÓN DEL ENTORNO
 # =============================================================================
 DRIVE_PATH = r"G:\Mi unidad\Modernización_Educativa\Gerencia de Evaluación_Proyectos_Análisis\PAARS_Warehouse"
 YEAR = "2026"
 YEAR_DIR = os.path.join(DRIVE_PATH, YEAR)
 
-print("\n" + "="*55)
-print("   SISTEMA DE EVALUACIÓN PAARS 2026 - INICIO")
-print("="*55)
-
 if not os.path.exists(YEAR_DIR):
-    print(f"\n[!] ERROR CRÍTICO: No se encontró la ruta base:")
-    print(f"    {YEAR_DIR}")
-    print("    Asegúrese de que su disco G: y Google Drive estén conectados.")
+    print(f"\n[!] ERROR CRÍTICO: No se encontró la ruta {YEAR_DIR}")
     sys.exit(1)
 
-# =============================================================================
-# NIVEL 1: SELECCIÓN DE MÓDULO
-# =============================================================================
+# --- NIVEL 1 & 2 ---
 while True:
-    print("\n¿Qué acción requiere realizar el sistema?")
-    print("  (1) Teoría de Respuesta al ítem")
-    print("  (2) Generación de Reportes")
-    
+    print("\n¿Qué acción requiere realizar el sistema?\n  (1) Teoría de Respuesta al ítem\n  (2) Generación de Reportes")
+    mod_choice = input("-> ").strip()
+    if mod_choice == '1': print("\n[!] Disponible en el futuro."); continue
+    if mod_choice == '2': break
+
+while True:
+    print("\nSeleccione el tipo de examen:\n  (1) Prueba de Resultados\n  (2) Prueba de Progreso\n  (3) Prueba de Fundamento")
+    exam_choice = input("-> ").strip()
+    if exam_choice == '1': EXAM_TYPE = "RESULTADOS"; break
+    if exam_choice == '2': EXAM_TYPE = "PROGRESO"; break
+    if exam_choice == '3': EXAM_TYPE = "FUNDAMENTO"; break
+
+# --- NIVEL 3 (Selección Dinámica) ---
+carpetas_disponibles = sorted([d for d in os.listdir(YEAR_DIR) if os.path.isdir(os.path.join(YEAR_DIR, d)) and EXAM_TYPE in d.upper()])
+
+while True:
+    print(f"\nCarpetas disponibles ({EXAM_TYPE}):")
+    for i, f in enumerate(carpetas_disponibles): print(f"  ({i+1}) {f}")
     try:
-        mod_choice = int(input("-> Ingrese una opción (1 o 2): "))
-        if mod_choice == 1:
-            print("\n[!] El módulo de Teoría de Respuesta al ítem estará disponible en el futuro.")
-        elif mod_choice == 2:
-            break
-        else:
-            print("  [!] Opción inválida. Intente de nuevo.")
-    except ValueError:
-        print("  [!] Por favor, ingrese un número válido.")
+        idx = int(input("-> Seleccione el número: ")) - 1
+        MONTH_FOLDER = carpetas_disponibles[idx]; break
+    except: print("Selección inválida.")
 
-# =============================================================================
-# NIVEL 2: TIPO DE EXAMEN
-# =============================================================================
+# --- NIVEL 4: MENÚ GRANULAR ACTUALIZADO ---
 while True:
-    print("\nSeleccione el tipo de examen:")
-    print("  (1) Prueba de Resultados")
-    print("  (2) Prueba de Progreso")
-    
-    try:
-        exam_choice = int(input("-> Ingrese una opción (1 o 2): "))
-        if exam_choice == 1:
-            EXAM_TYPE = "RESULTADOS"
-            break
-        elif exam_choice == 2:
-            EXAM_TYPE = "PROGRESO"
-            break
-        else:
-            print("  [!] Opción inválida. Intente de nuevo.")
-    except ValueError:
-        print("  [!] Por favor, ingrese un número válido.")
-
-# =============================================================================
-# NIVEL 3: SELECCIÓN DINÁMICA DEL MES/EXAMEN
-# =============================================================================
-# Filtramos las carpetas basándonos en el tipo de examen elegido
-carpetas_disponibles = sorted([
-    d for d in os.listdir(YEAR_DIR) 
-    if os.path.isdir(os.path.join(YEAR_DIR, d)) and EXAM_TYPE in d.upper()
-])
-
-if not carpetas_disponibles:
-    print(f"\n[!] ERROR: No se encontraron carpetas para 'Prueba de {EXAM_TYPE.capitalize()}' en {YEAR}.")
-    sys.exit(1)
-
-while True:
-    print(f"\nExámenes disponibles detectados (Prueba de {EXAM_TYPE.capitalize()}):")
-    for i, folder in enumerate(carpetas_disponibles):
-        # Formateo amigable (Ej: "01_PROGRESO_Marzo" -> "Prueba de Progreso 1 (Marzo)")
-        partes = folder.split('_')
-        etiqueta = f"Prueba de {EXAM_TYPE.capitalize()} {partes[0].lstrip('0')} ({partes[-1]})" if len(partes) >= 3 else folder
-        print(f"  ({i+1}) {etiqueta} [{folder}]")
-        
-    try:
-        folder_choice = int(input(f"-> Seleccione el examen (1 al {len(carpetas_disponibles)}): ")) - 1
-        if 0 <= folder_choice < len(carpetas_disponibles):
-            MONTH_FOLDER = carpetas_disponibles[folder_choice]
-            break
-        else:
-            print("  [!] Opción fuera de rango. Intente de nuevo.")
-    except ValueError:
-        print("  [!] Por favor, ingrese un número válido.")
-
-# =============================================================================
-# NIVEL 4: MENÚ DE ACCIONES (Dependiente del Tipo de Examen)
-# =============================================================================
-while True:
-    print("\nSeleccione la acción a realizar:")
-    
+    print(f"\nMenú de Acciones para {EXAM_TYPE}:")
     if EXAM_TYPE == "RESULTADOS":
-        print("  (1) Control de calidad de las bases de datos")
-        print("  (2) Generar tablas y gráficas")
-        print("  (3) Generar informes por escuelas")
-        print("  (4) Generar tablas, gráficas e informes por escuela")
-        opciones_validas = [1, 2, 3, 4]
-        
+        print("  (1) Integrar Archivos Crudos (Unificar MAT y LENGUA en un Dataset)")
+        print("  (2) Control de Calidad")
+        print("  (3) Reporte Formal (LaTeX Tables/Graphs)")
+        print("  (4) Informes por Escuela")
+        print("  (5) Reporte Nacional por Grados (HTML)")
+        print("  (6) Rankings Macro y Evolución (Excel)")
+        print("  (7) TODO lo anterior")
+        validas = ['1','2','3','4','5','6','7']
     elif EXAM_TYPE == "PROGRESO":
-        print("  (1) Control de calidad de las bases de datos")
-        print("  (2) Generar informes para el estudiante (Aún no disponible)")
-        print("  (3) Generar informes para profesores")
-        print("  (4) Generar informes para directores")
-        print("  (5) Generar los informes de estudiantes, profesores y directores")
-        opciones_validas = [1, 2, 3, 4, 5]
+        print("  (1) Integrar Archivos Crudos (Unificar MAT y LENGUA en un Dataset)")
+        print("  (2) Control de Calidad")
+        print("  (3) Informes para Profesores")
+        print("  (4) Informes para Directores")
+        print("  (5) Reporte Nacional por Grados (HTML)")
+        print("  (6) Reporte Corto Beamer (LaTeX)")
+        print("  (7) Rankings Macro y Evolución (Excel)")
+        print("  (8) TODO lo anterior")
+        validas = ['1','2','3','4','5','6','7','8']
+    elif EXAM_TYPE == "FUNDAMENTO":
+        print("  (1) Sistematizar CSV Crudo a Datasets (Excel) y Reporte Gráfico (HTML)")
+        validas = ['1']
+    
+    REPORT_CHOICE = input("-> Elija una opción: ").strip()
+    if REPORT_CHOICE in validas: break
 
-    try:
-        REPORT_CHOICE = int(input("-> Ingrese la opción deseada: "))
-        if REPORT_CHOICE in opciones_validas:
-            break
-        else:
-            print("  [!] Opción inválida para este tipo de examen.")
-    except ValueError:
-        print("  [!] Por favor, ingrese un número válido.")
-
-# =============================================================================
-# LÓGICA ADICIONAL: MES PREVIO PARA COMPARATIVAS (Opciones de Directores)
-# =============================================================================
-PREV_MONTH_FOLDER = None
-if EXAM_TYPE == "PROGRESO" and REPORT_CHOICE in [4, 5]:
-    print(f"\n¿Con qué mes desea COMPARAR los resultados de {MONTH_FOLDER}?")
-    print("  (0) Ninguno (Es la primera prueba del año / No comparar)")
-    for i, folder in enumerate(carpetas_disponibles):
-        print(f"  ({i+1}) {folder}")
-        
-    while True:
-        try:
-            prev_choice = int(input("-> Seleccione el mes anterior (o 0 para omitir): "))
-            if prev_choice == 0:
-                break
-            elif 1 <= prev_choice <= len(carpetas_disponibles):
-                PREV_MONTH_FOLDER = carpetas_disponibles[prev_choice - 1]
-                break
-            else:
-                print("  [!] Opción fuera de rango.")
-        except ValueError:
-            print("  [!] Por favor, ingrese un número válido.")
-
-# =============================================================================
-# 5. CONSTRUCCIÓN AUTOMÁTICA DE RUTAS (EXPORTACIÓN GLOBAL)
-# =============================================================================
+# --- CONFIGURACIÓN DE RUTAS ---
 CURRENT_MONTH_PATH = os.path.join(YEAR_DIR, MONTH_FOLDER)
-
 PATH_RAW = os.path.join(CURRENT_MONTH_PATH, "Raw_Data")
-PATH_INTERIM = os.path.join(CURRENT_MONTH_PATH, "Interim_CSVs")
-PATH_REPORTS = os.path.join(CURRENT_MONTH_PATH, "Final_Reports")
-PATH_METADATA = os.path.join(DRIVE_PATH, "00_Metadata")
 
-if PREV_MONTH_FOLDER:
-    PATH_PREV_INTERIM = os.path.join(YEAR_DIR, PREV_MONTH_FOLDER, "Interim_CSVs")
+if EXAM_TYPE == "FUNDAMENTO":
+    PATH_INTERIM = os.path.join(CURRENT_MONTH_PATH, "02_Datasets_Procesados")
+    PATH_REPORTS = os.path.join(CURRENT_MONTH_PATH, "03_Reportes")
 else:
-    PATH_PREV_INTERIM = None
+    PATH_INTERIM = os.path.join(CURRENT_MONTH_PATH, "Interim_CSVs")
+    PATH_REPORTS = os.path.join(CURRENT_MONTH_PATH, "Final_Reports")
 
-print("\n" + "="*55)
-print("  [CONFIGURACIÓN EXITOSA - INICIANDO MOTOR PAARS]")
-print("="*55 + "\n")
+PATH_METADATA = os.path.join(DRIVE_PATH, "00_Metadata")
+PATH_PREV_INTERIM = None
