@@ -107,65 +107,7 @@ def calcular_puntaje_porcentual(suma_correcta_serie, total_items):
 
 
 # ==========================================
-# 5. GENERADOR DE EXCEL CON DISTRACTORES
-# ==========================================
-def exportar_distractores(dict_dfs, ruta_salida, clave_respuestas):
-    import openpyxl
-    from openpyxl.styles import PatternFill, Font, Alignment, Border, Side
-    from openpyxl.utils import get_column_letter
-
-    wb = openpyxl.Workbook()
-    wb.remove(wb.active)
-    
-    yellow_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
-    header_fill = PatternFill(start_color="033b6d", end_color="033b6d", fill_type="solid")
-    white_font = Font(color="FFFFFF", bold=True)
-    border = Border(left=Side(style='thin', color='CCCCCC'), 
-                    right=Side(style='thin', color='CCCCCC'), 
-                    top=Side(style='thin', color='CCCCCC'), 
-                    bottom=Side(style='thin', color='CCCCCC'))
-    
-    for sheet_name, df in dict_dfs.items():
-        ws = wb.create_sheet(title=sheet_name)
-        
-        # Escribir encabezados
-        for col_num, col_name in enumerate(df.columns, 1):
-            cell = ws.cell(row=1, column=col_num, value=col_name)
-            cell.fill = header_fill
-            cell.font = white_font
-            cell.alignment = Alignment(horizontal="center", vertical="center")
-            
-            # Ancho de columnas: un poco más angosto para Ítem/Asignatura, más ancho para las opciones
-            if col_name in ['Asignatura', 'Ítem']:
-                ws.column_dimensions[get_column_letter(col_num)].width = 15
-            else:
-                ws.column_dimensions[get_column_letter(col_num)].width = 30
-        
-        # Escribir datos
-        for row_num, row_data in enumerate(df.to_dict('records'), 2):
-            item_name = row_data['Ítem']
-            correcta = clave_respuestas.get(item_name, "").lower().strip()
-            
-            for col_num, col_name in enumerate(df.columns, 1):
-                val = row_data.get(col_name)
-                cell = ws.cell(row=row_num, column=col_num, value=val)
-                cell.border = border
-                cell.alignment = Alignment(horizontal="center", vertical="center")
-                
-                # Identificar si es la opción correcta para rellenar de amarillo
-                if col_name.startswith('Opción') and pd.notna(val) and isinstance(val, str):
-                    if ' (' in val:
-                        opt_text = val.rsplit(' (', 1)[0].strip().lower()
-                        if opt_text == correcta and correcta != "":
-                            cell.fill = yellow_fill
-        
-        ws.freeze_panes = "A2"
-        ws.auto_filter.ref = f"A1:{get_column_letter(len(df.columns))}1"
-        
-    wb.save(ruta_salida)
-
-# ==========================================
-# 6. GENERADOR DE HTML INTERACTIVO 
+# 5. GENERADOR DE HTML INTERACTIVO 
 # ==========================================
 LENGUA_JERARQUIA = [
     {
@@ -360,23 +302,10 @@ def generar_html_estatico(df_scored, df_mapping, ruta_salida):
     
     df_item_means = df_validos.groupby(['Nombre del centro', 'Grado'])[all_items].mean() * 100
     df_item_means = df_item_means.round(1)
+    
     df_student_counts = df_validos.groupby(['Nombre del centro', 'Grado']).size()
     
     dynamic_data = {}
-    
-    # -------------------------------------------------------------
-    # OPCIÓN "TODAS LAS ESCUELAS" (Promedio General por Grado)
-    # -------------------------------------------------------------
-    dynamic_data["-- Todas las escuelas --"] = {}
-    df_global_means = df_validos.groupby('Grado')[all_items].mean() * 100
-    df_global_counts = df_validos.groupby('Grado').size()
-    
-    for grade, row in df_global_means.iterrows():
-        item_data_dict = row.round(1).to_dict()
-        item_data_dict['N'] = int(df_global_counts.loc[grade])
-        dynamic_data["-- Todas las escuelas --"][grade] = item_data_dict
-
-    # Agregando opciones por escuela individual
     for (school, grade), row in df_item_means.iterrows():
         if school not in dynamic_data:
             dynamic_data[school] = {}
@@ -466,7 +395,7 @@ def generar_html_estatico(df_scored, df_mapping, ruta_salida):
 
 <div class="tab">
   <button class="tablinks active" onclick="openTab(event, 'Global')" id="defaultOpen">Reporte General Consolidado</button>
-  <button class="tablinks" onclick="openTab(event, 'Explorador')">Explorador Dinámico</button>
+  <button class="tablinks" onclick="openTab(event, 'Explorador')">Explorador Dinámico por Escuela</button>
 </div>
 
 <div id="Global" class="tabcontent" style="display:block;">
@@ -562,13 +491,13 @@ def generar_html_estatico(df_scored, df_mapping, ruta_salida):
     # ==============================================
     html += f"""
 <div id="Explorador" class="tabcontent">
-    <h2>Explorador Interactivo por Ítem y Grado</h2>
+    <h2>Explorador Interactivo (Gráficos Comparativos por Escuela)</h2>
     <p style='color:{C_STEEL_GREY};font-size:14px;margin-bottom:20px;'>
-        <i>Seleccione "Todas las escuelas" para ver el desempeño nacional por grado, o seleccione un Centro Educativo para ver sus resultados locales. Posicione el cursor sobre cualquier barra para ver el porcentaje exacto y el N (estudiantes evaluados).</i>
+        <i>Selecciona un Centro Educativo. El gráfico desplegará de forma automática las barras de cada grado evaluado en esa escuela. Posicione el cursor sobre cualquier barra para ver el porcentaje exacto y el N (número de estudiantes evaluados).</i>
     </p>
     
     <div style='margin-bottom: 30px;'>
-        <label style='font-weight:bold; color:{C_DEEP_NAVY}; font-size:16px;'>Seleccione un filtro:</label><br>
+        <label style='font-weight:bold; color:{C_DEEP_NAVY}; font-size:16px;'>Seleccione el Centro Educativo:</label><br>
         <select id='schoolSelect' style='width:50%; padding:10px; border:2px solid {C_SKY_BLUE}; border-radius:4px; font-size:14px;'></select>
     </div>
     
@@ -609,16 +538,8 @@ var gradeOrder = ['Primer Grado', 'Segundo Grado', 'Tercer Grado', 'Cuarto Grado
 
 var schoolSelect = document.getElementById('schoolSelect');
 
-// Poblar selector asegurando que "-- Todas las escuelas --" esté primero
-var keys = Object.keys(db);
-keys.sort();
-var indexAll = keys.indexOf("-- Todas las escuelas --");
-if(indexAll > -1) {{
-    keys.splice(indexAll, 1);
-    keys.unshift("-- Todas las escuelas --");
-}}
-
-keys.forEach(function(school) {{
+// Poblar selector de escuelas
+Object.keys(db).sort().forEach(function(school) {{
     var opt = document.createElement('option');
     opt.value = school;
     opt.innerHTML = school;
@@ -688,12 +609,13 @@ function updateDynamicPlots() {{
 // LÓGICA DE TABLAS (DATATABLES)
 // ==========================================
 $(document).ready(function(){{
+    // FIX: Quitamos scrollX de las tablas cruzadas para evitar el corte de encabezados
     $('#tablaPivotL, #tablaPivotM').DataTable({{
         language: {{url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'}},
         paging: false, 
         info: false, 
         searching: false, 
-        scrollX: false, 
+        scrollX: false, // APAGADO para evitar desalineación
         autoWidth: false
     }});
 
@@ -739,7 +661,7 @@ def _ejecutar_etl(current_month_path):
     os.makedirs(PATH_DATASETS, exist_ok=True)
 
     archivos_form = glob.glob(os.path.join(PATH_FORMULARIOS, "*.csv"))
-    if not archivos_form: return None, None, None, None, None, None, None
+    if not archivos_form: return None, None, None, None, None, None
     archivo_reciente_form = max(archivos_form, key=os.path.getmtime)
     
     with open(archivo_reciente_form, 'r', encoding='utf-8', errors='ignore') as f:
@@ -785,39 +707,6 @@ def _ejecutar_etl(current_month_path):
     df_raw    = df_cruzado[columnas_orden].copy()
     df_scored = df_cruzado.copy()
     
-    # -------------------------------------------------------------
-    # ANÁLISIS DE DISTRACTORES USANDO df_raw (EN MEMORIA)
-    # -------------------------------------------------------------
-    distractores_dict = {}
-    val_df_raw = df_raw[df_raw['Nombre del centro'] != 'SIN REGISTRO'].copy()
-    
-    def generar_df_distractores(df_subset):
-        rows = []
-        for item in todas_preguntas:
-            if item not in df_subset.columns: continue
-            asig = 'Lengua' if item.startswith('L_') else 'Matemática'
-            
-            s = df_subset[item].fillna('SIN RESPONDER').astype(str).str.strip()
-            if len(s) == 0: continue
-            
-            vc = s.value_counts(normalize=True) * 100
-            
-            row_dict = {'Asignatura': asig, 'Ítem': item}
-            # Organizar en columnas "Opción 1", "Opción 2", etc.
-            for i, (opt, pct) in enumerate(vc.items(), 1):
-                row_dict[f'Opción {i}'] = f"{opt} ({pct:.1f}%)"
-            rows.append(row_dict)
-        return pd.DataFrame(rows)
-
-    distractores_dict['Todas las escuelas'] = generar_df_distractores(val_df_raw)
-    for grado, sheet_name in [('Segundo Grado', '2do'), ('Tercer Grado', '3er'), ('Cuarto Grado', '4to')]:
-        df_g = val_df_raw[val_df_raw['Grado'] == grado]
-        if not df_g.empty:
-            distractores_dict[sheet_name] = generar_df_distractores(df_g)
-
-    # -------------------------------------------------------------
-    # CALIFICAR df_scored (0 y 1)
-    # -------------------------------------------------------------
     for item, correcta in CLAVE_RESPUESTAS.items():
         if item in df_scored.columns:
             df_scored[item] = np.where(df_scored[item].astype(str).str.strip().str.lower() == correcta.lower(), 1, 0)
@@ -861,6 +750,7 @@ def _ejecutar_etl(current_month_path):
     cols_order = ['Código de infraestructura', 'Nombre del centro', 'Estudiantes Esperados', 'Estudiantes Evaluados', 'Cobertura (%)'] + cols_puntajes
     df_escuelas = df_escuelas[cols_order]
 
+    # PREPARAR DATAFRAME DE BASE DE ESTUDIANTES PARA EXPORTAR A EXCEL
     rename_map = {
         'Nombre del centro': 'Centro Educativo',
         'L_total_puntaje_0_100': 'L: Total',
@@ -894,16 +784,15 @@ def _ejecutar_etl(current_month_path):
         'xl_scored': os.path.join(PATH_DATASETS, "2_Resultados_Fundamento_Dicotomico_0_1.xlsx"),
         'xl_mapping': os.path.join(PATH_DATASETS, "3_Item_Process_Mapping.xlsx"),
         'xl_qc': os.path.join(PATH_DATASETS, "6_QC_Auditoria_Puntajes.xlsx"),
-        'xl_estudiantes': os.path.join(PATH_DATASETS, "7_Base_Datos_Estudiantes.xlsx"),
-        'xl_distractores': os.path.join(PATH_DATASETS, "8_Analisis_Distractores_Por_Item.xlsx")
+        'xl_estudiantes': os.path.join(PATH_DATASETS, "7_Base_Datos_Estudiantes.xlsx") # NUEVO ARCHIVO EXCEL
     }
-    return df_scored, df_mapping, paths, df_escuelas, df_qc, df_estudiantes, distractores_dict
+    return df_scored, df_mapping, paths, df_escuelas, df_qc, df_estudiantes
 
 def procesar_y_generar_excel(current_month_path):
     print("\n=======================================================")
     print(f"  PROCESANDO: {os.path.basename(current_month_path)}")
     print("=======================================================\n")
-    df_scored, df_mapping, paths, df_escuelas, df_qc, df_estudiantes, distractores_dict = _ejecutar_etl(current_month_path)
+    df_scored, df_mapping, paths, df_escuelas, df_qc, df_estudiantes = _ejecutar_etl(current_month_path)
     if df_scored is None: return False
     
     paths['raw_df'].to_excel(paths['xl_raw'], index=False)
@@ -911,13 +800,12 @@ def procesar_y_generar_excel(current_month_path):
     df_mapping.to_excel(paths['xl_mapping'], index=False)
     df_escuelas.to_excel(paths['xl_escuelas'], index=False)
     df_qc.to_excel(paths['xl_qc'], index=False)
+    
+    # GUARDAR LA NUEVA BASE DE DATOS DE ESTUDIANTES EN EXCEL
     df_estudiantes.to_excel(paths['xl_estudiantes'], index=False)
     
-    # GUARDAR EL NUEVO ANÁLISIS DE DISTRACTORES
-    exportar_distractores(distractores_dict, paths['xl_distractores'], CLAVE_RESPUESTAS)
-    
-    print("[*] Generando Dashboard HTML Interactivo...")
+    print("[*] Generando Dashboard HTML Interactivo Reparado...")
     generar_html_estatico(df_scored, df_mapping, paths['html'])
     print(f"[OK] Todos los reportes generados exitosamente en:\n     {os.path.dirname(paths['html'])}")
-    print("  - 8_Analisis_Distractores_Por_Item.xlsx (NUEVO)")
+    print("  - 7_Base_Datos_Estudiantes.xlsx (NUEVO)")
     return True

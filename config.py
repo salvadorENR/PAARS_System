@@ -5,7 +5,8 @@ import sys
 # =============================================================================
 # 0. CONFIGURACIÓN DEL ENTORNO
 # =============================================================================
-DRIVE_PATH = r"G:\Mi unidad\Modernización_Educativa\Gerencia de Evaluación_Proyectos_Análisis\PAARS_Warehouse"
+# ¡NUEVA RUTA ACTUALIZADA PARA EL DISCO H:!
+DRIVE_PATH = r"H:\Mi unidad\Modernización_Educativa\Gerencia de Evaluación_Proyectos_Análisis\PAARS_Warehouse"
 YEAR = "2026"
 YEAR_DIR = os.path.join(DRIVE_PATH, YEAR)
 
