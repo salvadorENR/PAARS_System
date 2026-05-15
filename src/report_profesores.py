@@ -237,6 +237,11 @@ def load_item_indicators():
     
     for f in todos_archivos:
         nombre_archivo = os.path.basename(f)
+        
+        # FIX: Filtro anti-fantasmas. Ignorar archivos temporales abiertos por Excel
+        if nombre_archivo.startswith('~$'):
+            continue
+            
         if 'procesado' in nombre_archivo.lower() and exam_type.lower() in nombre_archivo.lower():
             if re.search(rf'Mes\s*0?{exam_num}(?:\D|$)', nombre_archivo, re.IGNORECASE) or \
                re.search(rf'_{exam_num}_', nombre_archivo):
