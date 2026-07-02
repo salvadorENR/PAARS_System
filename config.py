@@ -3,16 +3,27 @@ import os
 import sys
 from dotenv import load_dotenv
 
-# 1. Cargar las variables (ahora busca el archivo .env automáticamente)
+# 1. Cargar las variables (busca el archivo .env automáticamente)
 load_dotenv() 
 
 # 2. Asignar la ruta extrayéndola de la variable
 DRIVE_PATH = os.getenv("BASE_DRIVE")
 
-# 3. Validación de seguridad...
+# 3. Validación de seguridad
 if not DRIVE_PATH:
     print("\n[!] ERROR CRÍTICO: No se encontró la variable BASE_DRIVE en el archivo .env.")
     sys.exit(1)
+
+# 4. DEFINICIÓN DEL AÑO (¡Esta es la parte que falta!)
+YEAR = "2026"
+YEAR_DIR = os.path.join(DRIVE_PATH, YEAR)
+
+if not os.path.exists(YEAR_DIR):
+    print(f"\n[!] ERROR CRÍTICO: No se encontró la ruta {YEAR_DIR}")
+    sys.exit(1)
+
+# --- NIVEL 1 & 2 ---
+# (El resto de tus menús sigue aquí...)
 
 # --- NIVEL 1 & 2 ---
 while True:
