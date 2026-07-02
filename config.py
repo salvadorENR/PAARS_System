@@ -1,17 +1,17 @@
 # config.py
 import os
 import sys
+from dotenv import load_dotenv
 
-# =============================================================================
-# 0. CONFIGURACIÓN DEL ENTORNO
-# =============================================================================
-# ¡NUEVA RUTA ACTUALIZADA PARA EL DISCO H:!
-DRIVE_PATH = r"H:\Mi unidad\Modernización_Educativa\Gerencia de Evaluación_Proyectos_Análisis\PAARS_Warehouse"
-YEAR = "2026"
-YEAR_DIR = os.path.join(DRIVE_PATH, YEAR)
+# 1. Cargar las variables (ahora busca el archivo .env automáticamente)
+load_dotenv() 
 
-if not os.path.exists(YEAR_DIR):
-    print(f"\n[!] ERROR CRÍTICO: No se encontró la ruta {YEAR_DIR}")
+# 2. Asignar la ruta extrayéndola de la variable
+DRIVE_PATH = os.getenv("BASE_DRIVE")
+
+# 3. Validación de seguridad...
+if not DRIVE_PATH:
+    print("\n[!] ERROR CRÍTICO: No se encontró la variable BASE_DRIVE en el archivo .env.")
     sys.exit(1)
 
 # --- NIVEL 1 & 2 ---
