@@ -1,0 +1,458 @@
+
+════════════════════════════════════════════════════════════════════════
+  NÚMERO DE CENTROS ESCOLARES POR GRUPO
+════════════════════════════════════════════════════════════════════════
+  Grupo         Centros Escolares
+  ────────────────────────────────────────
+  B1                          191
+  B2                          195
+  ────────────────────────────────────────
+  TOTAL                       386
+
+════════════════════════════════════════════════════════════════════════
+  TOTAL DE ESTUDIANTES POR GRADO
+════════════════════════════════════════════════════════════════════════
+  Grado                    Total de Estudiantes
+  ──────────────────────────────────────────────────
+  Segundo Grado                          14,265
+  Tercer Grado                           14,766
+  Cuarto Grado                           16,891
+  Quinto Grado                           15,784
+  Sexto Grado                            15,485
+  Séptimo Grado                          16,081
+  Octavo Grado                           15,460
+  Noveno Grado                           13,992
+  Primer Año                              7,153
+  Segundo Año                             6,034
+
+════════════════════════════════════════════════════════════════════════
+  ESTUDIANTES POR GRADO Y GRUPO (B1 / B2)
+════════════════════════════════════════════════════════════════════════
+  Grado                            B1           B2        TOTAL
+  ──────────────────────────────────────────────────────────────
+  Segundo Grado                 8,116        6,149       14,265
+  Tercer Grado                  8,532        6,234       14,766
+  Cuarto Grado                  9,736        7,155       16,891
+  Quinto Grado                  8,844        6,940       15,784
+  Sexto Grado                   9,026        6,459       15,485
+  Séptimo Grado                 9,220        6,861       16,081
+  Octavo Grado                  8,961        6,499       15,460
+  Noveno Grado                  8,045        5,947       13,992
+  Primer Año                    3,722        3,431        7,153
+  Segundo Año                   3,150        2,884        6,034
+  ──────────────────────────────────────────────────────────────
+  GRAN TOTAL                   77,352       58,559      135,911
+
+════════════════════════════════════════════════════════════════════════
+  LISTADO DE CENTROS ESCOLARES — GRUPO B1
+════════════════════════════════════════════════════════════════════════
+  #     Código   Nombre                                                  Estudiantes
+  ────────────────────────────────────────────────────────────────────────
+  1     11641    CENTRO ESCOLAR   CONSTITUCION  1950                              98
+  2     11437    CENTRO ESCOLAR  22 DE JUNIO                                     241
+  3     11705    CENTRO ESCOLAR  ALTOS DE MONTE CARMELO                          181
+  4     11732    CENTRO ESCOLAR  ANTONIO JOSE CAÑAS                              548
+  5     11735    CENTRO ESCOLAR  BARRIO EL PROGRESO                              380
+  6     11711    CENTRO ESCOLAR  BOSQUES DEL RIO                                 252
+  7     11440    CENTRO ESCOLAR  CANTON  MAPILAPA                                283
+  8     11443    CENTRO ESCOLAR  CANTON ALDEA DE LAS MERCEDES                    495
+  9     11765    CENTRO ESCOLAR  CANTON ARENAL                                   151
+  10    11764    CENTRO ESCOLAR  CANTON CALLE REAL                               568
+  11    11331    CENTRO ESCOLAR  CANTON EL ANGEL                                 379
+  12    11964    CENTRO ESCOLAR  CANTON LA LAGUNETA                               92
+  13    11385    CENTRO ESCOLAR  CANTON SAN JERONIMO                             226
+  14    11767    CENTRO ESCOLAR  CANTON SAN JOSE CORTEZ                          241
+  15    11351    CENTRO ESCOLAR  CANTON SAN NICOLAS                              109
+  16    11426    CENTRO ESCOLAR  CANTON SAN ROQUE                                339
+  17    11457    CENTRO ESCOLAR  CANTON SANTA LUCIA LOS PALONES                  331
+  18    11962    CENTRO ESCOLAR  CANTÓN EL GOLFO                                 113
+  19    70080    CENTRO ESCOLAR  CANTÓN EL GUAJE                                 109
+  20    11745    CENTRO ESCOLAR  CANTÓN VERACRUZ                                 428
+  21    11769    CENTRO ESCOLAR  CASERIO SAN ANTONIO LAS VEGAS                   277
+  22    70063    CENTRO ESCOLAR  CASERÍO COMUNIDAD SAN ANDRES, CANTÓN L          339
+  23    11724    CENTRO ESCOLAR  COLONIA GUAYACAN                                561
+  24    11531    CENTRO ESCOLAR  COLONIA LLANO VERDE                             438
+  25    11439    CENTRO ESCOLAR  COLONIA SAN SIMÓN                               454
+  26    11759    CENTRO ESCOLAR  COMUNIDAD PRADERA III                           254
+  27    11770    CENTRO ESCOLAR  EDELMIRA MOLINA                                 437
+  28    11394    CENTRO ESCOLAR  JARDINES DE SELT-SUTT                           302
+  29    13671    CENTRO ESCOLAR  LA PONDEROSA                                    271
+  30    11650    CENTRO ESCOLAR  MONSEÑOR BASILIO PLANTIER                       186
+  31    11740    CENTRO ESCOLAR  PROFESORA MARIA INOCENCIA DE PAREDES            518
+  32    11716    CENTRO ESCOLAR  RAFAELA SOTOMAYOR DE ALARCIA                    151
+  33    11771    CENTRO ESCOLAR  REINO DE HOLANDA                                276
+  34    11574    CENTRO ESCOLAR  REPUBLICA DE CANADA                             299
+  35    11648    CENTRO ESCOLAR  REPUBLICA DE HONDURAS                           166
+  36    11409    CENTRO ESCOLAR  REPUBLICA DE VENEZUELA                          459
+  37    11317    CENTRO ESCOLAR  SAN SEBASTIÁN                                   263
+  38    12061    CENTRO ESCOLAR 14 DE ABRIL                                      140
+  39    13668    CENTRO ESCOLAR AGUSTIN LINARES                                  675
+  40    14806    CENTRO ESCOLAR ALTAVISTA                                      1,333
+  41    11955    CENTRO ESCOLAR AMALIA ROSALES CAMPOS                             88
+  42    11580    CENTRO ESCOLAR AMATEPEC                                         274
+  43    12053    CENTRO ESCOLAR ANASTACIO AQUINO                                 293
+  44    11343    CENTRO ESCOLAR ASENTAMIENTO DE LA COLONIA POPOTLAN              426
+  45    11952    CENTRO ESCOLAR CANTON CONCEPCION LOURDES                        130
+  46    11934    CENTRO ESCOLAR CANTON EL CHILAMATE                               62
+  47    11963    CENTRO ESCOLAR CANTON LA LONGANIZA                              111
+  48    11512    CENTRO ESCOLAR CANTON LA PALMA                                  729
+  49    11474    CENTRO ESCOLAR CANTON LAS BARROSAS                              207
+  50    11992    CENTRO ESCOLAR CANTON NUEVO EDEN                                 91
+  51    12000    CENTRO ESCOLAR CANTON SAN BARTOLO                                89
+  52    12037    CENTRO ESCOLAR CANTON SAN JOSE CARRIZAL                         109
+  53    11944    CENTRO ESCOLAR CANTON SAN SEBASTIAN                             218
+  54    70041    CENTRO ESCOLAR CANTÓN AMAYON                                    127
+  55    70046    CENTRO ESCOLAR CANTÓN AZACUALPA                                 286
+  56    86237    CENTRO ESCOLAR CANTÓN LA UNIÓN                                   95
+  57    11777    CENTRO ESCOLAR CANTÓN MILINGO                                   547
+  58    68097    CENTRO ESCOLAR CANTÓN SEGURA                                     90
+  59    12059    CENTRO ESCOLAR CASERIO LA FLECHA                                322
+  60    11994    CENTRO ESCOLAR CASERIO LA ZUNGANERA                              62
+  61    70097    CENTRO ESCOLAR CASERÍO AMAYITO, CANTÓN AZACUALPA                 95
+  62    60321    CENTRO ESCOLAR CASERÍO EL GUAYABO, CANTÓN SAN ISIDRO L          243
+  63    11991    CENTRO ESCOLAR CASERÍO EL SALAMAR                               158
+  64    60250    CENTRO ESCOLAR CASERÍO RESIDENCIAL ALTAVISTA, CANTÓN V          383
+  65    70093    CENTRO ESCOLAR CASERÍO URBANIZACIÓN LIRIOS DEL NORTE,           493
+  66    12124    CENTRO ESCOLAR CATARINO DE JESÚS ORTÍZ                          436
+  67    12051    CENTRO ESCOLAR CENTRO AMERICA                                   213
+  68    10057    CENTRO ESCOLAR CIUDAD CREDISA                                   510
+  69    11321    CENTRO ESCOLAR COLONIA LA ERMITA                                365
+  70    11508    CENTRO ESCOLAR COLONIA LA PALMA, CANTON LA PALMA                292
+  71    11336    CENTRO ESCOLAR COLONIA LAS CAÑAS                                223
+  72    11731    CENTRO ESCOLAR COLONIA SAN RAFAEL                               272
+  73    11639    CENTRO ESCOLAR COLONIA SANTA LUCÍA                               87
+  74    86389    CENTRO ESCOLAR COMUNIDAD PLANES DE MARIONA, CANTÓN SAN          114
+  75    11342    CENTRO ESCOLAR DE POPOTLAN                                      553
+  76    11354    CENTRO ESCOLAR DOCTOR ARTURO ROMERO                             575
+  77    11353    CENTRO ESCOLAR DOCTOR DOROTEO VASCONCELOS                       821
+  78    11483    CENTRO ESCOLAR DOCTOR EUSEBIO CORDÓN CEA                        613
+  79    11976    CENTRO ESCOLAR DOCTOR GILBERTO LISANDRO VASQUEZ SOSA             66
+  80    11493    CENTRO ESCOLAR DOMINGO FAUSTINO SARMIENTO                       620
+  81    11532    CENTRO ESCOLAR GENERAL FRANCISCO MORAZÁN                        183
+  82    11695    CENTRO ESCOLAR GENERAL MANUEL BELGRANO                          851
+  83    11669    CENTRO ESCOLAR GENERAL RAMON BELLOSO                            265
+  84    11411    CENTRO ESCOLAR JOHN F. KENNEDY                                  600
+  85    11651    CENTRO ESCOLAR JORGE LARDE                                      412
+  86    11668    CENTRO ESCOLAR JOSE MATIAS DELGADO                              162
+  87    11592    CENTRO ESCOLAR JOSE MEJIA                                       224
+  88    11665    CENTRO ESCOLAR JOSE SIMEON CAÑAS                                363
+  89    11451    CENTRO ESCOLAR JOSÉ MATÍAS DELGADO                              983
+  90    10209    CENTRO ESCOLAR JOSÉ RUBÉN RIVERA RIVERA                         165
+  91    11597    CENTRO ESCOLAR JUAN RAMON JIMENEZ                               162
+  92    11594    CENTRO ESCOLAR JUANA LOPEZ                                      559
+  93    14840    CENTRO ESCOLAR LA CIMA DOS                                      497
+  94    12001    CENTRO ESCOLAR LA PAZ                                           582
+  95    11675    CENTRO ESCOLAR LIGA PANAMERICANA                                332
+  96    86394    CENTRO ESCOLAR LOTIFICACIÓN PETACONES, CANTÓN JOYA GAL           92
+  97    11631    CENTRO ESCOLAR LYNDON B. JOHNSON                                153
+  98    11946    CENTRO ESCOLAR MARIA ESTER ALFARO                               157
+  99    12015    CENTRO ESCOLAR MARIA TERESA DUKE                                441
+  100   11645    CENTRO ESCOLAR MIGUEL PINTO                                     308
+  101   11308    CENTRO ESCOLAR MODESTO BARRIOS                                  922
+  102   12017    CENTRO ESCOLAR NEMESIA LUNA                                     253
+  103   11500    CENTRO ESCOLAR OLOF PALME                                       469
+  104   11130    CENTRO ESCOLAR ORGANIZACION DE ESTADOS IBEROAMERICANOS          188
+  105   11752    CENTRO ESCOLAR PRESBÍTERO NICOLÁS AGUILAR                       801
+  106   11736    CENTRO ESCOLAR PROFESOR DANIEL CORDÓN SALGUERO                  794
+  107   12032    CENTRO ESCOLAR PROFESOR JOSE RICARDO CATIVO                     171
+  108   11488    CENTRO ESCOLAR PROFESOR JUSTO GONZALEZ                          407
+  109   11015    CENTRO ESCOLAR PROFESOR OSCAR ARMANDO GUERRA CASTRO             277
+  110   11323    CENTRO ESCOLAR PROFESOR ROMEO HUMBERTO GONZALEZ                 208
+  111   11975    CENTRO ESCOLAR PROFESORA JUANA SARA LOPEZ DE MIRANDA            207
+  112   11937    CENTRO ESCOLAR PROFESORA MARIA EVANGELINA ALVAREZ               224
+  113   11941    CENTRO ESCOLAR PROFESORA ROSA MIRIAN ABREGO DE HERNAND           97
+  114   11715    CENTRO ESCOLAR REPARTO LOS SANTOS                               581
+  115   11680    CENTRO ESCOLAR REPUBLICA DE CHILE                               241
+  116   11338    CENTRO ESCOLAR REPUBLICA DE CHINA                               326
+  117   11414    CENTRO ESCOLAR REPUBLICA DE FRANCIA                             426
+  118   11598    CENTRO ESCOLAR REPUBLICA DE ITALIA                              380
+  119   11626    CENTRO ESCOLAR SALVADOR MUGDAN                                  275
+  120   11386    CENTRO ESCOLAR SALVADOR SALAZAR ARRÚE                           469
+  121   10096    CENTRO ESCOLAR SAN ANTONIO                                      279
+  122   11593    CENTRO ESCOLAR SAN ANTONIO ABAD                                 272
+  123   11627    CENTRO ESCOLAR SANTIAGO I BARBERENA                             119
+  124   11314    CENTRO ESCOLAR URBANIZACION CELSA PALACIOS                      105
+  125   13713    CENTRO ESCOLAR URBANIZACION LAS MARGARITAS                    1,160
+  126   10084    CENTRO ESCOLAR URBANIZACION MONTELIMAR                          437
+  127   11501    CENTRO ESCOLAR URBANIZACION SANTA TERESA                        425
+  128   10123    CENTRO ESCOLAR URBANIZACION SANTA TERESA DE LAS FLORES          380
+  129   60247    CENTRO ESCOLAR URBANIZACIÓN CUMBRES DE SAN BARTOLO              433
+  130   11327    CENTRO ESCOLAR VALLE DEL SOL                                    495
+  131   11344    CENTRO ESCOLAR VICENTE ACOSTA                                   960
+  132   11433    COMPLEJO EDUCATIVO   PROFESORA MARÍA AMANDA ARTIGA DE         1,027
+  133   11367    COMPLEJO EDUCATIVO  ANGELA DE SOLER                             614
+  134   12012    COMPLEJO EDUCATIVO  CANTON LAS ISLETAS                          521
+  135   11922    COMPLEJO EDUCATIVO  CANTÓN EL PEDREGAL                          290
+  136   70001    COMPLEJO EDUCATIVO  CANTÓN LOS MANGOS                           232
+  137   11400    COMPLEJO EDUCATIVO  CANTÓN SAN BARTOLO                          619
+  138   11751    COMPLEJO EDUCATIVO  FE Y ALEGRIA                                347
+  139   11492    COMPLEJO EDUCATIVO  IGNACIO PACHECO CASTRO                    1,338
+  140   11438    COMPLEJO EDUCATIVO  JAPÓN                                       554
+  141   11427    COMPLEJO EDUCATIVO  REINO DE SUECIA                             595
+  142   11679    COMPLEJO EDUCATIVO  REPÚBLICA DE COSTA RICA                     198
+  143   11676    COMPLEJO EDUCATIVO  REPÚBLICA DEL PERÚ                          856
+  144   11422    COMPLEJO EDUCATIVO  REPÚBLICA ORIENTAL DEL URUGUAY              873
+  145   11370    COMPLEJO EDUCATIVO  SANTA ROSA                                  554
+  146   11337    COMPLEJO EDUCATIVO  SARA PALMA DE JULE                          389
+  147   11943    COMPLEJO EDUCATIVO ALBERTO MASFERRER                            932
+  148   11436    COMPLEJO EDUCATIVO AMALIA VDA. DE MENENDEZ                      747
+  149   70070    COMPLEJO EDUCATIVO CANTÓN JOYA GRANDE                           191
+  150   11516    COMPLEJO EDUCATIVO CANTÓN LA FLOR                               216
+  151   11640    COMPLEJO EDUCATIVO CAPITAN GENERAL GERARDO BARRIOS              157
+  152   70042    COMPLEJO EDUCATIVO CASERÍO  PLAN DEL MANGO, CANTÓN AMA          126
+  153   70064    COMPLEJO EDUCATIVO CASERÍO COMUNIDAD VALLE LAS DELICIA          233
+  154   11933    COMPLEJO EDUCATIVO CASERÍO VALLE NUEVO                          248
+  155   88036    COMPLEJO EDUCATIVO CATÓLICO SANTA CATALINA                      485
+  156   14812    COMPLEJO EDUCATIVO CIUDAD FUTURA                                800
+  157   11959    COMPLEJO EDUCATIVO CLAUDIA LARS                                 252
+  158   11482    COMPLEJO EDUCATIVO COLONIA EL MILAGRO                           193
+  159   11518    COMPLEJO EDUCATIVO COLONIA ROSA LINDA                           407
+  160   11486    COMPLEJO EDUCATIVO COLONIA SAN ANTONIO                          463
+  161   11390    COMPLEJO EDUCATIVO COLONIA SAN FELIPE                           466
+  162   11499    COMPLEJO EDUCATIVO COLONIA TIERRA VIRGEN                        247
+  163   11712    COMPLEJO EDUCATIVO COLONIA VILLA ALEGRE                         462
+  164   11489    COMPLEJO EDUCATIVO COMUNIDAD 10 DE OCTUBRE                      473
+  165   11674    COMPLEJO EDUCATIVO DR. HUMBERTO ROMERO ALVERGUE                 923
+  166   11495    COMPLEJO EDUCATIVO GOLDTREE LIEBES                              895
+  167   11349    COMPLEJO EDUCATIVO INGENIERO GUILLERMO BORJA NATHAN             658
+  168   11340    COMPLEJO EDUCATIVO INGENIERO JOSÉ NAPOLEÓN DUARTE               416
+  169   11667    COMPLEJO EDUCATIVO JOAQUIN RODEZNO                              313
+  170   11507    COMPLEJO EDUCATIVO JORGE LARDE                                1,797
+  171   11365    COMPLEJO EDUCATIVO LA PAZ                                       510
+  172   11471    COMPLEJO EDUCATIVO MANUEL JOSE ARCE                             869
+  173   11932    COMPLEJO EDUCATIVO MERCEDES LA CEIBA                            106
+  174   11453    COMPLEJO EDUCATIVO PROFESOR ALBERTO MONTIEL V.                  434
+  175   11319    COMPLEJO EDUCATIVO PROFESOR IVÁN ALEXANDER BURGOS FUEN          714
+  176   11431    COMPLEJO EDUCATIVO PROFESORA HERMINIA MARTÍNEZ ALVAREN          331
+  177   11723    COMPLEJO EDUCATIVO REPÚBLICA DE COREA                           527
+  178   11661    COMPLEJO EDUCATIVO REPÚBLICA DEL BRASIL                         561
+  179   11677    COMPLEJO EDUCATIVO REPÚBLICA DEL ECUADOR                        219
+  180   13663    COMPLEJO EDUCATIVO REPÚBLICA DOMINICANA                         331
+  181   10160    COMPLEJO EDUCATIVO RESIDENCIAL ALTAVISTA                      1,053
+  182   86332    COMPLEJO EDUCATIVO URBANIZACIÓN MONTECARMELO, CANTÓN S          211
+  183   11406    COMPLEJO EDUCATIVOCOLONIA VERACRUZ, CANTÓN SAN BARTOLO          319
+  184   90053    ESCUELA MUNICIPAL DE CIUDAD FUTURA FASE I                       412
+  185   11988    INSTITUTO NACIONAL  DE SAN LUIS TALPA                           118
+  186   11307    INSTITUTO NACIONAL DE AGUILARES                                 516
+  187   11330    INSTITUTO NACIONAL DE APOPA                                   1,086
+  188   11395    INSTITUTO NACIONAL DE SAN BARTOLO                             1,086
+  189   12049    INSTITUTO NACIONAL JOSE INGENIEROS                               36
+  190   11420    INSTITUTO NACIONAL MAESTRO ALBERTO MASFERRER                    735
+  191   11708    INSTITUTO NACIONAL SAN LUIS                                     948
+  ────────────────────────────────────────────────────────────────────────
+  TOTAL B1                                                                  77,352
+
+════════════════════════════════════════════════════════════════════════
+  LISTADO DE CENTROS ESCOLARES — GRUPO B2
+════════════════════════════════════════════════════════════════════════
+  #     Código   Nombre                                                  Estudiantes
+  ────────────────────────────────────────────────────────────────────────
+  1     72019    CENTRO ESCOLAR   CANTÓN SAN ANDRES                              303
+  2     11808    CENTRO ESCOLAR  ANITA ALVARADO                                  737
+  3     68096    CENTRO ESCOLAR  ARTURO GÓMEZ                                    285
+  4     11649    CENTRO ESCOLAR  BARRIO BELEN                                    148
+  5     11396    CENTRO ESCOLAR  CAMPAMENTO BANCO HIPOTECARIO                    213
+  6     11737    CENTRO ESCOLAR  CAMPAMENTO MORAZAN                              102
+  7     11848    CENTRO ESCOLAR  CANTON EL RODEO                                  86
+  8     11515    CENTRO ESCOLAR  CANTON EL SAUCE                                 100
+  9     11356    CENTRO ESCOLAR  CANTON EL ZAPOTE                                212
+  10    11350    CENTRO ESCOLAR  CANTON GUADALUPE                                202
+  11    10184    CENTRO ESCOLAR  CANTON LA CRIBA                                  82
+  12    11037    CENTRO ESCOLAR  CANTON LAS MORAS                                613
+  13    11861    CENTRO ESCOLAR  CANTON SAN AGUSTIN                              176
+  14    11218    CENTRO ESCOLAR  CANTON SAN ANTONIO                              145
+  15    11859    CENTRO ESCOLAR  CANTON SAN FRANCISCO CANDELARIA                 125
+  16    11382    CENTRO ESCOLAR  CANTON SANTA BARBARA                            175
+  17    70083    CENTRO ESCOLAR  CANTÓN  POTRERILLOS                             100
+  18    72045    CENTRO ESCOLAR  CANTÓN LA ESPERANZA                             437
+  19    74081    CENTRO ESCOLAR  CANTÓN SAN RAFAEL TASAJERA                      138
+  20    11004    CENTRO ESCOLAR  CASERIO EL CAFETALITO, CANTON SANTA RO          209
+  21    11147    CENTRO ESCOLAR  CASERIO SANTA CRISTINA, CANTON EL PUEN          147
+  22    68008    CENTRO ESCOLAR  CASERÍO COMUNIDAD TECPAN, CANTÓN SITIO          262
+  23    68204    CENTRO ESCOLAR  CASERÍO EL CONACASTE, CANTÓN EL CONACA          353
+  24    70061    CENTRO ESCOLAR  CASERÍO EL MOJÓN, CANTÓN LA FLOR                190
+  25    68143    CENTRO ESCOLAR  CASERÍO LAS DELICIAS, CANTÓN MOGOTES            162
+  26    74030    CENTRO ESCOLAR  CASERÍO LOT. SANTA CRISTINA, CANTÓN LA          220
+  27    74091    CENTRO ESCOLAR  CASERÍO LOTIFICACIÓN MARISCAL, CANTÓN           402
+  28    70011    CENTRO ESCOLAR  CASERÍO SAN PEDRO, CANTÓN LOS LLANITOS          114
+  29    11416    CENTRO ESCOLAR  CESAR GUZMÁN                                    175
+  30    11728    CENTRO ESCOLAR  COLONIA 22 DE ABRIL                             448
+  31    10389    CENTRO ESCOLAR  COLONIA EL EDEN                                 319
+  32    11758    CENTRO ESCOLAR  COLONIA FLORENCIA                                69
+  33    11727    CENTRO ESCOLAR  COLONIA LAS BRISAS                            1,058
+  34    11432    CENTRO ESCOLAR  COLONIA SAN MAURICIO                            332
+  35    10193    CENTRO ESCOLAR  COOPERATIVA SAN MIGUEL                          220
+  36    74071    CENTRO ESCOLAR  CORONEL JAIME MAURICIO GUZMÁN MORALES            92
+  37    11883    CENTRO ESCOLAR  DE SANTA CRUZ ANALQUITO                         201
+  38    11913    CENTRO ESCOLAR  DOCTOR MANUEL ENRIQUE ARAUJO                    268
+  39    11856    CENTRO ESCOLAR  ESTEBAN TRINIDAD                                313
+  40    11165    CENTRO ESCOLAR  ESTEBANA SANABRIA DE LARIOS                     132
+  41    11452    CENTRO ESCOLAR  GENERAL FRANCISCO MORAZAN                       289
+  42    10280    CENTRO ESCOLAR  HACIENDA EL PORVENIR, CANTON LOS PINOS          159
+  43    11227    CENTRO ESCOLAR  HACIENDA TALCUALUYA, CANTON EL CARMEN           198
+  44    11058    CENTRO ESCOLAR  INGENIERO ORLANDO MAURICIO RECINOS              314
+  45    11405    CENTRO ESCOLAR  JARDINES DE SAN BARTOLO                         111
+  46    10494    CENTRO ESCOLAR  LEOPOLDO NÚÑEZ                                  243
+  47    11110    CENTRO ESCOLAR  PEDRO PABLO CASTILLO                            468
+  48    11780    CENTRO ESCOLAR  PEDRO PABLO CASTILLO                            157
+  49    11355    CENTRO ESCOLAR  PRESBITERO RAFAEL ARTURO LOPEZ, CANTON           85
+  50    11753    CENTRO ESCOLAR  PROFESOR EMILIO URRUTIA LOPEZ                   400
+  51    11256    CENTRO ESCOLAR  PROFESOR JESUS LEOCADIO PALENCIA                216
+  52    11257    CENTRO ESCOLAR  SAN ISIDRO                                      160
+  53    11719    CENTRO ESCOLAR 14 DE DICIEMBRE DE 1948                          599
+  54    12122    CENTRO ESCOLAR 15 DE SEPTIEMBRE                                  91
+  55    11430    CENTRO ESCOLAR ASOCIACION SALVADOREÑA DE SEÑORAS DE IN          132
+  56    11434    CENTRO ESCOLAR BARRIO LAS DELICIAS                              212
+  57    11596    CENTRO ESCOLAR BENJAMIN SOL MILLET                              237
+  58    11682    CENTRO ESCOLAR CAMILO CAMPOS                                    511
+  59    11840    CENTRO ESCOLAR CANTON ANIMAS                                    174
+  60    12009    CENTRO ESCOLAR CANTON EL ACHIOTAL                               276
+  61    11332    CENTRO ESCOLAR CANTON JOYA GRANDE                               105
+  62    11687    CENTRO ESCOLAR CANTON LA CUCHILLA                               143
+  63    11184    CENTRO ESCOLAR CANTON LAS DISPENSAS                             399
+  64    12096    CENTRO ESCOLAR CANTON LAS TABLAS                                196
+  65    11310    CENTRO ESCOLAR CANTON LAS TUNAS                                 137
+  66    10385    CENTRO ESCOLAR CANTON LOS AMATES                                408
+  67    11128    CENTRO ESCOLAR CANTON LOS AMATES                                108
+  68    10384    CENTRO ESCOLAR CANTON MONTE ALEGRE                              392
+  69    11376    CENTRO ESCOLAR CANTON POTRERO GRANDE                            131
+  70    10188    CENTRO ESCOLAR CANTON SAN CRISTOBAL DE LA FRONTERA              220
+  71    11272    CENTRO ESCOLAR CANTON SAN JOSE LOS SITIOS                       484
+  72    11997    CENTRO ESCOLAR CANTÓN AMATECAMPO                                156
+  73    78089    CENTRO ESCOLAR CANTÓN COLONIA EL REFUGIO                        120
+  74    70047    CENTRO ESCOLAR CANTÓN EL CEDRO                                  336
+  75    70057    CENTRO ESCOLAR CANTÓN EL DIVISADERO                              95
+  76    12109    CENTRO ESCOLAR CANTÓN EL ESPINO ABAJO                           429
+  77    68114    CENTRO ESCOLAR CANTÓN EL JABALINÓN                              101
+  78    70085    CENTRO ESCOLAR CANTÓN EL TRÁNSITO                               153
+  79    86395    CENTRO ESCOLAR CANTÓN LAS DELICIAS                              126
+  80    60311    CENTRO ESCOLAR CANTÓN SAN JOSÉ SHANGALLO                         97
+  81    74084    CENTRO ESCOLAR CANTÓN SAN SEBASTIAN EL CHINGO                   128
+  82    74060    CENTRO ESCOLAR CANTÓN SANTA CRUZ LOMA                           217
+  83    60122    CENTRO ESCOLAR CANTÓN SANTA LUCÍA                               369
+  84    70009    CENTRO ESCOLAR CANTÓN TRES CEIBAS ARRIBA                        152
+  85    10465    CENTRO ESCOLAR CASERIO EL BEJUCO                                284
+  86    11584    CENTRO ESCOLAR CASERIO LAS LAJAS, CANTON SAN ANTONIO A          225
+  87    10414    CENTRO ESCOLAR CASERIO LOS GUIROLA                               67
+  88    10252    CENTRO ESCOLAR CASERIO SAN CRISTOBAL, CANTON LA MAGDAL          160
+  89    68100    CENTRO ESCOLAR CASERÍO COLONIA LAS MARGARITAS 1 Y 2, C          282
+  90    60248    CENTRO ESCOLAR CASERÍO EL ARENAL, CANTÓN EL COCO                 85
+  91    60274    CENTRO ESCOLAR CASERÍO EL CASTAÑO, CANTÓN LAS ISLETAS            80
+  92    62064    CENTRO ESCOLAR CASERÍO EL CHAPARRÓN, CANTÓN CUTUMAY CA          105
+  93    86391    CENTRO ESCOLAR CASERÍO EL JABALI, CANTÓN GALERA QUEMAD           91
+  94    68089    CENTRO ESCOLAR CASERÍO ESTANZUELAS, CANTÓN  EL PUENTE           275
+  95    68156    CENTRO ESCOLAR CASERÍO LA ESTACIÓN, CANTÓN SAN ISIDRO           129
+  96    70039    CENTRO ESCOLAR CASERÍO LA GRANJA, CANTÓN GALERA QUEMAD          204
+  97    86284    CENTRO ESCOLAR CASERÍO LAS COCINAS, CANTÓN CUTUMAY CAM           98
+  98    62076    CENTRO ESCOLAR CASERÍO SAN JUAN LAS MINAS, CANTÓN LOS            89
+  99    70038    CENTRO ESCOLAR CASERÍO SUCHINANGUITO, CANTÓN SUCHINANG          191
+  100   72058    CENTRO ESCOLAR CASERÍO VALLE VERDE, CANTÓN PLATANARES           131
+  101   60127    CENTRO ESCOLAR CASERÍO VILLA LA ESPERANZA, CANTÓN CHAN          465
+  102   12123    CENTRO ESCOLAR CLAUDIA LARS                                     242
+  103   11498    CENTRO ESCOLAR COLONIA ANEMONA                                  162
+  104   11503    CENTRO ESCOLAR COLONIA SAN MARTIN DE PORRES                     139
+  105   10236    CENTRO ESCOLAR COLONIA TAZUMAL                                  306
+  106   10065    CENTRO ESCOLAR COLONIA VALLE DEL SOL                            267
+  107   86438    CENTRO ESCOLAR COMUNIDAD AARON JOAQUÍN, CANTÓN LA PALM          273
+  108   10246    CENTRO ESCOLAR COMUNIDAD NUEVA JERUSALÉN                        104
+  109   60185    CENTRO ESCOLAR COMUNIDAD SAN FERNANDO                            71
+  110   14837    CENTRO ESCOLAR COMUNIDAD SANTA MARIA                            107
+  111   11583    CENTRO ESCOLAR COMUNIDAD SERPAS                                 117
+  112   11333    CENTRO ESCOLAR CORONEL FRANCISCO LINARES                        878
+  113   11628    CENTRO ESCOLAR DOCTOR DARIO GONZALEZ                            153
+  114   12076    CENTRO ESCOLAR DOCTOR HERMOGENES ALVARADO                       552
+  115   11005    CENTRO ESCOLAR DOCTOR MAURICIO GUZMAN                           494
+  116   14640    CENTRO ESCOLAR DOCTOR NICOLAS AGUILAR                           364
+  117   11410    CENTRO ESCOLAR FABIO CASTILLO                                   596
+  118   12131    CENTRO ESCOLAR FRANCISCO CASTAÑEDA                              764
+  119   10185    CENTRO ESCOLAR GENERAL FRANCISCO MORAZÁN                        325
+  120   10151    CENTRO ESCOLAR GILBERTO AUGUSTO CARCAMO                         471
+  121   11652    CENTRO ESCOLAR GUSTAVO MARROQUÍN                                153
+  122   60009    CENTRO ESCOLAR HACIENDA SAN RAYMUNDO, CANTÓN LA COYOTE          319
+  123   11034    CENTRO ESCOLAR INGENIERO ROBERTO QUIÑONEZ S.                    443
+  124   11298    CENTRO ESCOLAR JOSE MARIA CACERES                               738
+  125   10495    CENTRO ESCOLAR JOSE MARIANO MENDEZ                              164
+  126   11720    CENTRO ESCOLAR JOSÉ MARTÍ                                       227
+  127   10086    CENTRO ESCOLAR LA CAMPANERA                                     208
+  128   11733    CENTRO ESCOLAR LEONARDO AZCUNAGA                                207
+  129   86393    CENTRO ESCOLAR LOTIFICACIÓN SANTA CARLOTA N° 1, CANTÓN          206
+  130   11987    CENTRO ESCOLAR MANUELA MINERO DE MEJIA                          403
+  131   11654    CENTRO ESCOLAR MERCEDES QUINTERO                                172
+  132   10404    CENTRO ESCOLAR MONSEÑOR JOSE LOPEZ SANDOVAL                     176
+  133   11643    CENTRO ESCOLAR NICOLAS J. BRAN                                  180
+  134   10050    CENTRO ESCOLAR NUEVO LOURDES                                    759
+  135   11581    CENTRO ESCOLAR PROFESOR CARLOS CRUZ AVALOS                      102
+  136   11971    CENTRO ESCOLAR PROFESOR IRENEO DE LEON                          338
+  137   10646    CENTRO ESCOLAR PROFESOR JORGE LARDE                             559
+  138   12097    CENTRO ESCOLAR PROFESOR SAUL FLORES                             297
+  139   11312    CENTRO ESCOLAR PROFESORA MARIA TERESA GUZMAN                    230
+  140   11734    CENTRO ESCOLAR REINO DE DINAMARCA                               806
+  141   11673    CENTRO ESCOLAR REPUBLICA DE COLOMBIA                            100
+  142   11629    CENTRO ESCOLAR REPUBLICA DE EL SALVADOR                          94
+  143   10371    CENTRO ESCOLAR REPUBLICA DE GUATEMALA                           965
+  144   11633    CENTRO ESCOLAR REPUBLICA DE PANAMA                              234
+  145   11306    CENTRO ESCOLAR ROQUE DALTON                                     201
+  146   11696    CENTRO ESCOLAR RUBEN DARIO                                      359
+  147   12116    CENTRO ESCOLAR SAN AGUSTIN                                      318
+  148   11334    CENTRO ESCOLAR SAN MARTIN DE PORRES                              73
+  149   86333    CENTRO ESCOLAR SECTOR UNIDO, CANTÓN SAN LUIS MARIONA            146
+  150   14815    CENTRO ESCOLAR VALLE VERDE                                      536
+  151   10999    CENTRO ESCOLAR WALTER THILO DEININGER                           656
+  152   11870    COMPLEJO EDUCATIVO   25 DE SEPTIEMBRE 1839                      312
+  153   11108    COMPLEJO EDUCATIVO   DE LA LIBERTAD                             788
+  154   11030    COMPLEJO EDUCATIVO   SOR CLARA QUIROZ                           594
+  155   11263    COMPLEJO EDUCATIVO  CANTON EL ZUNZAL                            271
+  156   11377    COMPLEJO EDUCATIVO  CANTÓN  EL TULE                             303
+  157   74005    COMPLEJO EDUCATIVO  CANTÓN JOYAS DE GIRON                       191
+  158   12072    COMPLEJO EDUCATIVO  DOCTOR JOAQUÍN JULE GÁLVEZ                  378
+  159   11358    COMPLEJO EDUCATIVO  EL RETIRO                                   462
+  160   10291    COMPLEJO EDUCATIVO  PADRE VICENTE AGUILAR                       345
+  161   11280    COMPLEJO EDUCATIVO  PROFESOR MARDOQUEO ORELLANA LONE            283
+  162   12132    COMPLEJO EDUCATIVO  PROFESOR REYNALDO PADILLA                   230
+  163   11393    COMPLEJO EDUCATIVO  REPARTO VALLE NUEVO                         464
+  164   11998    COMPLEJO EDUCATIVO  SAN LUIS TALPA                              570
+  165   11134    COMPLEJO EDUCATIVO  WALTER A. SOUNDY                          1,035
+  166   10183    COMPLEJO EDUCATIVO BARTOLOMÉ BOLAÑOS                            402
+  167   11244    COMPLEJO EDUCATIVO CANTON EL JOCOTE                             112
+  168   10262    COMPLEJO EDUCATIVO CANTON LA MAGDALENA                          455
+  169   10225    COMPLEJO EDUCATIVO CANTÓN EL RESBALADERO                        126
+  170   11477    COMPLEJO EDUCATIVO CANTÓN PALO GRANDE                           149
+  171   70037    COMPLEJO EDUCATIVO CANTÓN SAN JERÓNIMO LOS PLANES               108
+  172   10417    COMPLEJO EDUCATIVO CASERÍO LLANO LARGO, CANTÓN AYUTA            573
+  173   86351    COMPLEJO EDUCATIVO CASERÍO SAN MIGUELITO,  CANTÓN TECO          244
+  174   10308    COMPLEJO EDUCATIVO CIUDAD REAL                                  900
+  175   11318    COMPLEJO EDUCATIVO COLONIA LOS NARANJOS                         196
+  176   11392    COMPLEJO EDUCATIVO COMUNIDAD SAN BARTOLO DEL NORTE              829
+  177   11779    COMPLEJO EDUCATIVO DELGADO                                      358
+  178   11869    COMPLEJO EDUCATIVO GENERAL FRANCISCO MENÉNDEZ                   470
+  179   10438    COMPLEJO EDUCATIVO MANUEL MONEDERO                              982
+  180   11180    COMPLEJO EDUCATIVO MARISOL BOLAÑOS DE RIVAS                     442
+  181   11114    COMPLEJO EDUCATIVO REFUGIO DE LA PAZ                             72
+  182   11104    COMPLEJO EDUCATIVO SAN ARTURO                                   632
+  183   11506    COMPLEJO EDUCATIVO SAN MARTÍN                                   432
+  184   10513    COMPLEJO EDUCATIVO SANTIAGO DE LA FRONTERA                      214
+  185   12055    COMPLEJO EDUCATIVO SOLEDAD MELARA DE ARGUETA                    272
+  186   11707    INSTITUTO NACIONAL  DE  SOYAPANGO                               199
+  187   11541    INSTITUTO NACIONAL  GENERAL FRANCISCO MORAZÁN                    20
+  188   11155    INSTITUTO NACIONAL  JOSE MARIA PERALTA LAGOS                    545
+  189   11450    INSTITUTO NACIONAL  JUAN PABLO II                               325
+  190   11003    INSTITUTO NACIONAL DE CIUDAD ARCE                               486
+  191   10283    INSTITUTO NACIONAL DE EL CONGO                                  750
+  192   11329    INSTITUTO NACIONAL DE LA COLONIA CIUDAD OBRERA                  537
+  193   11478    INSTITUTO NACIONAL DE SAN MARCOS                                423
+  194   11546    INSTITUTO NACIONAL GENERAL MANUEL JOSÉ ARCE                     699
+  195   11694    INSTITUTO NACIONAL SIMÓN BOLIVAR                                367
+  ────────────────────────────────────────────────────────────────────────
+  TOTAL B2                                                                  58,559
+
+════════════════════════════════════════════════════════════════════════
+  RESUMEN GENERAL
+════════════════════════════════════════════════════════════════════════
+  Métrica                                            Valor
+  ────────────────────────────────────────────────────────────
+  Total de Escuelas                                    386
+  Total de Estudiantes                             135,911
+  Total de Estudiantes B1                           77,352
+  Total de Estudiantes B2                           58,559
+
+════════════════════════════════════════════════════════════════════════

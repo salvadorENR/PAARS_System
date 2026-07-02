@@ -1,0 +1,2158 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Resultados de la Prueba de Progreso Mes 2</title>
+<style>
+            body { font-family: 'Segoe UI', sans-serif; background: #f4f7f9; padding: 20px; }
+            .header { text-align: center; margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; border-bottom: 4px solid #2980b9; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .header h1 { margin: 0; color: #2c3e50; font-size: 24px; }
+            .header h3 { margin: 5px 0 0 0; color: #7f8c8d; font-weight: normal; font-size: 14px; }
+            .legend { display: inline-block; background: #fff; padding: 10px 20px; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-top: 15px; font-size: 13px; }
+            
+            /* Tabs */
+            .tabs { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+            .tab-btn { padding: 12px 30px; cursor: pointer; background: #ddd; border: none; border-radius: 5px; font-weight: bold; font-size: 16px; transition: 0.3s; color: #333; }
+            .tab-btn.active { background: #2980b9; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            .tab-btn:hover:not(.active) { background: #ccc; }
+            .tab-content { display: none; }
+            .tab-content.active { display: block; }
+            
+            /* Accordion & Tables */
+            .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+            .card h2 { margin-top: 0; color: #2c3e50; font-size: 18px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+            .grade-accordion { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+            .grade-accordion summary { padding: 15px 20px; background: #f8f9fa; cursor: pointer; font-weight: bold; font-size: 16px; color: #2980b9; list-style: none; transition: background 0.2s; }
+            .grade-accordion summary:hover { background: #e9ecef; }
+            .grade-accordion summary::-webkit-details-marker { display: none; }
+            .grade-accordion .content { padding: 20px; border-top: 1px solid #eee; }
+            
+            table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+            th, td { border: 1px solid #eee; padding: 12px; text-align: center; }
+            th { background: #2c3e50; color: white; }
+            
+            /* Indicators */
+            .indicator-item { display: flex; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #e1ecef; }
+            .pct-box { width: 80px; text-align: center; border-right: 1px solid rgba(0,0,0,0.1); padding-right: 15px; margin-right: 15px; flex-shrink: 0; }
+            .pct-box strong { font-size: 16px; color: #2c3e50; }
+            .pct-box small { text-transform: uppercase; font-size: 10px; font-weight: bold; color: #555; }
+            .ind-text { font-size: 14px; color: #444; font-weight: 500; }
+        
+            .indicator-item.ancla {
+                border-left: 6px dashed #3949AB !important;
+                background-color: #E8EAF6 !important;
+                opacity: 0.88;
+            }
+            .ancla-badge {
+                display: inline-block;
+                background: #3949AB;
+                color: white;
+                font-size: 10px;
+                font-weight: bold;
+                padding: 2px 7px;
+                border-radius: 3px;
+                margin-right: 6px;
+                letter-spacing: 0.4px;
+                vertical-align: middle;
+            }
+        </style>
+</head>
+<body>
+<div class="header">
+<h1>Resultados de la Prueba de Progreso Mes 2 (con Ítems Ancla)</h1>
+<h3>Fecha de Aplicación: Abril 2026</h3>
+<div class="legend"><strong>Cortes de Evaluación:</strong> Crítico (0-20) | Bajo (21-40) | Medio (41-60) | Bueno (61-80) | Excelente (81-100)<span style="margin-left:15px;color:#3949AB;font-weight:bold;">· 🔵 Ítems con borde azul punteado = Ítems Ancla</span></div>
+</div>
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab(event, 'MAT')">📘 Matemática</button>
+<button class="tab-btn" onclick="openTab(event, 'LEC')">📕 Lengua</button>
+</div>
+<div class="tab-content active" id="MAT"><div class="card"><h2>👥 Resumen de Estudiantes - Matemática</h2><table><thead><tr><th>Grado</th><th>Estudiantes Evaluados</th></tr></thead><tbody><tr><td>2° Grado</td><td>6510</td></tr><tr><td>3° Grado</td><td>7139</td></tr><tr><td>4° Grado</td><td>8382</td></tr><tr><td>5° Grado</td><td>7866</td></tr><tr><td>6° Grado</td><td>8035</td></tr><tr><td>7° Grado</td><td>8114</td></tr><tr><td>8° Grado</td><td>7874</td></tr><tr><td>9° Grado</td><td>7243</td></tr><tr><td>10° Grado</td><td>5623</td></tr><tr><td>11° Grado</td><td>4722</td></tr></tbody></table></div>
+<details class="grade-accordion">
+<summary>Grado 2°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>24.4%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">5.4 Lee y escribe números ordinales hasta el vigésimo identificando la posición de un objeto en relación con otros, desde un punto de referencia.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>26.7%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">5.3 Compara números de 3 cifras con igual cantidad de centenas y/o decenas, utilizando la tabla de valores posicionales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>28.0%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">5.2 Compara números de 3 cifras con distinta cantidad de centenas, utilizando la tabla de valores posicionales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>35.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">3.2 Realiza sumas con tres sumandos, sumando primero los términos agrupados en paréntesis.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>36.6%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">5.5 Resuelve problemas sobre los números ordinales hasta 20.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>36.6%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.5 Resuelve problemas sobre sumas de números hasta de dos cifras llevando.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>38.8%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.4 Suma DU + DU, en forma vertical llevando a las decenas y centenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>40.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.5 Resuelve problemas sobre ubicar números de 3 cifras en la recta numérica.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.2 Suma CDU + CDU, en forma vertical llevando a las decenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.1 Suma DU + DU, en forma vertical llevando a las decenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.4 Ubica números de 3 cifras en la recta numérica, de forma descendente con escala de 5 o de 10.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>52.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.3 Realiza sumas con un sumando de 3 cifras y otro hasta de 2 cifras, en forma vertical llevando a las decenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Escribe y lee números de 3 cifras sin cero, utilizando la tabla de valores posicionales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Suma números de dos cifras con números de una cifra en forma vertical llevando a las decenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.1 Aplica la propiedad conmutativa para identificar sumas con igual resultado.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>60.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">5.1 Compara números de 3 cifras, utilizando la recta numérica.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.4 Escribe el número de 3 cifras que se forma con cierta cantidad dada de centenas (C00), decenas (D0) y unidades (U).</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.2 Resuelve problemas sobre suma vertical sin llevar.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Resuelve problemas sobre suma vertical sin llevar.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.3 Suma DU + DU en forma vertical llevando a las centenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.1 Escribe números de 2 cifras a partir de representaciones con tarjetas numéricas cuando se tienen 10 o más unidades.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">4.2 Ubica números de 3 cifras en la recta numérica, de forma descendente con escala de 1.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>71.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">4.1 Efectúa sumas con un sumando de 3 cifras y otro hasta de 3 cifras, en forma vertical sin llevar.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>77.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.1 Resuelve problemas sobre sumas de números de un dígito.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>86.3%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">2.1 Identifica, escribe y lee los números del 100 al 900 de 100 en 100.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>52.9%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 7</span> 2.2 Escribe y lee números de 3 cifras sin cero, utilizando la tabla de valores posicionales.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>59.4%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 9</span> 2.4 Escribe el número de 3 cifras que se forma con cierta cantidad dada de centenas (C00), decenas (D0) y unidades (U).
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>64.5%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 11</span> 3.1 Escribe números de 2 cifras a partir de representaciones con tarjetas numéricas cuando se tienen 10 o más unidades.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>68.0%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 19</span> 4.2 Ubica números de 3 cifras en la recta numérica, de forma descendente con escala de 1.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #ecfdf5; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>85.1%</strong><br/>
+<small>Excelente</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 6</span> 2.1 Identifica, escribe y lee los números del 100 al 900 de 100 en 100.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 3°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>23.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.2 Determina la hora de inicio o finalización de un evento cuando se tiene el periodo de duración en horas exactas y la hora inicial o final respectivamente, utilizando el reloj analógico.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>29.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.1 Determina los minutos de duración de eventos o actividades, dadas las horas de inicio y finalización utilizando el reloj analógico.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>33.1%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.7 Forma arreglos rectangulares y plantea el PO de la multiplicación para encontrar el total de objetos que hay en un arreglo.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Utiliza la multiplicación para plantear y resolver problemas que involucran longitudes.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.4 Suma DU + DU, en forma vertical llevando a las decenas y centenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>51.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.6 Agrupa y plantea el PO de la multiplicación para encontrar el total de marcas que hay en un arreglo no rectangular.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.3 Realiza restas en cadena con minuendo C0U y sustraendo hasta de 3 cifras, en forma vertical prestando de las decenas y centenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.1 Compara el peso de objetos, utilizando una unidad de peso arbitraria.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Determina la hora en que se realiza una actividad diferenciando entre a. m. y p. m.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.3 Resta DU – U, en forma vertical prestando de las decenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.16 Escribe los productos de las tablas de multiplicar del 6 al 9 en la tabla de multiplicaciones.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.4 Identifica en el calendario el número de días que tiene una semana y el número de meses o días de un año.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.3 Encuentra productos utilizando la propiedad conmutativa de la multiplicación.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">4.6 Realiza sumas con un sumando de 3 cifras y otro hasta de 2 cifras, en forma vertical llevando a las decenas y centenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>67.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.3 Realizar sumas con cantidades exactas de dinero.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>70.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.15 Realiza multiplicaciones con multiplicando o multiplicador igual a cero.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>72.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.1 Resuelve problemas utilizando las tablas de multiplicar.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>72.3%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.1 Comparemos la capacidad de recipientes, utilizando una unidad de medida arbitraria.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>74.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.2 Forma cantidades específicas con billetes.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>86.6%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">2.2 Expresa la capacidad de recipientes, utilizando el litro y la botella como unidades de medida.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>89.3%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">1.14 Construye la tabla de multiplicar del 10.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>93.5%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">1.2 Lee y escribe el peso de objetos en la balanza, utilizando la libra como unidad de medida.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>98.1%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">3.1 Identifica los billetes de $1, $5, $10, $20, $50 y $100.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>49.5%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 1</span> 2.4 Suma DU + DU, en forma vertical llevando a las decenas y centenas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>57.1%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 10</span> 4.3 Realiza restas en cadena con minuendo C0U y sustraendo hasta de 3 cifras, en forma vertical prestando de las decenas y centenas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>63.9%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 8</span> 2.3 Resta DU – U, en forma vertical prestando de las decenas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>66.4%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 3</span> 4.6 Realiza sumas con un sumando de 3 cifras y otro hasta de 2 cifras, en forma vertical llevando a las decenas y centenas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #ecfdf5; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>88.6%</strong><br/>
+<small>Excelente</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 20</span> 1.14 Construye la tabla de multiplicar del 10.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 4°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>24.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.6 Para una recta y un punto dado traza una recta paralela que pasa por el punto, haciendo uso de escuadras.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>31.5%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">3.2 Convierte el peso de un objeto medido en libras a onzas, y viceversa.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>32.1%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">4.1 Encuentra el tiempo de duración de una actividad dada su hora inicial y final, o conociendo el tiempo de duración de cada una de sus etapas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>39.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.12 Realiza una división de la forma DU ÷ U = DU con residuo, de manera vertical.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>39.5%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">3.4 Realizar restas con cantidades exactas de dinero.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>40.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.2 Aplica la multiplicación o división auxiliándose de una gráfica de cinta, para responder a preguntas de una situación específica.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.2 Determina la hora de inicio o finalización de un evento cuando se tiene el periodo de duración en horas exactas y la hora inicial o final respectivamente, utilizando el reloj analógico.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>45.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3 Escribe multiplicaciones como suma, identificando la cantidad que se repite y la cantidad de veces que se repite.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>47.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.4 Utiliza la relación entre minutos y segundos para realizar conversiones de segundos a minutos, y viceversa.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>47.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.5 Compara la longitud de segmentos de recta utilizando el compás.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.4 Identifica en el calendario el número de días que tiene una semana y el número de meses o días de un año.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.16 Escribe los productos de las tablas de multiplicar del 6 al 9 en la tabla de multiplicaciones.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.1 Escribe la fracción propia que corresponde a la representación gráfica de una medida de longitud o capacidad dividida a lo sumo en 10 partes iguales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Determina la hora en que se realiza una actividad diferenciando entre a. m. y p. m.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>62.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.2 Escribe la fracción que corresponde a la representación gráfica de una medida de longitud o capacidad.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.1 Utiliza la relación entre libras y onzas para identificar objetos con pesos mayores, menores o iguales a 1 libra.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>67.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.7 Efectúa divisiones en las que el dividendo y divisor son iguales, el divisor es 1 o el dividendo es 0.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>71.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.3 Resta DU – U, en forma vertical prestando de las decenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>71.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.1 Escribe la fracción que representa una de las partes iguales en las que se divide una unidad de longitud o capacidad.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>72.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.2 Forma cantidades específicas con billetes.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>75.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.3 Realizar sumas con cantidades exactas de dinero.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>76.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">4.6 Realiza sumas con un sumando de 3 cifras y otro hasta de 2 cifras, en forma vertical llevando a las decenas y centenas.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>94.2%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">3.1 Identifica los billetes de $1, $5, $10, $20, $50 y $100.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>43.6%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 20</span> 1.2 Determina la hora de inicio o finalización de un evento cuando se tiene el periodo de duración en horas exactas y la hora inicial o final respectivamente, utilizando el reloj analógico.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>45.8%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 9</span> 1.3 Escribe multiplicaciones como suma, identificando la cantidad que se repite y la cantidad de veces que se repite.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>56.9%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 13</span> 1.16 Escribe los productos de las tablas de multiplicar del 6 al 9 en la tabla de multiplicaciones.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>70.8%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 6</span> 2.3 Resta DU – U, en forma vertical prestando de las decenas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>76.0%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 3</span> 4.6 Realiza sumas con un sumando de 3 cifras y otro hasta de 2 cifras, en forma vertical llevando a las decenas y centenas.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 5°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>22.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.6 Utiliza la propiedad conmutativa en la suma o la multiplicación, para facilitar la realización del cálculo.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>23.7%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.5 Construye ángulos de diferentes medidas con regla y compás.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>35.4%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.5 Realiza una operación que combina suma, resta o multiplicación, y puede incluir un signo de agrupación (paréntesis).</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>38.0%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.5 Elabora una gráfica de barras verticales con escala mayor que 1, a partir de la información presentada en una tabla de frecuencias.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>39.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.2 Construye triángulos dada la longitud de un lado y las medidas de dos ángulos, utilizando regla y compás.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>40.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3 Resta cantidades dadas en dólares con centavos, sin prestar y prestando de los dólares a los centavos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>42.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.2 Identifica y menciona los elementos de conos y pirámides.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>45.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.7 Identifica y traza diagonales de un cuadrilátero e identifica las características de las diagonales de cada tipo de cuadrilátero (cuadrado, rectángulo, rombo, paralelogramo y trapecio).</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>45.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Encuentra el valor del minuendo o sustraendo desconocido en una resta apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>46.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>49.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.3 Encuentra el valor del multiplicando o multiplicador desconocido en una multiplicación apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>52.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3 Realiza una operación que combina la multiplicación con la suma o la resta, y no incluye un signo de agrupación (paréntesis).</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Recupera información de una gráfica de barras horizontales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.1 Realiza una operación de suma, resta o combinada de suma y resta con 3 números, que incluye un signo de agrupación (paréntesis).</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.2 Realiza una operación que combina la multiplicación con la suma o la resta, e incluye un signo de agrupación (paréntesis).</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.1 Encuentra el valor de un sumando desconocido en una suma apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.3 Recupera información de una gráfica de barras verticales, con escala mayor que 1.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.4 Encuentra el valor del dividendo desconocido en una división apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.3%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.6 Elige la escala que facilita representar los datos de una tabla de frecuencias, en una gráfica de barras verticales u horizontales.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>68.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.2 Suma cantidades dadas en dólares con centavos, sin llevar y llevando de los centavos a los dólares.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>73.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.4 Elabora una gráfica de barras verticales u horizontales con escala 1, a partir de la información presentada en una tabla de frecuencias.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>75.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.4 Identifica en el calendario el número de días que tiene una semana y el número de meses o días de un año.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>77.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.4 Realizar restas con cantidades exactas de dinero.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>90.0%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>94.6%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">2.1 Recupera información de una gráfica de barras verticales.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>46.1%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 14</span> 2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>68.8%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 20</span> 1.2 Suma cantidades dadas en dólares con centavos, sin llevar y llevando de los centavos a los dólares.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>75.5%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 12</span> 1.4 Identifica en el calendario el número de días que tiene una semana y el número de meses o días de un año.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>77.5%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 18</span> 3.4 Realizar restas con cantidades exactas de dinero.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #ecfdf5; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>89.8%</strong><br/>
+<small>Excelente</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 13</span> 2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 6°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fef2f2; border-left: 6px solid #991b1b;">
+<div class="pct-box"><strong>18.8%</strong><br/><small>Crítico</small></div>
+<div class="ind-text">1.8 Calcula el área de cuadrados y rectángulos utilizando el metro cuadrado como unidad de medida.</div>
+</div>
+<div class="indicator-item" style="background-color: #fef2f2; border-left: 6px solid #991b1b;">
+<div class="pct-box"><strong>20.0%</strong><br/><small>Crítico</small></div>
+<div class="ind-text">2.1 Encuentra fracciones equivalentes por medio del proceso de amplificación.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>24.0%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.5 Construye gráficas de línea, utilizando una escala adecuada y símbolo de corte.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>30.0%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.6 Convierte números mixtos a fracciones impropias.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>31.9%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">5.1 Efectúa operaciones combinadas de suma y resta de fracciones homogéneas, con o sin paréntesis.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>35.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.7 Convierte fracciones impropias a números mixtos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>36.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.3 Encuentra el valor del multiplicando o multiplicador desconocido en una multiplicación apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>37.5%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.1 Encuentra el valor de un sumando desconocido en una suma apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>38.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.1 Realiza conversiones de pesos, de arrobas a quintales y viceversa, de libras a arrobas y viceversa, y de libras a quintales y viceversa.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>38.6%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.2 Realiza una operación que combina la multiplicación con la suma o la resta, e incluye un signo de agrupación (paréntesis).</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.1 Resta de fracciones homogéneas expresando el resultado como número mixto cuando sea una fracción impropia.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.2 Suma fracciones homogéneas cuyo resultado es una fracción impropia y lo expresa como número mixto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>51.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.3 Suma un número mixto con otro número mixto, entero o una fracción, sin llevar y con parte fraccionaria homogénea.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.2 Elabora e interpreta tablas de doble entrada a partir de datos representados en tres tablas de frecuencia.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Encuentra el valor del minuendo o sustraendo desconocido en una resta apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.3%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.4 Representa un número natural como una fracción impropia dado el denominador y viceversa, observando gráficamente la cantidad en la que se ha dividido la unidad.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.4 Encuentra el valor del dividendo desconocido en una división apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.1 Elabora e interpreta tablas de doble entrada a partir de datos representados en dos tablas de frecuencia.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.3%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.2 Determina la hora de inicio o finalización de un evento cuando se tiene el periodo de duración en horas exactas y la hora inicial o final respectivamente, utilizando el reloj analógico.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>67.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.1 Suma fracciones homogéneas escribiendo el resultado como fracción.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">4.2 Resta de un número un entero, una fracción o un número mixto con parte fraccionaria homogénea, sin prestar.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>74.3%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">4.1 Interpreta los datos presentados en un pictograma con figuras completas.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>80.5%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>84.4%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">1.3 Determina la hora en que se realiza una actividad diferenciando entre a. m. y p. m.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fff7ed; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>38.5%</strong><br/>
+<small>Bajo</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 17</span> 1.2 Realiza una operación que combina la multiplicación con la suma o la resta, e incluye un signo de agrupación (paréntesis).
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>43.1%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 8</span> 2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>65.9%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 4</span> 1.2 Determina la hora de inicio o finalización de un evento cuando se tiene el periodo de duración en horas exactas y la hora inicial o final respectivamente, utilizando el reloj analógico.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #ecfdf5; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>80.1%</strong><br/>
+<small>Excelente</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 7</span> 2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #ecfdf5; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>84.0%</strong><br/>
+<small>Excelente</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 5</span> 1.3 Determina la hora en que se realiza una actividad diferenciando entre a. m. y p. m.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 7°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>22.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">4.5 Escribe números fraccionarios o mixtos como números decimales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>29.0%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.2 Determina si una figura posee simetría puntual respecto a un punto en el interior de la figura.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>30.1%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.1 Determina y compara números positivos, negativos y el cero para establecer una relación de orden entre ellos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>30.8%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.4 Convierte el peso de objetos dado en libras a kilogramos o gramos, y viceversa.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>32.7%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.7 Escribe relaciones de suma, resta y multiplicación de cantidades variables utilizando las letras x y y.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>33.7%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.5 Utiliza el diagrama de árbol para encontrar todos los casos que cumplen una condición.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>38.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.4 Utiliza la propiedad del centro de simetría para encontrar puntos correspondientes.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>38.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.2 Encuentra la cantidad total de formas de ordenar objetos usando diagramas de árbol.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>41.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3 Calcula la cantidad desconocida en planteamientos de multiplicación con números decimales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.1 Encuentra la probabilidad de ocurrencia de un suceso usando la fórmula: casos que cumplen la condición ÷ casos posibles.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>45.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.2 Efectúa la suma de dos números no decimales ni fraccionarios con diferente signo.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>48.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.8 Determina la capacidad de un depósito con forma rectangular, usando la equivalencia entre litros y centímetros cúbicos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.2 Asigna un valor positivo o negativo a la ubicación de un objeto respecto a un punto de referencia.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.1 Realiza la suma de dos números no decimales ni fraccionarios con igual signo.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>51.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.1 Encuentra la medida del ángulo de rotación (90°, 180°, 270° o 360°) de una figura.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>52.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.4 Utiliza la relación entre minutos y segundos para realizar conversiones de segundos a minutos, y viceversa.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3 Asigna un valor positivo o negativo a la diferencia de una cantidad con respecto a otra cantidad de referencia.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.6 Construye figuras simétricas a partir de su eje de simetría.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.3 Identifica los vértices, lados y ángulos correspondientes en una figura con simetría puntual.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.2 Encuentra el valor absoluto de un número dado.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.1 Ordena objetos diferentes en un diagrama de árbol a partir de una condición inicial.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>63.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.4 Representa números positivos y negativos en la recta numérica.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Realiza sumas que tienen como sumandos al cero y a otro número no decimal ni fraccionario.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>77.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.2 Aplica la multiplicación o división auxiliándose de una gráfica de cinta, para responder a preguntas de una situación específica.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>79.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.1 Asigna un valor positivo o negativo a distintas temperaturas.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fff7ed; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>22.3%</strong><br/>
+<small>Bajo</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 18</span> 4.5 Escribe números fraccionarios o mixtos como números decimales.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fff7ed; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>30.7%</strong><br/>
+<small>Bajo</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 17</span> 2.4 Convierte el peso de objetos dado en libras a kilogramos o gramos, y viceversa.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>41.2%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 20</span> 1.3 Calcula la cantidad desconocida en planteamientos de multiplicación con números decimales.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>52.6%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 3</span> 4.4 Utiliza la relación entre minutos y segundos para realizar conversiones de segundos a minutos, y viceversa.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>77.3%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 2</span> 3.2 Aplica la multiplicación o división auxiliándose de una gráfica de cinta, para responder a preguntas de una situación específica.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 8°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>27.8%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.2 Determina si una figura posee simetría puntual respecto a un punto en el interior de la figura.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>27.9%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.1 Encuentra la medida del ángulo de rotación (90°, 180°, 270° o 360°) de una figura.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>29.6%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.3 Identifica los vértices, lados y ángulos correspondientes en una figura con simetría puntual.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>31.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.7 Construye diferentes desarrollos planos del cubo y los construye.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>33.6%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.3 Identifica paralelismo y perpendicularidad entre las aristas en prismas rectangulares.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>34.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.2 Realiza combinaciones de traslaciones verticales y horizontales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>37.1%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.8 Calcula el área de cuadrados y rectángulos utilizando el metro cuadrado como unidad de medida.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>40.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.8 Determina la capacidad de un depósito con forma rectangular, usando la equivalencia entre litros y centímetros cúbicos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>41.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.2 Encuentra la cantidad total de formas de ordenar objetos usando diagramas de árbol.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.1 Resta de fracciones homogéneas expresando el resultado como número mixto cuando sea una fracción impropia.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.1 Traslada una figura de forma vertical u horizontal.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>45.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.4 Utiliza la propiedad del centro de simetría para encontrar puntos correspondientes.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.5 Dibuja el desarrollo plano de prismas rectangulares y los construye.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.5 Utiliza la propiedad del eje de simetría para identificar segmentos perpendiculares y la igualdad entre segmentos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.1 Realiza conversiones de pesos, de arrobas a quintales y viceversa, de libras a arrobas y viceversa, y de libras a quintales y viceversa.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Calcula la cantidad desconocida en planteamientos de multiplicación con números decimales.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.1 Ordena objetos diferentes en un diagrama de árbol a partir de una condición inicial.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.4 Identifica los vértices, lados y ángulos correspondientes en una figura simétrica.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>67.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.7 Escribe relaciones de suma, resta y multiplicación de cantidades variables utilizando las letras ? y ?.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>68.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.6 Construye figuras simétricas a partir de su eje de simetría.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">4.1 Interpreta los datos presentados en un pictograma con figuras completas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>73.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Determina si una figura es simétrica respecto a un eje dado.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>75.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.6 Dibuja el desarrollo plano de cubos y los construye.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>79.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.1 Suma fracciones homogéneas escribiendo el resultado como fracción.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>80.9%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">1.1 Calcula la cantidad desconocida en planteamientos de suma y resta, cuando dicho valor es un número natural.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fff7ed; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>37.1%</strong><br/>
+<small>Bajo</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 1</span> 1.8 Calcula el área de cuadrados y rectángulos utilizando el metro cuadrado como unidad de medida.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>44.0%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 7</span> 4.1 Resta de fracciones homogéneas expresando el resultado como número mixto cuando sea una fracción impropia.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>57.9%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 10</span> 1.1 Realiza conversiones de pesos, de arrobas a quintales y viceversa, de libras a arrobas y viceversa, y de libras a quintales y viceversa.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>69.1%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 13</span> 4.1 Interpreta los datos presentados en un pictograma con figuras completas.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>79.4%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 4</span> 3.1 Suma fracciones homogéneas escribiendo el resultado como fracción.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 9°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>24.8%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.7 Dibuja la bisectriz de un ángulo aplicando las características de dos círculos que se intersecan.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>31.6%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">3.7 Calcula el área total de un prisma a partir de su plano desarrollado.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>33.7%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">3.4 Determina la perpendicularidad entre un plano y una recta.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>34.0%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.8 Dibuja una recta tangente a una circunferencia utilizando características de dos círculos que se intersecan.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>35.1%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.1 Utiliza polinomios para obtener propiedades de números u operaciones.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>38.4%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">2.9 Calcula la longitud del arco de un sector circular.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>41.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Utiliza los sistemas de ecuaciones para resolver problemas de las ciencias naturales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.9 Calcula el área total de un cilindro a partir de su plano desarrollado.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.7 Resuelve desafíos o situaciones problemáticas en distintos contextos, mediante la aplicación de las relaciones que caracterizan a los ángulos entre paralelas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>43.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.3 Efectúa multiplicaciones y divisiones de fracciones y números decimales, escribiendo los números decimales como fracciones.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.3 Encuentra la mediana de una cantidad de datos par.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.3 Identifica la relación de posición entre rectas y planos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>49.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.15 Resuelve un sistema de ecuaciones con dos incógnitas cuya forma es  ax+by+c = 0.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.1 Clasifica cuerpos geométricos según sus características.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.10 Calcula el consecuente de una razón cuando se conoce el antecedente correspondiente a un porcentaje menor al 100 %.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.5 Determina si dos triángulos son congruentes a partir de las medidas de dos lados y el ángulo comprendido entre ellos (Lado, Ángulo, Lado).</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.12 Utiliza la sustitución de variables para determinar el valor numérico de un polinomio.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>54.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.8 Calcula el área total de una pirámide a partir de su plano desarrollado.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.5 Resuelve situaciones – problema sobre cantidades inversamente proporcionales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.10 Calcula el área de un sector circular.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3 Determina la suma de los ángulos externos de un polígono.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.6 Identifica el cuerpo geométrico observando la figura proyectada ortogonalmente.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>63.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Calcula la cantidad desconocida en planteamientos de multiplicación con números decimales.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.5 Determina cuerpos geométricos formados por el movimiento de figuras planas.</div>
+</div>
+<div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+<div class="pct-box"><strong>81.6%</strong><br/><small>Excelente</small></div>
+<div class="ind-text">3.2 Clasifica poliedros regulares por el número y la forma de las caras.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>43.6%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 13</span> 2.3 Efectúa multiplicaciones y divisiones de fracciones y números decimales, escribiendo los números decimales como fracciones.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>43.8%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 17</span> 2.3 Encuentra la mediana de una cantidad de datos par.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>53.4%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 14</span> 2.10 Calcula el consecuente de una razón cuando se conoce el antecedente correspondiente a un porcentaje menor al 100 %.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>55.3%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 15</span> 3.5 Resuelve situaciones – problema sobre cantidades inversamente proporcionales.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>63.1%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 10</span> 1.3 Calcula la cantidad desconocida en planteamientos de multiplicación con números decimales.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 10°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>37.4%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.6 Calcula la media aritmética e identifica la dispersión de distribuciones de datos, utilizando el rango para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>42.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Calcula la desviación típica de distribuciones cuyos datos son el producto de una constante por una variable.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>42.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.9 Calcula el área total de un cilindro a partir de su plano desarrollado.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>46.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.4 Utiliza arcos congruentes para determinar el paralelismo entre cuerdas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>47.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.7 Aplica el mínimo común múltiplo y máximo común divisor para resolver problemas del entorno.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>48.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3 Utiliza la varianza para datos no agrupados para justificar la dispersión de los datos de la serie.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>48.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.1 Calcula la desviación típica de distribuciones cuyos datos son la suma de una constante y una variable.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>49.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.5 Determina las condiciones para que cuatro puntos estén sobre una circunferencia.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.7 Calcula la varianza para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>52.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Identifica el uso de valores representativos para la solución de situaciones cotidianas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.4 Justifica la dispersión de una serie utilizando la desviación típica.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.2 Analiza las reglas para determinar los dígitos significativos de una cantidad.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>54.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.8 Calcula la desviación típica para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>54.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.4 Determina de manera aproximada la mediana y la moda para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>54.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.2 Identifica distribuciones de datos que se encuentran más dispersas respecto a la media.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.13 Utiliza la fórmula general de la ecuación cuadrática identificando los valores de la ecuación general.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.3 Resuelve problemas con triángulos semejantes utilizando el teorema del ángulo inscrito.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.8 Determina la capacidad de un depósito con forma rectangular, usando la equivalencia entre litros y centímetros cúbicos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.1 Determina el valor aproximado de una cantidad.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.1 Identifica la dispersión de distribuciones de datos, utilizando el rango para datos no agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Calcula la media aritmética de una serie de datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.3%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.2 Encuentra el valor absoluto de un número dado.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>63.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.5 Resuelve situaciones – problema sobre cantidades inversamente proporcionales.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.6 Determina las medidas de ángulos semiinscritos utilizando la medida del ángulo central.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>72.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.3 Compara y analiza información mediante el uso de propiedades de la media aritmética.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>42.0%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 16</span> 3.9 Calcula el área total de un cilindro a partir de su plano desarrollado.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>47.6%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 11</span> 3.7 Aplica el mínimo común múltiplo y máximo común divisor para resolver problemas del entorno.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>56.4%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 6</span> 1.8 Determina la capacidad de un depósito con forma rectangular, usando la equivalencia entre litros y centímetros cúbicos.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>60.3%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 9</span> 2.2 Encuentra el valor absoluto de un número dado.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>63.0%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 3</span> 3.5 Resuelve situaciones – problema sobre cantidades inversamente proporcionales.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 11°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.8 Utiliza el coeficiente de variación para analizar la representatividad de la media aritmética en series de datos diferentes.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.9 Calcula el área total de un cilindro a partir de su plano desarrollado.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.6 Calcula las medidas de tendencia central para una muestra y una población en datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.2 Construye una gráfica circular a partir de una tabla.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.9 Representa intervalos en la recta numérica o en la notación de conjunto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.1 Aplica las definiciones de población, muestra y variable, y clasifica las variables entre cualitativas nominales y ordinales o cuantitativas discretas y continuas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.4 Realiza el producto escalar de vectores utilizando la forma trigonométrica del producto escalar.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.7 Calcula las medidas de dispersión para una muestra y una población en datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>60.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.4 Identifica la técnica de muestreo no probabilístico más adecuada para situaciones específicas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.1 Determina y analiza los cuartiles de una serie de datos simple.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>62.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.6 Calcula la media aritmética e identifica la dispersión de distribuciones de datos, utilizando el rango para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>62.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.5 Elabora tablas de frecuencia y calcula las medidas de tendencia central y de dispersión para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.2 Calcula el producto escalar de vectores paralelos.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.1 Aplica la regla de tres simple directa para encontrar un dato desconocido, utilizando dos cantidades directamente proporcionales.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.8 Calcula la desviación típica para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.7 Calcula la varianza para datos agrupados.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>66.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.5 Determina el producto escalar de vectores en coordenadas de una base ortonormal.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>67.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.1 Calcula la desviación típica de distribuciones cuyos datos son la suma de una constante y una variable.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>68.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.3 Efectúa el producto escalar de vectores no paralelos utilizando proyección ortogonal.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>68.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Aplica el muestreo probabilístico a situaciones de la vida cotidiana.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.2 Calcula la desviación típica de distribuciones cuyos datos son el producto de una constante por una variable.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>70.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.3 Determina el área de una figura plana mediante el uso de la función lineal.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>72.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3 Utiliza la varianza para datos no agrupados para justificar la dispersión de los datos de la serie.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>74.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.4 Justifica la dispersión de una serie utilizando la desviación típica.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>75.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.7 Aplica el mínimo común múltiplo y máximo común divisor para resolver problemas del entorno.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>57.2%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 8</span> 3.9 Calcula el área total de un cilindro a partir de su plano desarrollado.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>57.8%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 7</span> 2.2 Construye una gráfica circular a partir de una tabla.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>64.2%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 6</span> 3.1 Aplica la regla de tres simple directa para encontrar un dato desconocido, utilizando dos cantidades directamente proporcionales.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>70.3%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 11</span> 3.3 Determina el área de una figura plana mediante el uso de la función lineal.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>75.2%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 3</span> 3.7 Aplica el mínimo común múltiplo y máximo común divisor para resolver problemas del entorno.
+                    </div>
+</div></div>
+</details></div>
+<div class="tab-content" id="LEC"><div class="card"><h2>👥 Resumen de Estudiantes - Lengua</h2><table><thead><tr><th>Grado</th><th>Estudiantes Evaluados</th></tr></thead><tbody><tr><td>2° Grado</td><td>5282</td></tr><tr><td>3° Grado</td><td>5914</td></tr><tr><td>4° Grado</td><td>7135</td></tr><tr><td>5° Grado</td><td>6789</td></tr><tr><td>6° Grado</td><td>6848</td></tr><tr><td>7° Grado</td><td>7029</td></tr><tr><td>8° Grado</td><td>6886</td></tr><tr><td>9° Grado</td><td>6428</td></tr><tr><td>10° Grado</td><td>4882</td></tr><tr><td>11° Grado</td><td>4211</td></tr></tbody></table></div>
+<details class="grade-accordion">
+<summary>Grado 2°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>47.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">2.12 Responde y formula preguntas sobre el contenido de mapas conceptuales, organigramas y cuadros sinópticos al relacionar la información de sus columnas y/o filas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>51.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.3 Propone respuestas basadas en inferencias ante adivinanzas que escucha, interpretando las comparaciones (símil) que contienen.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>54.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.6. Distingue los sustantivos propios de los comunes.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.12. Explica el propósito, el emisor y el destinatario de videollamadas que simula.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>52.9%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clases 3 y 4</span> 1.6. Distingue los sustantivos propios de los comunes.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>54.3%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clases 13, 14 y 15</span> 1.12 Explica el propósito, el emisor y el destinatario de videollamadas que simula.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 3°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>31.7%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.6. Distingue los sustantivos propios de los comunes.</div>
+</div>
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>39.8%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">8.7. Identifica el propósito, el emisor y el destinatario de las noticias deportivas y ambientales, o de los temas científicos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.5. Identifica el destinatario, el emisor y el propósito de los carteles publicitarios que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.1. Identifica la estructura, el contenido y el propósito de las adivinanzas que lee o escucha.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.3. Lee y soluciona acertijos infantiles proponiendo respuestas ingeniosas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.14. Distingue los sustantivos femeninos de los masculinos y los singulares de los plurales.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.7. Identifica sustantivos propios y comunes en cuentos populares, retahílas y adivinanzas que expresa o escucha.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fff7ed; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>31.2%</strong><br/>
+<small>Bajo</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 1</span> 1.6. Distingue los sustantivos propios de los comunes.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>59.9%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 3</span> 1.14. Distingue los sustantivos femeninos de los masculinos y los singulares de los plurales.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>63.2%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 1</span> 1.7. Identifica sustantivos propios y comunes en cuentos populares, retahílas y adivinanzas que expresa o escucha.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 4°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>42.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.2.Explica la prosopopeya y la ejemplifica con personajes de fábula que lee o escucha.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.7. Identifica los hechos recientes que contienen las noticias de sucesos culturales que lee en medios informativos digitales.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>46.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.7. Identifica el propósito, el emisor y el destinatario de noticias deportivas, ambientales o de temas científicos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>46.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">7.2. Lee textos dramáticos infantiles demostrando comprensión al reconstruir la secuencia de acciones y al describir a los personajes y el ambiente.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>47.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">1.5. Identifica el destinatario, el emisor y el propósito de carteles publicitarios que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.4. Interpreta y explica el mensaje y el destinatario de las señales del entorno.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">4.2. Analiza las moralejas de las fábulas que lee, reconociendo con acierto la intención moralizante.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>62.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.1. Identifica el tiempo, el lugar y los personajes de las fábulas que lee o escucha.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>45.9%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 15</span> 7.2. Lee textos dramáticos infantiles demostrando comprensión al reconstruir la secuencia de acciones y al describir a los personajes y el ambiente.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 5°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>34.3%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">5.6. Evalúa el texto publicitario que se presenta en vallas reconociendo sus estrategias discursivas, la relación que establece con el receptor y su intención comunicativa.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>41.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.4. Identifica los personajes de cuentos de aventuras que narra, escucha o lee y describe sus características físicas y sentimientos.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">3.2. Interpreta el contenido de los acrósticos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>52.4%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.4. Reconoce y utiliza la topografía como figura literaria para describir lugares reales o imaginarios.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.1. Analiza leyendas salvadoreñas identificando sus características, elementos, estructura y evaluando el contenido textual.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.1. Identifica el tiempo, el lugar y los personajes de las fábulas que lee o escucha.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">5.1. Analiza textos dramáticos identificando los elementos principales: personajes, lugar y tiempo.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.3. Interpreta las características y estructura de cuentos de aventuras que narra, escucha o lee: inicio, desarrollo y final.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.3. Identifica las características y estructura de cuentos de aventuras que narra, escucha o lee: inicio, desarrollo y final.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.15. Interpreta los textos narrativos cortos que lee a partir de la utilización de diversas estrategias.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>40.1%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 17</span> 8.4. Identifica los personajes de cuentos de aventuras que narra, escucha o lee y describe sus características físicas y sentimientos.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>55.0%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 6</span> 8.1. Identifica el tiempo, el lugar y los personajes de las fábulas que lee o escucha.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>61.8%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 16</span> 8.3. Identifica las características y estructura de cuentos de aventuras que narra, escucha o lee: inicio, desarrollo y final.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 6°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>46.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.4 Analiza el contenido de leyendas latinoamericanas que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.4. Reconoce y utiliza la topografía como figura literaria para describir lugares reales o imaginarios.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>52.0%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.3 Identifica las características de las leyendas latinoamericanas y reconoce los elementos reales e imaginarios que la componen.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.1. Identifica el tiempo, el lugar y los personajes de las fábulas que lee o escucha.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.1. Analiza leyendas salvadoreñas identificando sus características, elementos, estructura y evaluando el contenido textual.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>58.7%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.10 Analiza textos instruccionales reconociendo sus características y estructura, así como la deducción de su propósito comunicativo.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.1 Analiza cuentos infantiles salvadoreños identificando sus características y evaluando la situación comunicativa.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>55.3%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 4</span> 8.1. Identifica el tiempo, el lugar y los personajes de las fábulas que lee o escucha.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 7°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>31.7%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">8.2. Analiza el contenido de cuentos latinoamericanos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.8. Analiza la estructura y el contenido de comentarios críticos identificando las ideas principales y secundarias, deduciendo la intención comunicativa y evaluando la postura del autor del texto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>44.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.6. Analiza reportes escolares reconociendo su estructura y características, identificando las ideas principales y secundarias, deduciendo la intención comunicativa y concluyendo el tema central del texto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.9. Analiza la estructura y el contenido de crónicas deportivas reconociendo sus características, identificando la información principal, deduciendo su intención comunicativa y evaluando las ideas expuestas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">7.5 Analiza informes escolares atendiendo a su estructura, características y contenido.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.2%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.2. Analiza el contenido de los cuentos latinoamericanos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">6.7 Clasifica las fuentes de información directas e indirectas en los textos que lee o en las investigaciones que realiza.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>53.3%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 17</span> 7.5 Analiza informes escolares atendiendo a su estructura, características y contenido.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>64.1%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 14</span> 6.7 Clasifica las fuentes de información directas e indirectas en los textos que lee o en las investigaciones que realiza.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 8°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+<div class="pct-box"><strong>37.2%</strong><br/><small>Bajo</small></div>
+<div class="ind-text">1.5. Identifica los elementos de la comunicación pragmática en diversas situaciones comunicativas, tanto orales como escritas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>47.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.7. Concluye el tema de los textos que lee a partir del reconocimiento de las ideas principales o los subtemas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>62.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.7. Analiza la forma y el contenido de los boletines que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.2%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">2.11. Analiza el contenido de biografías, reconociendo sus características y verificando la veracidad de la información.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.7%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.3. Analiza y evalúa el contenido de los textos poéticos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>70.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">3.11. Analiza la estructura y contenido de biografías y autobiografías, reconociendo sus características, las ideas principales y deduciendo su propósito comunicativo.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>71.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.1. Reconoce y explica la definición, el origen y las características del mito y la leyenda al leer textos pertenecientes a diferentes culturas.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>72.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.3. Reconoce el efecto estético que produce el símbolo en los textos que lee o escribe.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>67.8%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 11</span> 2.11. Analiza el contenido de biografías, reconociendo sus características y verificando la veracidad de la información.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>68.8%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 12</span> 3.11. Analiza la estructura y contenido de biografías y autobiografías, reconociendo sus características, las ideas principales y deduciendo su propósito comunicativo.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 9°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>50.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.4. Reconoce el efecto estético que producen la anadiplosis, la epanadiplosis, el zeugma, la antítesis y la jitanjáfora en los textos que lee o escribe.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>52.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.7. Concluye el tema de los textos que lee a partir del reconocimiento de las ideas principales o subtemas.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>53.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.1. Reconoce y explica los elementos de la comunicación poética a partir de los textos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">5.10. Analiza la estructura y contenido de tablas y gráficos, reconociendo los datos que transmiten, estableciendo comparaciones y concluyendo a partir de la información presentada.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.3. Analiza y evalúa el contenido de los textos poéticos que lee.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>61.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.5. Analiza y evalúa los textos argumentativos a partir de sus elementos y contenido.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>64.6%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">7.6. Analiza novelas realistas identificando la influencia del contexto mediante la lectura de muestras representativas nacionales e internacionales.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>70.1%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">1.10. Analiza la estructura y contenido de infografías de diversos temas, reconociendo sus características y deduciendo su intención comunicativa.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>60.5%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 13</span> 5.10. Analiza la estructura y contenido de tablas y gráficos, reconociendo los datos que transmiten, estableciendo comparaciones y concluyendo a partir de la información presentada.
+                    </div>
+</div>
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>69.4%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 9</span> 1.10. Analiza la estructura y contenido de infografías de diversos temas, reconociendo sus características y deduciendo su intención comunicativa.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 10°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>47.1%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.9. Analiza descripciones literarias y no literarias estableciendo las diferencias en el estilo descriptivo al leer este tipo de texto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>51.6%</strong><br/><small>Medio</small></div>
+<div class="ind-text">7.4. Analiza la poesía contemporánea basándose en sus características, estructura y contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>54.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">7.1. Reconoce y explica las características de la poesía contemporánea a partir de sus principales autores.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>55.9%</strong><br/><small>Medio</small></div>
+<div class="ind-text">6.7. Analiza críticamente artículos de revista, considerando las temáticas y la estructura.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>56.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.3. Analiza textos poéticos mediante la lectura de autores representativos de la poesía lírica.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.5%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.1. Reconoce y explica las características, estructura y temáticas de las principales manifestaciones de poesía lírica al leer este tipo de texto poético.</div>
+</div>
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>59.3%</strong><br/><small>Medio</small></div>
+<div class="ind-text">7.2. Analiza textos literarios y no literarios considerando el sentido literal y el sentido figurado en los textos que lee o escribe.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>60.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.5. Analiza y evalúa textos argumentativos, a partir de sus elementos y contenido.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>67.9%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.4 Reconoce el efecto estético que producen la anadiplosis, la epanadiplosis, el zeugma, la antítesis y la jitanjáfora en textos que lee o escribe.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #fefce8; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>59.9%</strong><br/>
+<small>Medio</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 17</span> 8.5. Analiza y evalúa textos argumentativos a partir de sus elementos y contenido.
+                    </div>
+</div></div>
+</details>
+<details class="grade-accordion">
+<summary>Grado 11°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+<div class="content">
+<div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+<div class="pct-box"><strong>57.8%</strong><br/><small>Medio</small></div>
+<div class="ind-text">8.6. Analiza las críticas culturales a partir de su estructura y características.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>65.4%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">7.4. Analiza la poesía contemporánea basándose en sus características, estructura y contexto.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>69.0%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">7.10. Analiza y evalúa editoriales a partir de sus elementos y de los temas que desarrollan.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>71.5%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">7.4. Interpreta obras literarias del siglo XX, valorando el contenido con el contexto de lectura.</div>
+</div>
+<div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+<div class="pct-box"><strong>74.8%</strong><br/><small>Bueno</small></div>
+<div class="ind-text">8.5. Analiza y evalúa textos argumentativos, a partir de sus elementos y contenido.</div>
+</div>
+
+<div class="indicator-item ancla" style="background-color: #f7fee7; border-left: 6px dashed #3949AB;">
+<div class="pct-box">
+<strong>74.0%</strong><br/>
+<small>Bueno</small>
+</div>
+<div class="ind-text">
+<span class="ancla-badge">ANCLA</span>
+<span class="badge-class">Clase 7</span> 8.5. Analiza y evalúa textos argumentativos, a partir de sus elementos y contenido.
+                    </div>
+</div></div>
+</details></div>
+<script>
+            function openTab(evt, tabName) {
+                var i, content, btn;
+                content = document.getElementsByClassName("tab-content");
+                for (i = 0; i < content.length; i++) content[i].style.display = "none";
+                btn = document.getElementsByClassName("tab-btn");
+                for (i = 0; i < btn.length; i++) btn[i].className = btn[i].className.replace(" active", "");
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+        </script>
+</body>
+</html>

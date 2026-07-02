@@ -1,0 +1,236 @@
+================================================================================
+METODOLOGÍA DE SELECCIÓN DE ESCUELAS: SISTEMA DE TASA DE VICTORIAS (WIN RATE)
+CON MEDIA PONDERADA POR TAMAÑO DE GRADO
+DOCUMENTACIÓN TÉCNICA DEL SCRIPT: Mejores_Escuelas_Sistema_Tasa_Victorias.py
+================================================================================
+
+Este documento explica cómo funciona el algoritmo que selecciona a las 10 mejores
+escuelas en la Prueba Progreso, garantizando constancia, equidad y comparaciones
+justas entre instituciones del mismo tipo a lo largo de 4 aplicaciones mensuales.
+
+A continuación se explica el proceso completo, desde la carga de archivos hasta
+la generación del reporte final en Excel.
+
+================================================================================
+FASE 0: CARGA DE DATOS Y CATÁLOGO DE DEPARTAMENTOS
+================================================================================
+El script comienza leyendo cuatro carpetas — una por cada mes evaluado (Marzo,
+Abril, Mayo, Junio) — que contienen archivos CSV con los resultados individuales
+de cada estudiante.
+
+Antes de procesar los CSVs, se carga un archivo Excel de matrícula
+(Matricula_P1.xlsx) que sirve como catálogo para mapear el código de centro
+educativo a su departamento geográfico. Este mapeo se almacena en un diccionario
+(dept_map) y se usará más adelante para distinguir el Top 10 Nacional del
+Top 10 de San Salvador.
+
+Para cada CSV encontrado, el script:
+  - Intenta leerlo con tres encodings en orden: UTF-8, Latin-1, CP1252.
+    Esto garantiza compatibilidad con archivos generados en distintos sistemas.
+  - Verifica que contenga las columnas mínimas requeridas:
+      * "theta.global (escala 0-100)"  → el puntaje IRT del estudiante
+      * "Nro de centro"                → identificador de la escuela
+      * "Grado"                        → grado escolar del estudiante
+  - Descarta automáticamente:
+      * Archivos cuyo nombre contenga "legend" (archivos de leyenda, no datos).
+      * Registros con códigos virtuales (99999, 99998).
+      * Registros de centros cuyo nombre contenga "Centro Virtual".
+      * Registros donde el puntaje no sea un número válido (NaN).
+      * Registros marcados como inválidos por tiempo de respuesta sospechoso
+        (la columna "anular_prueba" contiene indicadores como "5 min",
+        "demora" o "duración").
+
+Al finalizar la lectura, todos los datos válidos de los 4 meses se consolidan
+en un único DataFrame (df_total).
+
+--------------------------------------------------------------------------------
+CLASIFICACIÓN DEL TIPO DE INSTITUCIÓN
+--------------------------------------------------------------------------------
+El nombre del centro educativo determina a qué categoría pertenece la escuela:
+
+  - Si el nombre contiene "INSTITUTO"  → Tipo: Instituto
+  - Si el nombre contiene "COMPLEJO"   → Tipo: Complejo
+  - En cualquier otro caso             → Tipo: Centro Escolar
+
+Esta clasificación es fundamental: las escuelas solo compiten contra
+instituciones de su mismo tipo.
+
+================================================================================
+FASE 1: LA CONSTANCIA COMO "BOLETO DE ENTRADA" (FILTRO DE 4 MESES)
+================================================================================
+Antes de entrar al torneo, cada escuela debe demostrar compromiso continuo.
+El sistema cuenta cuántos meses distintos (del 1 al 4) tiene registros cada
+escuela.
+
+  - Si la escuela tiene registros en los 4 meses → AVANZA AL TORNEO.
+  - Si le falta aunque sea un mes               → QUEDA ELIMINADA.
+
+No importa si sus estudiantes obtuvieron puntajes perfectos en los meses que
+sí participó. La constancia es un requisito binario: se cumple o no se cumple.
+
+Ejemplo:
+  Escuela A: participó en Marzo, Abril, Mayo y Junio → AVANZA.
+  Escuela B: participó en Marzo, Abril y Mayo, pero no en Junio → ELIMINADA.
+
+================================================================================
+FASE 2: CLASIFICACIÓN DEL PUNTAJE INDIVIDUAL
+================================================================================
+Para cada examen individual de cada estudiante, el script asigna un nivel
+según el puntaje theta.global (escala 0-100):
+
+  Puntaje ≤ 35          → Crítico
+  36 ≤ Puntaje ≤ 45     → Bajo
+  46 ≤ Puntaje ≤ 55     → Medio
+  56 ≤ Puntaje ≤ 65     → Bueno
+  Puntaje > 65          → Excelente
+
+A partir de esta clasificación se crea una variable binaria:
+  - Si el nivel es "Bueno" o "Excelente" → Es_Bueno_Exc = 1 (Éxito)
+  - En cualquier otro caso               → Es_Bueno_Exc = 0 (Fallo)
+
+Esta variable es la unidad fundamental de medición del sistema.
+
+================================================================================
+FASE 3: EL "BALDE" DE LOS 4 MESES (PORCENTAJE BRUTO POR GRADO)
+================================================================================
+Para evaluar el desempeño de un grado en una escuela, el sistema acumula
+TODOS los exámenes de ese grado durante los 4 meses en un solo "balde",
+sin promediar por mes.
+
+Por cada combinación única de (Escuela × Grado) se calcula:
+  - Total_Examenes_Grado : cantidad total de exámenes válidos en los 4 meses.
+  - Total_Bueno_Exc      : cuántos de esos exámenes fueron Bueno o Excelente.
+  - Pct_Bueno_Exc        : (Total_Bueno_Exc / Total_Examenes_Grado) × 100
+
+Este mecanismo penaliza severamente la inconstancia. Si una escuela tuvo un
+mes excelente y tres meses malos, los meses malos arrastran el porcentaje
+hacia abajo. No hay forma de "esconder" los meses flojos.
+
+Ejemplo:
+  Escuela Constante (3° Grado):
+    Mes 1: 8/10 → Mes 2: 7/10 → Mes 3: 8/10 → Mes 4: 9/10
+    Balde: 32 éxitos de 40 exámenes → Pct_Bueno_Exc = 80%
+
+  Escuela Inconstante (3° Grado):
+    Mes 1: 9/10 → Mes 2: 2/10 → Mes 3: 3/10 → Mes 4: 2/10
+    Balde: 16 éxitos de 40 exámenes → Pct_Bueno_Exc = 40%
+
+================================================================================
+FASE 4: EL TORNEO "1 VS 0" (BATALLAS POR GRADO)
+================================================================================
+Con el Pct_Bueno_Exc de cada grado calculado, el sistema organiza un torneo
+de comparaciones directas. Las reglas son estrictas:
+
+  REGLA 1: Solo compiten escuelas del mismo TIPO.
+    Un Centro Escolar solo batalla contra otros Centros Escolares.
+    Un Instituto solo batalla contra otros Institutos.
+    Un Complejo solo batalla contra otros Complejos.
+
+  REGLA 2: Solo compiten grados equivalentes.
+    El 3° Grado de una escuela solo batalla contra el 3° Grado de otras escuelas.
+    El 9° Grado solo batalla contra otros 9° Grados. Y así sucesivamente.
+
+Para cada escuela dentro de un grupo (Tipo × Grado), se enfrenta contra
+todas las demás escuelas del mismo grupo:
+
+  - Si su Pct_Bueno_Exc es MAYOR que el del rival   → GANA    → suma 1.0 punto
+  - Si su Pct_Bueno_Exc es IGUAL al del rival        → EMPATE  → suma 0.5 puntos
+  - Si su Pct_Bueno_Exc es MENOR que el del rival    → PIERDE  → suma 0.0 puntos
+
+  Win_Rate_Grado = (Puntos obtenidos) / (Número de rivales) × 100
+
+Si una escuela es la única de su tipo que imparte ese grado, no tiene rivales
+y obtiene automáticamente un Win_Rate_Grado de 100% (supremacía total).
+
+Ejemplo (3° Grado, Centros Escolares):
+  Escuela A: 80% → enfrenta a B(40%), C(80%), D(90%)
+    vs B: GANA  → 1.0
+    vs C: EMPATE → 0.5
+    vs D: PIERDE → 0.0
+  Total: 1.5 puntos / 3 rivales = 50% de Win Rate en 3° Grado.
+
+Este proceso se repite para CADA grado que imparte la escuela.
+
+================================================================================
+FASE 5: EL PUNTAJE FINAL — MEDIA PONDERADA POR TAMAÑO DE GRADO
+================================================================================
+Una vez que cada grado tiene su Win_Rate_Grado, el sistema calcula el puntaje
+final de la escuela. Aquí reside la mejora técnica central del algoritmo.
+
+── MÉTODO ANTERIOR (media simple): ──────────────────────────────────────────
+  Win_Rate_Final = (WR_Grado1 + WR_Grado2 + ... + WR_GradoN) / N
+
+  Problema: Un grado con 5 exámenes tiene el mismo peso que uno con 80.
+  Una escuela con un 3° Grado de 4 alumnos que obtiene 100% de Win Rate
+  podría inflar desproporcionadamente el puntaje final de la institución.
+
+── MÉTODO ACTUAL (media ponderada): ─────────────────────────────────────────
+  Win_Rate_Final = Σ(WR_g × n_g) / Σ(n_g)
+
+  donde:
+    WR_g = Win Rate del grado g
+    n_g  = Total de exámenes acumulados en ese grado durante los 4 meses
+
+  Los grados con más exámenes (más alumnos, más meses de participación)
+  tienen más influencia en el puntaje final. Los grados pequeños contribuyen
+  proporcionalmente menos.
+
+Ejemplo:
+  Escuela con dos grados:
+    3° Grado: WR = 50%,  n = 10 exámenes  → aporte = 50  × 10 = 500
+    4° Grado: WR = 90%,  n = 80 exámenes  → aporte = 90  × 80 = 7200
+
+  Media simple    : (50 + 90) / 2 = 70.00%
+  Media ponderada : (500 + 7200) / (10 + 80) = 7700 / 90 = 85.56%
+
+  La media ponderada es más justa: el 4° Grado, que tiene 8 veces más
+  observaciones y por tanto una estimación más confiable, pesa 8 veces más.
+
+El output final también incluye columnas de trazabilidad:
+  - Total_Examenes_Escuela : total de exámenes acumulados en todos los grados.
+  - Grados_Evaluados       : cantidad de grados distintos que participaron.
+
+================================================================================
+FASE 6: GENERACIÓN DEL REPORTE EXCEL (TOP 10 POR CATEGORÍA)
+================================================================================
+Con los puntajes finales calculados, el script genera un archivo Excel con
+múltiples hojas, una por cada combinación de región y tipo de institución:
+
+  Nac_Inst  → Top 10 Nacional de Institutos
+  Nac_Comp  → Top 10 Nacional de Complejos
+  Nac_Cent  → Top 10 Nacional de Centros Escolares
+  SS_Inst   → Top 10 San Salvador de Institutos
+  SS_Comp   → Top 10 San Salvador de Complejos
+  SS_Cent   → Top 10 San Salvador de Centros Escolares
+
+Cada hoja incluye las columnas:
+  Ranking | Código | Nombre de Institución | Departamento |
+  Tasa de Victorias vs Pares (%) | Total Exámenes | Grados Evaluados
+
+El formato visual sigue el esquema institucional: encabezado azul oscuro con
+texto blanco, filas alternadas en gris claro y blanco, bordes finos en todas
+las celdas.
+
+================================================================================
+LECTURA E INTERPRETACIÓN DEL RESULTADO
+================================================================================
+Si una escuela aparece con una "Tasa de Victorias vs Pares" de 85.56%,
+esto NO significa que el 85.56% de sus alumnos son Excelentes.
+
+Significa que:
+
+  "Ponderando por el tamaño de cada grado que imparte, esta institución
+   superó académicamente al 85.56% de los centros educativos de su mismo
+   tipo en el país, manteniendo ese nivel de forma ininterrumpida durante
+   los 4 meses del proyecto (Marzo a Junio)."
+
+Las escuelas que aparecen en el Top 10 cumplen simultáneamente tres condiciones:
+  1. CONSTANCIA   : participaron los 4 meses sin excepción.
+  2. CALIDAD      : una proporción alta de sus exámenes alcanzó nivel
+                    Bueno o Excelente, en todos los grados que imparten.
+  3. SUPERIORIDAD : su desempeño fue consistentemente mejor que el de
+                    sus pares del mismo tipo, grado a grado.
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================

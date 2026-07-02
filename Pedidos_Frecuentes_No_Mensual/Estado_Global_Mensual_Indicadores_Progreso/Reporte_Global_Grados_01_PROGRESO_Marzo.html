@@ -1,0 +1,1224 @@
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Resultados de la Prueba de Progreso Mes 1</title>
+        <style>
+            body { font-family: 'Segoe UI', sans-serif; background: #f4f7f9; padding: 20px; }
+            .header { text-align: center; margin-bottom: 30px; background: white; padding: 20px; border-radius: 8px; border-bottom: 4px solid #2980b9; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .header h1 { margin: 0; color: #2c3e50; font-size: 24px; }
+            .header h3 { margin: 5px 0 0 0; color: #7f8c8d; font-weight: normal; font-size: 14px; }
+            .legend { display: inline-block; background: #fff; padding: 10px 20px; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-top: 15px; font-size: 13px; }
+
+            /* Tabs */
+            .tabs { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+            .tab-btn { padding: 12px 30px; cursor: pointer; background: #ddd; border: none; border-radius: 5px; font-weight: bold; font-size: 16px; transition: 0.3s; color: #333; }
+            .tab-btn.active { background: #2980b9; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            .tab-btn:hover:not(.active) { background: #ccc; }
+            .tab-content { display: none; }
+            .tab-content.active { display: block; }
+
+            /* Accordion & Tables */
+            .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+            .card h2 { margin-top: 0; color: #2c3e50; font-size: 18px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+            .grade-accordion { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+            .grade-accordion summary { padding: 15px 20px; background: #f8f9fa; cursor: pointer; font-weight: bold; font-size: 16px; color: #2980b9; list-style: none; transition: background 0.2s; }
+            .grade-accordion summary:hover { background: #e9ecef; }
+            .grade-accordion summary::-webkit-details-marker { display: none; }
+            .grade-accordion .content { padding: 20px; border-top: 1px solid #eee; }
+
+            table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+            th, td { border: 1px solid #eee; padding: 12px; text-align: center; }
+            th { background: #2c3e50; color: white; }
+
+            /* Indicators */
+            .indicator-item { display: flex; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #e1ecef; }
+            .pct-box { width: 80px; text-align: center; border-right: 1px solid rgba(0,0,0,0.1); padding-right: 15px; margin-right: 15px; flex-shrink: 0; }
+            .pct-box strong { font-size: 16px; color: #2c3e50; }
+            .pct-box small { text-transform: uppercase; font-size: 10px; font-weight: bold; color: #555; }
+            .ind-text { font-size: 14px; color: #444; font-weight: 500; }
+            .badge-class { display: inline-block; background-color: #34495e; color: white; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin-right: 8px; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); white-space: nowrap; vertical-align: middle; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Resultados de la Prueba de Progreso Mes 1</h1>
+            <h3>Fecha de Aplicación: Marzo 2026</h3>
+            <div class="legend"><strong>Cortes de Evaluación:</strong> Crítico (0-20) | Bajo (21-40) | Medio (41-60) | Bueno (61-80) | Excelente (81-100)</div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'MAT')">📘 Matemática</button>
+            <button class="tab-btn" onclick="openTab(event, 'LEC')">📕 Lengua</button>
+        </div>
+
+        <div id="MAT" class="tab-content active"><div class='card'><h2>👥 Resumen de Estudiantes - Matemática</h2><table><thead><tr><th>Grado</th><th>Estudiantes Evaluados</th></tr></thead><tbody><tr><td>2° Grado</td><td>6428</td></tr><tr><td>3° Grado</td><td>6890</td></tr><tr><td>4° Grado</td><td>8124</td></tr><tr><td>5° Grado</td><td>7637</td></tr><tr><td>6° Grado</td><td>7942</td></tr><tr><td>7° Grado</td><td>8118</td></tr><tr><td>8° Grado</td><td>7974</td></tr><tr><td>9° Grado</td><td>7156</td></tr><tr><td>10° Grado</td><td>5669</td></tr><tr><td>11° Grado</td><td>4672</td></tr></tbody></table></div>
+            <details class="grade-accordion">
+                <summary>Grado 2°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fef2f2; border-left: 6px solid #991b1b;">
+                    <div class="pct-box"><strong>9.4%</strong><br><small>Crítico</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 3.5 Suma D0 + D0 = D0 o D0 + D0 = 1D0, identificando el número de decenas que forman cada sumando.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fef2f2; border-left: 6px solid #991b1b;">
+                    <div class="pct-box"><strong>11.2%</strong><br><small>Crítico</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 3.6 Resta D0 – D0 = D0 o 1D0 – D0 = D0, identificando el número de decenas que forman el minuendo y sustraendo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fef2f2; border-left: 6px solid #991b1b;">
+                    <div class="pct-box"><strong>17.6%</strong><br><small>Crítico</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 3.4 Determina la cantidad de decenas que forman un número de 3 cifras de la forma 1D0 a partir de su representación con tarjetas numéricas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>24.1%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 2.5 Escribe equivalencias de 1 unidad de millar en unidades, decenas o centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>26.9%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 3.3 Determina la cantidad de unidades que forman un número de 2 cifras de la forma 1U a partir de su representación con tarjetas numéricas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>35.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 1.1 Escribe equivalencias de una centena en decenas o unidades.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>36.9%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 1.5 Resuelve problemas sobre los números hasta 200.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>37.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 1.4 Identifica, escribe y lee los números del 100 al 200 de 1 en 1.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.7%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 4.3 Ubica números de 3 cifras en la recta numérica, de forma ascendente con escala de 5 o de 10.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>46.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 3.1 Escribe números de 2 cifras a partir de representaciones con tarjetas numéricas cuando se tienen 10 o más unidades.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>46.3%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 2.2 Escribe y lee números de 3 cifras sin cero, utilizando la tabla de valores posicionales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>51.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 2.3 Escribe y lee números de 3 cifras con cero en las decenas o unidades, utilizando la tabla de valores posicionales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>52.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 3.2 Escribe números de 3 cifras a partir de representaciones con tarjetas numéricas cuando se tienen 10 o más decenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>59.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 2.4 Escribe el número de 3 cifras que se forma con cierta cantidad dada de centenas (C00), decenas (D0) y unidades (U).</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>61.1%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 3.7 Realiza sumas con sumandos de la forma C00 o restas con minuendo y sustraendo de la forma C00, identificando el número de centenas que los forman.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>75.2%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 4.2 Ubica números de 3 cifras en la recta numérica, de forma descendente con escala de 1.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>78.0%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 1.3 Identifica, escribe y lee los números del 110 al 200 de 10 en 10.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>79.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 2.1 Identifica, escribe y lee los números del 100 al 900 de 100 en 100.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>80.9%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 1.2 Identifica, escribe y lee los números del 101 al 109 de 1 en 1.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>88.1%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 4.1 Ubica números de 3 cifras en la recta numérica, de forma ascendente con escala de 1.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 3°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fef2f2; border-left: 6px solid #991b1b;">
+                    <div class="pct-box"><strong>13.7%</strong><br><small>Crítico</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 1.4 Descompone figuras en triángulos y cuadriláteros.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>38.7%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 1.5 Estima y expresa la longitud de objetos en centímetros y milímetros.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 2.2 Identifica los elementos de una caja (prisma rectangular).</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>40.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 1.3 Escribe multiplicaciones como suma, identificando la cantidad que se repite y la cantidad de veces que se repite.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>42.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 1.3 Identifica los elementos de triángulos y cuadriláteros.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>42.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 2.3 Convierte longitudes expresadas en centímetros a milímetros y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>46.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 2.4 Suma DU + DU, en forma vertical llevando a las decenas y centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 1.2 Determina el total de elementos de un conjunto utilizando la multiplicación: elementos × grupos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 4.3 Realiza restas en cadena con minuendo C0U y sustraendo hasta de 3 cifras, en forma vertical prestando de las decenas y centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 2.3 Identifica las características de una caja (prisma rectangular) para construirla.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 3.7 Resta CDU – DU, en forma vertical prestando de las centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 3.2 Realiza sumas con tres sumandos, sumando primero los términos agrupados en paréntesis.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>58.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 1.12 Utiliza la tabla del 9 para resolver situaciones en las que se tienen grupos de 9 elementos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>61.7%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 2.3 Resta DU – U, en forma vertical prestando de las decenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>63.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 4.6 Realiza sumas con un sumando de 3 cifras y otro hasta de 2 cifras, en forma vertical llevando a las decenas y centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>65.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 2.14 Resuelve problemas utilizando las tablas de multiplicar del 2, 3, 4 y 5.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>70.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 1.6 Traza segmentos de recta conociendo su longitud en centímetros y milímetros, utilizando la regla graduada.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>75.8%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 2.13 Forma y lee la tabla de multiplicaciones, del 2 al 5.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>86.7%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.14 Construye la tabla de multiplicar del 10.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>87.0%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.13 Construye la tabla de multiplicar del 1.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 4°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>25.1%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 2.3 Identifica las características de una caja (prisma rectangular) para construirla.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>38.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 2.1 Comparemos la capacidad de recipientes, utilizando una unidad de medida arbitraria.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>38.6%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 4.3 Realiza restas en cadena con minuendo C0U y sustraendo hasta de 3 cifras, en forma vertical prestando de las decenas y centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 1.3 Escribe multiplicaciones como suma, identificando la cantidad que se repite y la cantidad de veces que se repite.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>41.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 1.4 Descompone figuras en triángulos y cuadriláteros.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>41.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.2 Determina la hora de inicio o finalización de un evento cuando se tiene el periodo de duración en horas exactas y la hora inicial o final respectivamente, utilizando el reloj analógico.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>42.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.1 Determina los minutos de duración de eventos o actividades, dadas las horas de inicio y finalización utilizando el reloj analógico.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>43.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 1.6 Traza segmentos de recta conociendo su longitud en centímetros y milímetros, utilizando la regla graduada.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>43.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 1.1 Comparemos el peso de objetos, utilizando una unidad de peso arbitraria.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>45.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 3.2 Realiza sumas con tres sumandos, sumando primero los términos agrupados en paréntesis.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>52.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 1.16 Escribe los productos de las tablas de multiplicar del 6 al 9 en la tabla de multiplicaciones.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 2.3 Convierte longitudes expresadas en centímetros a milímetros y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 2.13 Forma y lee la tabla de multiplicaciones, del 2 al 5.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>59.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 2.4 Suma DU + DU, en forma vertical llevando a las decenas y centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>59.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 2.3 Resta DU – U, en forma vertical prestando de las decenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>63.3%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 3.7 Resta CDU – DU, en forma vertical prestando de las centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>64.1%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 2.7 Forma arreglos rectangulares y plantea el PO de la multiplicación para encontrar el total de objetos que hay en un arreglo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>70.0%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 4.6 Realiza sumas con un sumando de 3 cifras y otro hasta de 2 cifras, en forma vertical llevando a las decenas y centenas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>83.8%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 2.2 Expresa la capacidad de recipientes, utilizando el litro y la botella como unidades de medida.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>86.1%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 1.2 Lee y escribe el peso de objetos en la balanza, utilizando la libra como unidad de medida.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 5°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>30.8%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 1.2 Lee y escribe el peso de objetos en la balanza, utilizando la libra como unidad de medida.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>34.6%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>40.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 2.3 Identifica las características de una caja (prisma rectangular) para construirla.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 2.3 Convierte longitudes expresadas en centímetros a milímetros y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 1.4 Descompone figuras en triángulos y cuadriláteros.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>57.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.1 Suma cantidades dadas en centavos, y expresa el resultado en dólares con centavos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>62.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 1.3 Escribe multiplicaciones como suma, identificando la cantidad que se repite y la cantidad de veces que se repite.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>63.5%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.2 Suma cantidades dadas en dólares con centavos, sin llevar y llevando de los centavos a los dólares.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>64.2%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 3.3 Realizar sumas con cantidades exactas de dinero.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>67.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 3.4 Realizar restas con cantidades exactas de dinero.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>68.0%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 2.13 Forma y lee la tabla de multiplicaciones, del 2 al 5.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>69.0%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 1.4 Identifica en el calendario el número de días que tiene una semana y el número de meses o días de un año.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>71.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 3.1 Identifica los billetes de $1, $5, $10, $20, $50 y $100.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>72.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 1.6 Traza segmentos de recta conociendo su longitud en centímetros y milímetros, utilizando la regla graduada.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>73.1%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 2.7 Forma arreglos rectangulares y plantea el PO de la multiplicación para encontrar el total de objetos que hay en un arreglo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>77.5%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 1.3 Determina la hora en que se realiza una actividad diferenciando entre a. m. y p. m.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>80.4%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 1.16 Escribe los productos de las tablas de multiplicar del 6 al 9 en la tabla de multiplicaciones.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>82.7%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 3.2 Forma cantidades específicas con billetes.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>85.4%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>86.5%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 2.2 Expresa la capacidad de recipientes, utilizando el litro y la botella como unidades de medida.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 6°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>21.1%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 1.1 Determina los minutos de duración de eventos o actividades, dadas las horas de inicio y finalización utilizando el reloj analógico.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>22.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 1.3 Realiza una operación que combina la multiplicación con la suma o la resta, y no incluye un signo de agrupación (paréntesis).</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>31.7%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.5 Realiza una operación que combina suma, resta o multiplicación, y puede incluir un signo de agrupación (paréntesis).</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>31.9%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.6 Utiliza la propiedad conmutativa en la suma o la multiplicación, para facilitar la realización del cálculo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>32.9%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 1.2 Realiza una operación que combina la multiplicación con la suma o la resta, e incluye un signo de agrupación (paréntesis).</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>36.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 2.6 Elige la escala que facilita representar los datos de una tabla de frecuencias, en una gráfica de barras verticales u horizontales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.8%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 2.2 Interpreta la información presentada en tablas de frecuencia y gráficas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>40.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 1.1 Realiza una operación de suma, resta o combinada de suma y resta con 3 números, que incluye un signo de agrupación (paréntesis).</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>46.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 2.5 Elabora una gráfica de barras verticales con escala mayor que 1, a partir de la información presentada en una tabla de frecuencias.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>47.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 2.4 Elabora una gráfica de barras verticales u horizontales con escala 1, a partir de la información presentada en una tabla de frecuencias.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>64.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 3.4 Realizar restas con cantidades exactas de dinero.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>67.7%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 1.2 Determina la hora de inicio o finalización de un evento cuando se tiene el periodo de duración en horas exactas y la hora inicial o final respectivamente, utilizando el reloj analógico.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>71.3%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 2.2 Expresa la capacidad de recipientes, utilizando el litro y la botella como unidades de medida.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>73.5%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 3.3 Realizar sumas con cantidades exactas de dinero.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>75.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 2.1 Organiza y lee datos en las tablas de frecuencia y gráficas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>81.6%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 1.4 Identifica en el calendario el número de días que tiene una semana y el número de meses o días de un año.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>85.9%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 3.2 Forma cantidades específicas con billetes.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>86.3%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 1.3 Determina la hora en que se realiza una actividad diferenciando entre a. m. y p. m.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>91.1%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 2.1 Comparemos la capacidad de recipientes, utilizando una unidad de medida arbitraria.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>98.1%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 3.1 Identifica los billetes de $1, $5, $10, $20, $50 y $100.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 7°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fef2f2; border-left: 6px solid #991b1b;">
+                    <div class="pct-box"><strong>18.1%</strong><br><small>Crítico</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 1.7 Calcula el área de trapecios, construyendo un paralelogramo a partir del trapecio dado.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>29.6%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 4.5 Escribe números fraccionarios o mixtos como números decimales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>33.7%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 1.8 Calcula el área de cuadrados y rectángulos utilizando el metro cuadrado como unidad de medida.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>35.3%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 2.4 Convierte el peso de objetos dado en libras a kilogramos o gramos, y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>35.4%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 4.2 Resuelve operaciones con números decimales, aplicando la propiedad distributiva de la multiplicación sobre la suma y resta.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>36.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 4.5 Resuelve operaciones aplicando la propiedad distributiva de la multiplicación sobre la suma o resta.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>36.9%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 2.3 Analiza y corrige presupuestos que no coinciden con el dinero disponible.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.7%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 2.4 Encuentra el valor del dividendo desconocido en una división apoyándose en la gráfica de cinta, y así poder resolver problemas de contexto.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>41.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 2.4 Determina la cantidad de décimas, centésimas o milésimas que forman un número decimal.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>45.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.3 Calcula la cantidad desconocida en planteamientos de multiplicación con números decimales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 5.1 Efectúa operaciones combinadas de suma y resta de fracciones homogéneas, con o sin paréntesis.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>49.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 1.4 Determina la opción más favorable en situaciones planteadas, a partir del análisis de la cantidad por unidad.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>51.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.7 Construye diferentes desarrollos planos del cubo y los construye.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 3.2 Compara fracciones propias con igual denominador, a partir de sus posiciones en la recta numérica.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>60.1%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 4.4 Utiliza la relación entre minutos y segundos para realizar conversiones de segundos a minutos, y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>64.8%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 3.5 Resta en forma vertical un número decimal hasta las centésimas de un número natural, y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>69.7%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 4.1 Interpreta los datos presentados en un pictograma con figuras completas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>69.7%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 2.6 Elige la escala que facilita representar los datos de una tabla de frecuencias, en una gráfica de barras verticales u horizontales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>75.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 4.2 Determina las características de un prisma rectangular y un cubo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>75.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 3.2 Aplica la multiplicación o división auxiliándose de una gráfica de cinta, para responder a preguntas de una situación específica.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 8°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>24.4%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 3.3 Suma un número mixto con otro número mixto, entero o una fracción, sin llevar y con parte fraccionaria homogénea.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>27.4%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 1.4 Determina la opción más favorable en situaciones planteadas, a partir del análisis de la cantidad por unidad.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>28.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 4.2 Resta de un número un entero, una fracción o un número mixto con parte fraccionaria homogénea, sin prestar.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>29.2%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 1.5 Construye gráficas de línea, utilizando una escala adecuada y símbolo de corte.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>38.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 1.7 Calcula el área de trapecios, construyendo un paralelogramo a partir del trapecio dado.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>38.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 1.8 Calcula el área de cuadrados y rectángulos utilizando el metro cuadrado como unidad de medida.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>47.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.2 Identifica paralelismo y perpendicularidad entre las caras en prismas rectangulares.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 3.2 Suma fracciones homogéneas cuyo resultado es una fracción impropia y lo expresa como número mixto.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>52.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 2.1 Encuentra fracciones equivalentes por medio del proceso de amplificación.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>53.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 3.2 Elabora e interpreta tablas de doble entrada a partir de datos representados en tres tablas de frecuencia.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 4.1 Resta de fracciones homogéneas expresando el resultado como número mixto cuando sea una fracción impropia.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.1 Clasifica prismas de acuerdo a la forma de sus bases, identificando la cantidad de elementos de cada tipo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>57.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 2.4 Convierte el peso de objetos dado en libras a kilogramos o gramos, y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>58.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 2.3 Analiza y corrige presupuestos que no coinciden con el dinero disponible.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>60.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 1.1 Realiza conversiones de pesos, de arrobas a quintales y viceversa, de libras a arrobas y viceversa, y de libras a quintales y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>60.8%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 1.7 Convierte fracciones impropias a números mixtos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>65.1%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 4.1 Interpreta los datos presentados en un pictograma con figuras completas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>66.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 3.1 Elabora e interpreta tablas de doble entrada a partir de datos representados en dos tablas de frecuencia.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>73.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 3.1 Suma fracciones homogéneas escribiendo el resultado como fracción.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>75.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 5.1 Efectúa operaciones combinadas de suma y resta de fracciones homogéneas, con o sin paréntesis.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 9°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>36.4%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 1.4 Determina la opción más favorable en situaciones planteadas, a partir del análisis de la cantidad por unidad.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>36.6%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 1.5 Construye gráficas de línea, utilizando una escala adecuada y símbolo de corte.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>46.3%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 2.3 Encuentra la mediana de una cantidad de datos par.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>46.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 2.4 Convierte el peso de objetos dado en libras a kilogramos o gramos, y viceversa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>47.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 2.3 Efectúa multiplicaciones y divisiones de fracciones y números decimales, escribiendo los números decimales como fracciones.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>47.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 2.4 Utiliza la propiedad del centro de simetría para encontrar puntos correspondientes.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 1.7 Calcula el área de trapecios, construyendo un paralelogramo a partir del trapecio dado.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.3%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 4.5 Escribe números fraccionarios o mixtos como números decimales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>49.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 1.8 Determina la capacidad de un depósito con forma rectangular, usando la equivalencia entre litros y centímetros cúbicos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>51.3%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 2.1 Encuentra la probabilidad de ocurrencia de un suceso usando la fórmula: casos que cumplen la condición ÷ casos posibles.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>53.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 2.11 Calcula la cantidad de veces que representa una cantidad respecto a otra, siendo esta un número decimal mayor o menor que uno.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 3.5 Resuelve situaciones – problema sobre cantidades inversamente proporcionales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 2.10 Calcula el consecuente de una razón cuando se conoce el antecedente correspondiente a un porcentaje menor al 100 %.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 2.3 Encuentra el área de regiones circulares.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 4.2 Resuelve operaciones con números decimales, aplicando la propiedad distributiva de la multiplicación sobre la suma y resta.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>58.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 1.7 Escribe relaciones de suma, resta y multiplicación de cantidades variables utilizando las letras ? y ?.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>59.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 1.3 Calcula la cantidad desconocida en planteamientos de multiplicación con números decimales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>76.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 2.3 Analiza y corrige presupuestos que no coinciden con el dinero disponible.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>77.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 3.10 Encuentra el recíproco de un número.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #ecfdf5; border-left: 6px solid #065f46;">
+                    <div class="pct-box"><strong>84.2%</strong><br><small>Excelente</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 1.7 Construye diferentes desarrollos planos del cubo y los construye.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 10°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>28.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.5 Compara información estadística mediante polígonos de frecuencias.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>30.6%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.6 Analiza y compara grupos con diferentes cantidades de datos mediante el uso de la frecuencia relativa.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>36.3%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 3.9 Calcula el área total de un cilindro a partir de su plano desarrollado.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>38.3%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 1.4 Representa la información a través de un histograma y polígono de frecuencia.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>38.8%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 1.6 Aplica criterios de congruencia para resolver problemas de contexto matemático.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 3.7 Aplica el mínimo común múltiplo y máximo común divisor para resolver problemas del entorno.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 2.3 Encuentra el área de regiones circulares.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>50.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 2.3 Efectúa multiplicaciones y divisiones de fracciones y números decimales, escribiendo los números decimales como fracciones.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>50.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 3.5 Aplica una ecuación de primer grado a una situación de distancia, velocidad y tiempo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>52.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 2.4 Utiliza la propiedad del centro de simetría para encontrar puntos correspondientes.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>53.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 2.1 Encuentra la probabilidad de ocurrencia de un suceso usando la fórmula: casos que cumplen la condición ÷ casos posibles.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 3.2 Representa la relación de desigualdad de dos expresiones matemáticas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 2.2 Encuentra el valor absoluto de un número dado.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>57.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 2.3 Encuentra la mediana de una cantidad de datos par.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>58.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 2.2 Construye una gráfica circular a partir de una tabla.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>59.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 1.8 Determina la capacidad de un depósito con forma rectangular, usando la equivalencia entre litros y centímetros cúbicos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>64.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 3.1 Aplica la regla de tres simple directa para encontrar un dato desconocido, utilizando dos cantidades directamente proporcionales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>65.1%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 3.3 Realiza sumas y restas combinadas de números positivos y negativos suprimiendo los paréntesis.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>68.5%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 3.5 Resuelve situaciones – problema sobre cantidades inversamente proporcionales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>70.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 2.10 Calcula el consecuente de una razón cuando se conoce el antecedente correspondiente a un porcentaje menor al 100%.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 11°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>50.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 9</span> 2.1 Utiliza polinomios para obtener propiedades de números u operaciones.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>51.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 15</span> 4.4 Determina la relación entre el área superficial de una esfera y el área del círculo de igual radio.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>52.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 20</span> 1.2 Identifica distribuciones de datos que se encuentran más dispersas respecto a la media.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 2.7 Resuelve desafíos o situaciones problemáticas en distintos contextos, mediante la aplicación de las relaciones que caracterizan a los ángulos entre paralelas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 7</span> 2.2 Construye una gráfica circular a partir de una tabla.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>55.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10</span> 2.2 Utiliza los sistemas de ecuaciones para resolver problemas de las ciencias naturales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 1.6 Aplica criterios de congruencia para resolver problemas de contexto matemático</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>57.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 1.1 Identifica la dispersión de distribuciones de datos, utilizando el rango para datos no agrupados.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>58.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 3.9 Calcula el área total de un cilindro a partir de su plano desarrollado.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>59.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 1.13 Utiliza la fórmula general de la ecuación cuadrática identificando los valores de la ecuación general.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>60.8%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 3.1 Aplica la regla de tres simple directa para encontrar un dato desconocido, utilizando dos cantidades directamente proporcionales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>62.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 16</span> 3.2 Analiza las reglas para determinar los dígitos significativos de una cantidad.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>63.5%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2</span> 3.3 Realiza sumas y restas combinadas de números positivos y negativos suprimiendo los paréntesis.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>66.2%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5</span> 3.5 Aplica una ecuación de primer grado a una situación de distancia, velocidad y tiempo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>66.8%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 18</span> 2.6 Determina las medidas de ángulos semiinscritos utilizando la medida del ángulo central.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>67.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 3.3 Determina el área de una figura plana mediante el uso de la función lineal.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>68.3%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14</span> 2.7 Identifica si un cuadrilátero es un rectángulo o un rombo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>68.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 2.2 Encuentra el valor absoluto de un número dado.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>71.7%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 3.2 Representa la relación de desigualdad de dos expresiones matemáticas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>73.0%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 3.7 Aplica el mínimo común múltiplo y máximo común divisor para resolver problemas del entorno.</div>
+                </div>
+                </div>
+            </details></div>
+        <div id="LEC" class="tab-content"><div class='card'><h2>👥 Resumen de Estudiantes - Lengua</h2><table><thead><tr><th>Grado</th><th>Estudiantes Evaluados</th></tr></thead><tbody><tr><td>2° Grado</td><td>5284</td></tr><tr><td>3° Grado</td><td>5932</td></tr><tr><td>4° Grado</td><td>6803</td></tr><tr><td>5° Grado</td><td>6877</td></tr><tr><td>6° Grado</td><td>7194</td></tr><tr><td>7° Grado</td><td>7302</td></tr><tr><td>8° Grado</td><td>7308</td></tr><tr><td>9° Grado</td><td>6774</td></tr><tr><td>10° Grado</td><td>5392</td></tr><tr><td>11° Grado</td><td>4493</td></tr></tbody></table></div>
+            <details class="grade-accordion">
+                <summary>Grado 2°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>30.5%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2 | Clase 9 | Clases 7 y 8</span> 1.10. Identifica tablas de doble entrada a partir de información leída en textos de ambientación del aula.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.6%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clases 3 y 4</span> 1.7. Identifica sustantivos propios y comunes en cuentos populares, retahílas y adivinanzas que expresa o escucha.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>44.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3 | Clases 11 y 12</span> 1.14. Distingue los sustantivos femeninos de los masculinos y los singulares de los plurales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>45.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clases 3 y 4</span> 1.6. Distingue los sustantivos propios de los comunes.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.8%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4 | Clases 13, 14 y 15</span> 1.12. Explica el propósito, el emisor y el destinatario de videollamadas que simula.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 3°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>44.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clases 3 y 4</span> 1.6. Distingue los sustantivos propios de los comunes.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>45.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clases 3 y 4</span> 1.7. Identifica sustantivos propios y comunes en cuentos populares, retahílas y adivinanzas que expresa o escucha.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>50.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13</span> 4.2. Explica las características de los cuentos infantiles, usando ejemplos del texto.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3 | Clases 11 y 12</span> 1.14. Distingue los sustantivos femeninos de los masculinos y los singulares de los plurales.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>63.3%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4 | Clases 13, 14 y 15</span> 1.12. Explica el propósito, el emisor y el destinatario de videollamadas que simula.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>66.3%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2 | Clase 9 | Clases 7 y 8</span> 1.10. Identifica tablas de doble entrada a partir de información leída en textos de ambientación del aula.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 4°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>34.7%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 6.3. Compara los elementos y recursos de las historietas con texto y mudas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clase 15</span> 7.2. Analiza cuentos de ciencia ficción, recuperando información del texto, haciendo inferencias y deduciendo intenciones comunicativas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>41.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4</span> 5.1. Identifica los versos y la rima en bombas de la tradición oral salvadoreña que lee.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 4.4 Identifica y usa los signos de interrogación y exclamación en cuentos que lee.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 5°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>40.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10 | Clase 12 | Clase 18 | Clase 8</span> 8.7. Concluye el tema de textos que lee a partir del reconocimiento de las ideas principales o subtemas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13 | Clase 17 | Clase 7 | Clase 9</span> 8.4. Identifica a los personajes de cuentos de aventuras que narra, escucha o lee y describe sus características físicas y sentimientos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12 | Clase 16 | Clase 6</span> 8.3. Analiza y evalúa el contenido de los textos poéticos que lee.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>64.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4 | Clase 6</span> 8.1. Identifica el tiempo, el lugar y los personajes de las fábulas que lee o escucha.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>78.5%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5 | Clase 7 | Clases 20 y 21</span> 8.2. Analiza la estructura y el contenido de los textos poéticos atendiendo a sus características, intención comunicativa y sentimientos que transmiten.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 6°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>33.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5 | Clase 7 | Clases 20 y 21</span> 8.2. Analiza la estructura y el contenido de los textos poéticos atendiendo a sus características, intención comunicativa y sentimientos que transmiten.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>45.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12 | Clase 16 | Clase 6</span> 8.3. Analiza y evalúa el contenido de los textos poéticos que lee.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.2%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 4 | Clase 6</span> 8.1. Identifica el tiempo, el lugar y los personajes de las fábulas que lee o escucha.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10 | Clase 12 | Clase 18 | Clase 8</span> 8.7. Concluye el tema de textos que lee a partir del reconocimiento de las ideas principales o subtemas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>62.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13 | Clase 17 | Clase 7 | Clase 9</span> 8.4. Identifica a los personajes de cuentos de aventuras que narra, escucha o lee y describe sus características físicas y sentimientos.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 7°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>48.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 3</span> 3.6. Identifica la estructura y la informac.ión explícita de noticias de sucesos culturales que lee en medios impresos.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>51.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17</span> 7.5 Analiza informes escolares atendiendo a su estructura, características y contenido.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>53.5%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5 | Clase 7 | Clases 20 y 21</span> 8.2. Analiza la estructura y el contenido de los textos poéticos atendiendo a sus características, intención comunicativa y sentimientos que transmiten.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.1%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 8</span> 8.15. Interpreta textos narrativos cortos que lee a partir de la utilización de diversas estrategias.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>60.2%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14 | Clase 3</span> 6.7 Clasifica las fuentes de información directas e indirectas en los textos que lee o en las investigaciones que realiza.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>73.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clase 12</span> 4.6. Analiza la estructura, las características y el propósito comunicativo del periódico impreso.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 8°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>28.0%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14 | Clase 3</span> 6.7 Clasifica las fuentes de información directas e indirectas en los textos que lee o en las investigaciones que realiza.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>39.4%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14 | Clase 15</span> 6.9. Analiza la estructura y contenido de crónicas deportivas, reconociendo sus características, identificando la información principal, deduciendo su intención comunicativa y evaluando las ideas expuestas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>49.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13 | Clase 14</span> 5.10. Analiza la estructura y contenido de tablas y gráficos, reconociendo los datos que transmiten, estableciendo comparaciones y concluyendo a partir de la información presentada.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14 | Clase 20 | Clase 4</span> 7.10. Reconoce y explica la relación entre los signos y la realidad, identificando indicios, íconos y símbolos en diferentes contextos de comunicación.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>56.3%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 6</span> 4.8. Interpreta artículos de revista reconociendo sus características y su función social.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>66.0%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 11</span> 2.11. Analiza el contenido de biografías, reconociendo sus características y verificando la veracidad de la información.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>67.6%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12</span> 3.11. Analiza la estructura y contenido de biografías y autobiografías, reconociendo sus características, las ideas principales y deduciendo su propósito comunicativo.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>72.8%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clase 12</span> 4.6. Analiza la estructura, las características y el propósito comunicativo del periódico impreso.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 9°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>44.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14 | Clase 15</span> 6.9. Analiza la estructura y contenido de crónicas deportivas, reconociendo sus características, identificando la información principal, deduciendo su intención comunicativa y evaluando las ideas expuestas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 13 | Clase 14</span> 5.10. Analiza la estructura y contenido de tablas y gráficos, reconociendo los datos que transmiten, estableciendo comparaciones y concluyendo a partir de la información presentada.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>62.7%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1</span> 1.11. Identifica y organiza la información principal de una crónica periodística u otro texto que lee en esquemas de llaves.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>65.2%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 2 | Clase 9 | Clases 7 y 8</span> 1.10. Identifica tablas de doble entrada a partir de información leída en textos de ambientación del aula.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>72.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clase 11 | Clase 17</span> 7.6. Analiza textos propagandísticos en formato de afiche o rótulo atendiendo a su estructura, características y contenido.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 10°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fff7ed; border-left: 6px solid #ff8c2e;">
+                    <div class="pct-box"><strong>34.4%</strong><br><small>Bajo</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14 | Clase 20 | Clase 4</span> 7.10. Reconoce y explica la relación entre los signos y la realidad, identificando indicios, íconos y símbolos en diferentes contextos de comunicación.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>40.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12 | Clase 16 | Clase 6</span> 8.3. Analiza y evalúa el contenido de los textos poéticos que lee.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>44.6%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10 | Clase 12 | Clase 18 | Clase 8</span> 8.7. Concluye el tema de textos que lee a partir del reconocimiento de las ideas principales o subtemas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>47.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clase 15</span> 7.2. Analiza cuentos de ciencia ficción, recuperando información del texto, haciendo inferencias y deduciendo intenciones comunicativas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>47.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5 | Clase 7 | Clases 20 y 21</span> 8.2. Analiza la estructura y el contenido de los textos poéticos atendiendo a sus características, intención comunicativa y sentimientos que transmiten.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>53.0%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17 | Clase 7</span> 8.5. Analiza y evalúa textos argumentativos a partir de sus elementos y contenido.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>60.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clase 11 | Clase 17</span> 7.6. Analiza textos propagandísticos en formato de afiche o rótulo atendiendo a su estructura, características y contenido.</div>
+                </div>
+                </div>
+            </details>
+            <details class="grade-accordion">
+                <summary>Grado 11°: Mostrar/Ocultar Niveles de los Indicadores</summary>
+                <div class="content">
+                    
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>44.4%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 10 | Clase 12 | Clase 18 | Clase 8</span> 8.7. Concluye el tema de textos que lee a partir del reconocimiento de las ideas principales o subtemas.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>52.9%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 12 | Clase 16 | Clase 6</span> 8.3. Analiza y evalúa el contenido de los textos poéticos que lee.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #fefce8; border-left: 6px solid #facc15;">
+                    <div class="pct-box"><strong>54.7%</strong><br><small>Medio</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 5 | Clase 7 | Clases 20 y 21</span> 8.2. Analiza la estructura y el contenido de los textos poéticos atendiendo a sus características, intención comunicativa y sentimientos que transmiten.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>62.7%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 17 | Clase 7</span> 8.5. Analiza y evalúa textos argumentativos a partir de sus elementos y contenido.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>64.9%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 19</span> 8.9. Analiza descripciones literarias y no literarias estableciendo las diferencias en el estilo descriptivo al leer este tipo de texto.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>73.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 14 | Clase 20 | Clase 4</span> 7.10. Reconoce y explica la relación entre los signos y la realidad, identificando indicios, íconos y símbolos en diferentes contextos de comunicación.</div>
+                </div>
+                <div class="indicator-item" style="background-color: #f7fee7; border-left: 6px solid #84cc16;">
+                    <div class="pct-box"><strong>74.4%</strong><br><small>Bueno</small></div>
+                    <div class="ind-text"><span class='badge-class'>Clase 1 | Clase 11 | Clase 17</span> 7.6. Analiza textos propagandísticos en formato de afiche o rótulo atendiendo a su estructura, características y contenido.</div>
+                </div>
+                </div>
+            </details></div>
+
+        <script>
+            function openTab(evt, tabName) {
+                var i, content, btn;
+                content = document.getElementsByClassName("tab-content");
+                for (i = 0; i < content.length; i++) content[i].style.display = "none";
+                btn = document.getElementsByClassName("tab-btn");
+                for (i = 0; i < btn.length; i++) btn[i].className = btn[i].className.replace(" active", "");
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+        </script>
+    </body>
+    </html>
+    
