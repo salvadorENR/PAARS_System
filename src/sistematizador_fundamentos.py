@@ -13,7 +13,19 @@ warnings.filterwarnings('ignore', category=PerformanceWarning)
 # ==========================================
 # 1. CONFIGURACIÓN COMÚN
 # ==========================================
-ROOT_DIR = r"G:\.shortcut-targets-by-id\1GWN65zkS-YNaJLIRSrk2mZ0Vsl5mT1OC\PAARS_Warehouse"
+from dotenv import load_dotenv
+
+# Cargar las variables desde el archivo .env
+load_dotenv()
+
+# Extraer la ruta raíz de manera dinámica
+ROOT_DIR = os.getenv("BASE_DRIVE")
+
+# Validación por seguridad
+if not ROOT_DIR:
+    print("\n[!] ERROR CRÍTICO: No se encontró la variable BASE_DRIVE en el archivo .env.")
+    sys.exit(1)
+
 YEAR_DIR = os.path.join(ROOT_DIR, "2026")
 PATH_METADATA = os.path.join(ROOT_DIR, "00_Metadata")
 
