@@ -13,19 +13,7 @@ warnings.filterwarnings('ignore', category=PerformanceWarning)
 # ==========================================
 # 1. CONFIGURACIÓN COMÚN
 # ==========================================
-from dotenv import load_dotenv
-
-# Cargar las variables desde el archivo .env
-load_dotenv()
-
-# Extraer la ruta raíz de manera dinámica
-ROOT_DIR = os.getenv("BASE_DRIVE")
-
-# Validación por seguridad
-if not ROOT_DIR:
-    print("\n[!] ERROR CRÍTICO: No se encontró la variable BASE_DRIVE en el archivo .env.")
-    sys.exit(1)
-
+ROOT_DIR = r"H:\Mi unidad\Modernización_Educativa\Gerencia de Evaluación_Proyectos_Análisis\PAARS_Warehouse"
 YEAR_DIR = os.path.join(ROOT_DIR, "2026")
 PATH_METADATA = os.path.join(ROOT_DIR, "00_Metadata")
 
@@ -99,9 +87,9 @@ CLAVE_RESPUESTAS = {
     # ── BLOQUE 3: Conciencia Fonológica ── ítems 46–50 ──
     # El formulario guarda texto completo de la opción seleccionada
     'L_item_46': '2)',              # B) sopa       — sonido inicial
-    'L_item_47': '3)',              # C) gato       — rima  ← CORREGIDO (era '1)', ahora '3)'
+    'L_item_47': '1)',              # A) taza       — rima  ← CORREGIDO (era '1)', ahora '1)' con opción A)
     'L_item_48': '1) s - o - l',   # A) /s/–/o/–/l/ — segmentación  ← CORREGIDO (era '1) s - o - l')
-    'L_item_49': '1) pan',         # A) pan        — fusión (blending)
+    'L_item_49': '3) pan',         # C) pan        — fusión (blending)
     'L_item_50': '2) l',           # B) l          — sonido final
 
     # ── BLOQUE 4: Lectura de Sílabas y Palabras sin Sentido ── ítems 51–53 ──
@@ -120,7 +108,7 @@ CLAVE_RESPUESTAS = {
     'L_item_58': '1)',   # A) salta          — literal acción
     'L_item_59': '1)',   # A) porque va a llover — inferencial causa
     'L_item_60': '2)',   # B) un niño leyendo   — inferencial experiencia
-    'L_item_61': '1)',   # C) balanceándose en el columpio  — secuencia narración
+    'L_item_61': '3)',   # C) camina al parque  — secuencia narración
     'L_item_62': '2)',   # B) el perro          — info explícita narración
     'L_item_63': '1)',   # A) triste            — inferencia emocional
     'L_item_64': '3)',   # C) porque empieza a llover — causa en narración
