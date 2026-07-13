@@ -29,8 +29,7 @@ if not os.path.exists(YEAR_DIR):
 while True:
     print("\n¿Qué acción requiere realizar el sistema?\n  (1) Teoría de Respuesta al ítem\n  (2) Generación de Reportes")
     mod_choice = input("-> ").strip()
-    if mod_choice == '1': print("\n[!] Disponible en el futuro."); continue
-    if mod_choice == '2': break
+    if mod_choice in ['1', '2']: break
 
 while True:
     print("\nSeleccione el tipo de examen:\n  (1) Prueba de Resultados\n  (2) Prueba de Progreso\n  (3) Prueba de Fundamento")
@@ -53,32 +52,51 @@ while True:
 # --- NIVEL 4: MENÚ GRANULAR ACTUALIZADO ---
 while True:
     print(f"\nMenú de Acciones para {EXAM_TYPE}:")
-    if EXAM_TYPE == "RESULTADOS":
-        print("  (1) Integrar Archivos Crudos (Unificar MAT y LENGUA en un Dataset)")
-        print("  (2) Control de Calidad")
-        print("  (3) Reporte Formal (LaTeX Tables/Graphs)")
-        print("  (4) Informes por Escuela")
-        print("  (5) Reporte Nacional por Grados (HTML)")
-        print("  (6) Rankings Macro y Evolución (Excel)")
-        print("  (7) TODO lo anterior")
-        validas = ['1','2','3','4','5','6','7']
-    elif EXAM_TYPE == "PROGRESO":
-        print("  (1) Integrar Archivos Crudos (Unificar MAT y LENGUA en un Dataset)")
-        print("  (2) Control de Calidad")
-        print("  (3) Informes para Profesores")
-        print("  (4) Informes para Directores")
-        print("  (5) Reporte Nacional por Grados (HTML)")
-        print("  (6) Reporte Corto Beamer (LaTeX)")
-        print("  (7) Rankings Macro y Evolución (Excel)")
-        print("  (8) TODO lo anterior")
-        validas = ['1','2','3','4','5','6','7','8']
-    elif EXAM_TYPE == "FUNDAMENTO":
-        print("  (1) Sistematizar CSV Crudo a Datasets (Excel) y Reporte Gráfico (HTML)")
-        validas = ['1']
+    
+    # ---------------------------------------------------------
+    # OPCIONES PARA: (1) Teoría de Respuesta al Ítem (TRI)
+    # ---------------------------------------------------------
+    if mod_choice == '1':
+        if EXAM_TYPE == "FUNDAMENTO":
+            print("  (1) Calibración: Modelo 2PL")
+            print("  (2) Calibración: Modelo 3PL")
+            validas = ['1', '2']
+        elif EXAM_TYPE in ["PROGRESO", "RESULTADOS"]:
+            print("  (1) Calibración: Modelo 2PL")
+            print("  (2) Calibración: Modelo 3PL")
+            print("  (3) Calibración para escuelas complementarias (menos del 10%)")
+            validas = ['1', '2', '3']
+            
+    # ---------------------------------------------------------
+    # OPCIONES PARA: (2) Generación de Reportes Clásicos
+    # ---------------------------------------------------------
+    elif mod_choice == '2':
+        if EXAM_TYPE == "RESULTADOS":
+            print("  (1) Integrar Archivos Crudos (Unificar MAT y LENGUA en un Dataset)")
+            print("  (2) Control de Calidad")
+            print("  (3) Reporte Formal (LaTeX Tables/Graphs)")
+            print("  (4) Informes por Escuela")
+            print("  (5) Reporte Nacional por Grados (HTML)")
+            print("  (6) Rankings Macro y Evolución (Excel)")
+            print("  (7) TODO lo anterior")
+            validas = ['1','2','3','4','5','6','7']
+        elif EXAM_TYPE == "PROGRESO":
+            print("  (1) Integrar Archivos Crudos (Unificar MAT y LENGUA en un Dataset)")
+            print("  (2) Control de Calidad")
+            print("  (3) Informes para Profesores")
+            print("  (4) Informes para Directores")
+            print("  (5) Reporte Nacional por Grados (HTML)")
+            print("  (6) Reporte Corto Beamer (LaTeX)")
+            print("  (7) Rankings Macro y Evolución (Excel)")
+            print("  (8) TODO lo anterior")
+            validas = ['1','2','3','4','5','6','7','8']
+        elif EXAM_TYPE == "FUNDAMENTO":
+            print("  (1) Sistematizar CSV Crudo a Datasets (Excel) y Reporte Gráfico (HTML)")
+            validas = ['1']
     
     REPORT_CHOICE = input("-> Elija una opción: ").strip()
     if REPORT_CHOICE in validas: break
-
+    
 # --- CONFIGURACIÓN DE RUTAS ---
 CURRENT_MONTH_PATH = os.path.join(YEAR_DIR, MONTH_FOLDER)
 PATH_RAW = os.path.join(CURRENT_MONTH_PATH, "Raw_Data")

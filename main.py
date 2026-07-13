@@ -78,18 +78,56 @@ def ejecutar_sistema_paars():
                 try: generador_rankings_masivo()
                 except Exception as e: print(e)
 
-    # ---------------------------------------------------------
+   # ---------------------------------------------------------
     # FLUJO C: PRUEBA DE FUNDAMENTO (Google Forms pipeline)
     # ---------------------------------------------------------
     elif config.EXAM_TYPE == "FUNDAMENTO":
         print("\n[-->] MODO: PRUEBA DE FUNDAMENTO DETECTADO")
         
-        if config.REPORT_CHOICE == '1':
-            print("\n[*] Transformando Formulario Crudo en Datasets de Evaluación...")
-            from src.sistematizador_fundamentos import procesar_y_generar_excel as procesar_fundamentos
-            exito = procesar_fundamentos(config.CURRENT_MONTH_PATH)
-            if not exito: return 
-
+        # --- Módulo: Generación de Reportes Clásicos ---
+        if config.mod_choice == '2':
+            if config.REPORT_CHOICE == '1':
+                print("\n[*] Transformando Formulario Crudo en Datasets de Evaluación...")
+                from src.sistematizador_fundamentos import procesar_y_generar_excel as procesar_fundamentos
+                exito = procesar_fundamentos(config.CURRENT_MONTH_PATH)
+                if not exito: return 
+        
+        # --- Módulo: Teoría de Respuesta al Ítem (TRI) ---
+        elif config.mod_choice == '1':
+            import subprocess
+            import os
+            
+            # 1. Calibración: Modelo 2PL
+            if config.REPORT_CHOICE == '1':
+                # Definimos la nueva ruta específica para este modelo
+                carpeta_codigos = os.path.join(os.getcwd(), "R codes", "TRI Fundamentos 2PL")
+                
+                scripts_a_ejecutar = [
+                    "1. irt_fundamentos.R",
+                    "2. Equate fundamentos.R",
+                    "3. Reporte estudiantes fundamentos.R"
+                ]
+                
+                print("\n[*] Iniciando Pipeline IRT 2PL (Fundamentos)...")
+                
+                for script in scripts_a_ejecutar:
+                    ruta_script = os.path.join(carpeta_codigos, script)
+                    print(f"\n[>] Ejecutando: {script} ...")
+                    
+                    try:
+                        subprocess.run([config.R_EXE_PATH, ruta_script, config.CURRENT_MONTH_PATH], check=True)
+                    except subprocess.CalledProcessError:
+                        print(f"\n[!] ERROR CRÍTICO: Falló la ejecución de {script}. El pipeline se ha detenido.")
+                        return # Detiene la ejecución para no correr el script 2 si el 1 falló
+                    except FileNotFoundError:
+                        print(f"\n[!] ERROR: No se encontró el script en: {ruta_script}")
+                        return
+                        
+                print("\n[OK] Pipeline IRT 2PL (Fundamentos) completado con éxito.")
+            
+            # 2. Calibración: Modelo 3PL
+            elif config.REPORT_CHOICE == '2':
+                print("\n[!] El pipeline para Fundamentos 3PL está en desarrollo.")
     # ---------------------------------------------------------
     # FINALIZACIÓN
     # ---------------------------------------------------------
