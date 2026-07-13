@@ -6,18 +6,12 @@ from dotenv import load_dotenv
 # 1. Cargar las variables (busca el archivo .env automáticamente)
 load_dotenv() 
 
-# 2. Asignar las rutas extrayéndolas de las variables
+# 2. Asignar la ruta extrayéndola de la variable
 DRIVE_PATH = os.getenv("BASE_DRIVE")
-R_EXE_PATH = os.getenv("R_PATH")
 
 # 3. Validación de seguridad
 if not DRIVE_PATH:
-    print("\n[!] ERROR CRÍTICO: No se encontró BASE_DRIVE en el archivo .env.")
-    sys.exit(1)
-
-if not R_EXE_PATH:
-    print("\n[!] ERROR CRÍTICO: No se encontró R_PATH en el archivo .env.")
-    print("Asegúrate de agregar la ruta de tu Rscript.exe al archivo .env.")
+    print("\n[!] ERROR CRÍTICO: No se encontró la variable BASE_DRIVE en el archivo .env.")
     sys.exit(1)
 
 # 4. DEFINICIÓN DEL AÑO (¡Esta es la parte que falta!)
@@ -27,6 +21,9 @@ YEAR_DIR = os.path.join(DRIVE_PATH, YEAR)
 if not os.path.exists(YEAR_DIR):
     print(f"\n[!] ERROR CRÍTICO: No se encontró la ruta {YEAR_DIR}")
     sys.exit(1)
+
+# --- NIVEL 1 & 2 ---
+# (El resto de tus menús sigue aquí...)
 
 # --- NIVEL 1 & 2 ---
 while True:
