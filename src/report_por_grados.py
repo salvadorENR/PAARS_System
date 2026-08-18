@@ -13,6 +13,30 @@ import config
 # HELPERS
 # ---------------------------------------------------------------------------
 
+def limpiar_textos_redaccion(texto):
+    """Limpia ortografía, caracteres corruptos de Unicode y miles con signos de interrogación."""
+    if pd.isna(texto): return ""
+    t = str(texto)
+    
+    # 1. Correcciones ortográficas y de símbolos Unicode corruptos
+    reemplazos = {
+        'à': 'á', 'è': 'é', 'ì': 'í', 'ò': 'ó', 'ù': 'ú',
+        'À': 'Á', 'È': 'É', 'Ì': 'Í', 'Ò': 'Ó', 'Ù': 'Ú',
+        '\ufffd': ' ', 
+        ' ,': ',', ' .': '.'
+    }
+    for mal, bien in reemplazos.items():
+        t = t.replace(mal, bien)
+        
+    # 2. Filtro quirúrgico para los miles corruptos (ej. 1,?000,?000)
+    t = re.sub(r',\?(\d+)', r',\1', t)
+    t = re.sub(r'(?<=\d)\?(\d+)', r',\1', t)
+        
+    # 3. Eliminar espacios dobles
+    t = re.sub(r'\s+', ' ', t)
+    
+    return t.strip()
+
 def normalize_item_code(code_str):
     """Strip everything except uppercase letters and digits. e.g. 'Lec 20' -> 'LEC20'."""
     if pd.isna(code_str):
@@ -143,6 +167,7 @@ def cargar_metadata_indicadores():
       - Also loads Clases_Sugeridas and Orden_Clase for badge rendering.
       - Falls back to the first available metadata file if no specific
         match is found, so the report degrades gracefully.
+      - APLICA LIMPIEZA DE REDACCIÓN AL TEXTO DE LOS INDICADORES.
     """
     item_dict = {}
     archivos_meta = (glob.glob(os.path.join(config.PATH_METADATA, "*.xlsx")) +
@@ -193,7 +218,7 @@ def cargar_metadata_indicadores():
 
     try:
         if archivo_maestro.endswith('.csv'):
-            df_meta = pd.read_csv(archivo_maestro, encoding='utf-8-sig',
+            df_meta = pd.read_csv(archivo_maestro, encoding='utf-8-sig', encoding_errors='replace',
                                   sep=None, engine='python', dtype=str)
         else:
             df_meta = pd.read_excel(archivo_maestro, dtype=str)
@@ -219,6 +244,10 @@ def cargar_metadata_indicadores():
             codigo = normalize_item_code(row[col_item])
             if not codigo:
                 continue
+            
+            # --- LIMPIEZA DE REDACCIÓN INYECTADA AQUÍ ---
+            objetivo_limpio = limpiar_textos_redaccion(row[col_ind])
+            
             clases_val = ""
             if col_clases and pd.notna(row[col_clases]) and str(row[col_clases]).strip() not in ('', 'nan'):
                 clases_val = str(row[col_clases]).strip()
@@ -229,7 +258,7 @@ def cargar_metadata_indicadores():
                 except ValueError:
                     pass
             item_dict[codigo] = {
-                'objetivo': str(row[col_ind]).strip(),
+                'objetivo': objetivo_limpio,
                 'clases':   clases_val,
                 'orden':    orden_val,
             }
@@ -417,11 +446,12 @@ def generar_reporte_por_grados(df_master=None):
                 badge = (f"<span class='badge-class'>{ind['clases']}</span> "
                          if ind['clases'] else "")
                 html_items += f"""
-                <div class="indicator-item" style="background-color: {ind['bg']}; color: {ind['text_color']};">
-                    <div class="pct-box" style="border-right: 1px solid {ind['text_color']}; opacity: 0.9;">
-                        <strong>{ind['pct']:.1f}%</strong><br><small>{ind['cat']}</small>
+                <div class="indicator-item" style="background-color: {ind['bg']}; color: {ind['text_color']}; border: none;">
+                    <div class="pct-box" style="border-right: 1px solid rgba(150,150,150,0.3);">
+                        <strong style="color: {ind['text_color']};">{ind['pct']:.1f}%</strong><br>
+                        <small style="color: {ind['text_color']}; opacity: 0.9;">{ind['cat']}</small>
                     </div>
-                    <div class="ind-text">{badge}{ind['texto']}</div>
+                    <div class="ind-text" style="color: {ind['text_color']};">{badge}{ind['texto']}</div>
                 </div>"""
 
             indicadores_html += f"""
@@ -472,7 +502,7 @@ def generar_reporte_por_grados(df_master=None):
             th {{ background: #2c3e50; color: white; }}
 
             /* Indicators */
-            .indicator-item {{ display: flex; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 4px; border: none; }}
+            .indicator-item {{ display: flex; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }}
             .pct-box {{ width: 80px; text-align: center; padding-right: 15px; margin-right: 15px; flex-shrink: 0; }}
             .pct-box strong {{ font-size: 16px; color: inherit; }}
             .pct-box small {{ text-transform: uppercase; font-size: 10px; font-weight: bold; color: inherit; }}

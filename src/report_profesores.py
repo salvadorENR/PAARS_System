@@ -198,6 +198,34 @@ HTML_TEMPLATE = """
 """
 
 # --- 3. FUNCIONES AUXILIARES ---
+
+def limpiar_textos_redaccion(texto):
+    """Limpia ortografía, caracteres corruptos de Unicode y miles con signos de interrogación."""
+    if pd.isna(texto): return ""
+    t = str(texto)
+    
+    # 1. Correcciones ortográficas y de símbolos Unicode corruptos
+    reemplazos = {
+        'à': 'á', 'è': 'é', 'ì': 'í', 'ò': 'ó', 'ù': 'ú',
+        'À': 'Á', 'È': 'É', 'Ì': 'Í', 'Ò': 'Ó', 'Ù': 'Ú',
+        '\ufffd': ' ', 
+        ' ,': ',', ' .': '.'
+    }
+    for mal, bien in reemplazos.items():
+        t = t.replace(mal, bien)
+        
+    # 2. Filtro quirúrgico para los miles corruptos (ej. 1,?000,?000)
+    # Si hay una coma seguida de '?' y números, elimina el '?': "1,?000" -> "1,000"
+    t = re.sub(r',\?(\d+)', r',\1', t)
+    # Si hay un '?' atrapado directamente entre números, lo vuelve coma: "1?000" -> "1,000"
+    t = re.sub(r'(?<=\d)\?(\d+)', r',\1', t)
+        
+    # 3. Eliminar espacios dobles
+    t = re.sub(r'\s+', ' ', t)
+    
+    return t.strip()
+
+
 def clasificar_puntaje(val):
     if pd.isna(val): return "Crítico"
     val = float(val)
@@ -253,6 +281,7 @@ def load_item_indicators():
         for col in columnas_requeridas:
             if col not in df_items.columns:
                 df_items[col] = ''
+                
         for _, row in df_items.dropna(subset=['ItemCodigo', 'indicador_logro']).iterrows():
             codigo_puro = normalize_item_code(row['ItemCodigo'])
             if not codigo_puro: continue
@@ -262,8 +291,12 @@ def load_item_indicators():
                     orden_val = float(row['Orden_Clase'])
                 except:
                     pass
+            
+            # --- APLICAMOS LA LIMPIEZA DE REDACCIÓN AL INDICADOR ---
+            objetivo_limpio = limpiar_textos_redaccion(row['indicador_logro'])
+            
             item_base_dict[codigo_puro] = {
-                'objetivo':   str(row['indicador_logro']).strip(),
+                'objetivo':   objetivo_limpio,
                 'clases':     str(row['Clases_Sugeridas']).strip()
                               if pd.notna(row['Clases_Sugeridas'])
                               and str(row['Clases_Sugeridas']).strip() != 'nan' else "",
@@ -437,8 +470,10 @@ def process_section_reports():
 
     if 'Nombre' not in master_df.columns:   master_df['Nombre'] = ''
     if 'Apellido' not in master_df.columns: master_df['Apellido'] = ''
-    master_df['Nombre']   = master_df['Nombre'].fillna('').astype(str).str.strip().str.title()
-    master_df['Apellido'] = master_df['Apellido'].fillna('').astype(str).str.strip().str.title()
+    
+    # --- APLICAMOS LA LIMPIEZA DE REDACCIÓN A LOS NOMBRES ---
+    master_df['Nombre']   = master_df['Nombre'].fillna('').apply(limpiar_textos_redaccion).str.title()
+    master_df['Apellido'] = master_df['Apellido'].fillna('').apply(limpiar_textos_redaccion).str.title()
 
     def format_name(row):
         ap  = row['Apellido']
